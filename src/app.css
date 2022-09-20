@@ -1,3 +1,45 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+	font-size: 16px;
+	line-height: 24px;
+	font-weight: 400;
+
+	scroll-behavior: smooth;
+
+	font-synthesis: none;
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-text-size-adjust: 100%;
+}
+
+h1 {
+    @apply text-4xl font-semibold;
+}
+
+h2 {
+    @apply text-3xl font-semibold;
+}
+
+h3 {
+    @apply text-2xl font-medium;
+}
+
+h4 {
+    @apply text-xl font-medium;
+}
+
+h5 {
+    @apply text-lg; /* placeholder */
+}
+
+h6 {
+    @apply text-sm font-bold opacity-75;
+}
+
+.container {
+    @apply max-w-[1000px] m-auto;
+}
