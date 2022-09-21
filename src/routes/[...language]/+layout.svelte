@@ -22,7 +22,7 @@
         </a>
 
         {#each data.routes as route}
-            <a href={route[1]}>{route[0]}</a>
+            <a class="font-medium" href={route[1]}>{route[0]}</a>
         {/each}
 
         <div class="grow"></div>
