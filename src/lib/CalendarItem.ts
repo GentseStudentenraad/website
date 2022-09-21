@@ -1,4 +1,5 @@
 import { Chance } from "chance";
+import { Language } from "./Language";
 
 export class NewsItem {
     id!: number
@@ -15,7 +16,7 @@ export class NewsItem {
         Object.assign(this, data)
     }
 
-    static getAll(n: number = 100): Array<NewsItem> {
+    static getAll(language: Language = Language.DUTCH, n: number = 100): Array<NewsItem> {
         const chance = Chance()
 
         return Array.from(Array(n).keys()).map(() => (

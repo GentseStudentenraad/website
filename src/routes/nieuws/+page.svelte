@@ -25,8 +25,8 @@
 
             <div class="col-span-2 self-center">
                 <h6>NIEUWS - {data.news[0].published_at.toLocaleDateString()}</h6>
-                <h2>{data.news[0].title_en}</h2>
-                <h5>{data.news[0].synopsis_en}</h5>
+                <h2>{data.news[0].title}</h2>
+                <h5>{data.news[0].synopsis}</h5>
             </div>
 
             {#each data.news.slice(1, 5) as news_item}
@@ -37,8 +37,8 @@
                         alt={news_item.banner_image_alt}
                     >
                     <h6>NIEUWS - {news_item.published_at.toLocaleDateString()}</h6>
-                    <h4>{news_item.title_en}</h4>
-                    <p>{news_item.synopsis_en}</p>
+                    <h4>{news_item.title}</h4>
+                    <p>{news_item.synopsis}</p>
                 </div>
             {/each}
 
@@ -59,8 +59,8 @@
                 >
                 <div>
                     <h6>NIEUWS - {news_item.published_at.toLocaleDateString()}</h6>
-                    <h4 class="font-semibold">{news_item.title_en}</h4>
-                    <p>{news_item.synopsis_en}</p>
+                    <h4 class="font-semibold">{news_item.title}</h4>
+                    <p>{news_item.synopsis}</p>
                 </div>
             </div>
             {/each}
