@@ -11,15 +11,15 @@
     let data;
 </script>
 
-<div class="container space-y-8">
 
+<NewsItemBig news_item={data.news[0]} />
+
+<div class="container space-y-8 py-12">
     <div class="space-y-4">
         <div>
-            <h2>Nieuws</h2>
-            <p>Ontdek hier alles wat nieuw is bij de Gentse Studentenraad.</p>
+            <p class="font-serif text-6xl font-bold">nieuws</p>
+            <p>Ontdek hier wat relevant en actueel is bij de studentenraad.</p>
         </div>
-
-        <NewsItemBig news_item={data.news[0]} />
 
         <div class="grid grid-cols-4 gap-6">
             {#each data.news.slice(1, 5) as news_item}

@@ -29,13 +29,13 @@ export async function load({ params, url }) {
         ["Contact", "/"],
         ["Enlight", "/"],
       ] : [
-        ["Who", "/"],
-        ["Elections", "/"],
-        ["Structure", "/"],
-        ["News", "/nieuws"],
-        ["FAQ", "/"],
-        ["Contact", "/"],
-        ["Enlight", "/"]
+        ["Who", "/en/"],
+        ["Elections", "/en/"],
+        ["Structure", "/en/"],
+        ["News", "/en/nieuws"],
+        ["FAQ", "/en/"],
+        ["Contact", "/en/"],
+        ["Enlight", "/en/"]
     ];
 
 	return {

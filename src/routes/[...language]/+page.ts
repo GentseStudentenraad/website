@@ -7,6 +7,9 @@ import { Host, getHost } from "$lib/Host";
 // @ts-ignore
 import { CalendarItem } from "$lib/CalendarItem";
 
+// @ts-ignore
+import { NewsItem } from "$lib/NewsItem";
+
 export const prerender = false;
 export const ssr = true;
 export const csr = true;
@@ -24,10 +27,12 @@ export async function load({ params, url }) {
     const language = params.language === "en" ? Language.ENGLISH : Language.DUTCH
 
     const calendar = CalendarItem.getAll(language, 100);
+    const news = NewsItem.getAll(language, 4);
 
 	return {
 		language,
         host,
         calendar,
+        news
 	};
 }

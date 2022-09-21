@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -71,4 +73,16 @@ h6 {
 
 .container {
     @apply max-w-[1000px] m-auto;
+}
+
+.container-big {
+    @apply max-w-[1400px] m-auto;
+}
+
+.fat-link {
+	@apply text-primary font-semibold hover:underline hover:cursor-pointer underline-offset-1 decoration-2;
+}
+
+.font-serif {
+	font-family: 'EB Garamond', serif;
 }

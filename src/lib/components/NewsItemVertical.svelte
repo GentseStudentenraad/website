@@ -4,13 +4,13 @@
     export let news_item: NewsItem
 </script>
 
-<div>
+<a href="/" class="transition hover:scale-[1.01]">
     <img
         src={news_item.banner_image}
         class="object-cover overflow-hidden aspect-square w-full rounded-md mb-2"
         alt={news_item.banner_image_alt}
     >
-    <h6>NIEUWS - {news_item.published_at.toLocaleDateString()}</h6>
-    <h4>{news_item.title}</h4>
-    <p>{news_item.synopsis}</p>
-</div>
+    <p class="font-bold text-xs opacity-90">NIEUWS - {news_item.published_at.toLocaleDateString()}</p>
+    <p class="font-semibold text-lg">{news_item.title}</p>
+    <p class="text-sm opacity-75">{news_item.synopsis}</p>
+</a>

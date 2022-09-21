@@ -12,8 +12,8 @@
         alt={news_item.banner_image_alt}
     >
     <div>
-        <h6>NIEUWS - {news_item.published_at.toLocaleDateString()}</h6>
-        <h4 class="font-semibold">{news_item.title}</h4>
-        <p>{news_item.synopsis}</p>
+        <p class="font-bold text-xs opacity-90">NIEUWS - {news_item.published_at.toLocaleDateString()}</p>
+        <p class="font-semibold text-lg">{news_item.title}</p>
+        <p class="text-sm opacity-75">{news_item.synopsis}</p>
     </div>
 </div>
