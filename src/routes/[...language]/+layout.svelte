@@ -1,16 +1,12 @@
-<script>
-  import "../app.css";
+<script lang="ts">
+  import "../../app.css";
+  import { Language} from "$lib/Language";
+  import { page } from '$app/stores';
 
-  const routes = [
-    ["Wie", "/"],
-    ["Verkiezingen", "/"],
-    ["Werking", "/"],
-    ["Nieuws", "/nieuws"],
-    ["FAQ", "/"],
-    ["Contact", "/"],
-    ["Enlight", "/"],
-
-  ]
+  export let data: {
+    language: Language,
+    routes: [String, String]
+  }
 </script>
 
 <div class="flex flex-col justify-between w-full min-h-[100vh]">
@@ -23,15 +19,18 @@
             >
         </a>
 
-        {#each routes as route}
+        {#each data.routes as route}
             <a href={route[1]}>{route[0]}</a>
         {/each}
 
         <div class="grow"></div>
 
-        <p>socials</p>
-
-        <p>login</p>
+        <div class="flex items-center gap-2">
+            <img src="/icons/translation.png" class="h-4 w-4" alt="Translation Icon">
+            <a href='/{$page.routeId?.replace("[...language]", data.language === Language.DUTCH ? "en" : "nl")}'>
+                {data.language === Language.DUTCH ? "English" : "Dutch"}
+            </a>
+        </div>
     </nav>
 
     <main class="container py-12">
