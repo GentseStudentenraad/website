@@ -5,8 +5,7 @@
     ["Wie", "/"],
     ["Verkiezingen", "/"],
     ["Werking", "/"],
-    ["Nieuws", "/"],
-    ["Survival Tips", "/"],
+    ["Nieuws", "/nieuws"],
     ["FAQ", "/"],
     ["Contact", "/"],
     ["Enlight", "/"],
@@ -16,11 +15,13 @@
 
 <div class="flex flex-col justify-between w-full min-h-[100vh]">
     <nav class="bg-primary p-3 flex items-center gap-6 text-white">
-        <img
-            src="https://gentsestudentenraad.be/static/persistent/images/logo.png"
-            class="h-8"
-            alt="Logo"
-        >
+        <a href="/">
+            <img
+                src="https://gentsestudentenraad.be/static/persistent/images/logo.png"
+                class="h-8"
+                alt="Logo"
+            >
+        </a>
 
         {#each routes as route}
             <a href={route[1]}>{route[0]}</a>
@@ -33,7 +34,7 @@
         <p>login</p>
     </nav>
 
-    <main class="container">
+    <main class="container py-12">
         <slot />
     </main>
 
