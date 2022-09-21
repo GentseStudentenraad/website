@@ -1,35 +1,29 @@
 import { Chance } from "chance";
 import { Language } from "./Language";
 
-export class NewsItem {
+export class CalendarItem {
     id!: number
-    title_en!: string
-    title_nl!: string
-    contents_en!: string
-    contents_nl!: string
+    title!: string
+    contents!: string
     start_time!: Date
     end_time!: Date
-    location_en!: string
-    location_nl!: string
+    location!: string
 
-    constructor(data: Partial<NewsItem>) {
+    constructor(data: Partial<CalendarItem>) {
         Object.assign(this, data)
     }
 
-    static getAll(language: Language = Language.DUTCH, n: number = 100): Array<NewsItem> {
+    static getAll(language: Language = Language.DUTCH, n: number = 100): Array<CalendarItem> {
         const chance = Chance()
 
         return Array.from(Array(n).keys()).map(() => (
             {
                 id: chance.integer(),
-                title_en: chance.sentence({words: chance.integer({min: 2, max: 7})}),
-                title_nl: chance.sentence(),
-                contents_en: chance.paragraph(),
-                contents_nl: chance.paragraph(),
+                title: chance.sentence({words: chance.integer({min: 1, max: 4})}),
+                contents: chance.paragraph({sentences: 1}),
                 start_time: chance.date(),
                 end_time: chance.date(),
-                location_en: chance.sentence(),
-                location_nl: chance.sentence()
+                location: chance.sentence().slice(0, 30),
             }
         ));
     }
