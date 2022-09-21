@@ -2,10 +2,12 @@
   import "../../app.css";
   import { Language} from "$lib/Language";
   import { page } from '$app/stores';
+  import type { Host } from "$lib/Host";
 
   export let data: {
     language: Language,
-    routes: [String, String]
+    routes: [String, String],
+    host: Host
   }
 </script>
 
@@ -24,6 +26,8 @@
         {/each}
 
         <div class="grow"></div>
+
+        <div>{data.host}</div>
 
         <div class="flex items-center gap-2">
             <img src="/icons/translation.png" class="h-4 w-4" alt="Translation Icon">
