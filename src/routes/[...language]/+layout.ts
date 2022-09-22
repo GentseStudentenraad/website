@@ -21,7 +21,7 @@ export async function load({ params, url }) {
     const language = params.language === "en" ? Language.ENGLISH : Language.DUTCH
 
     const routes = language === Language.DUTCH ? [
-        ["Wie", "/"],
+        ["Wie", "/wie"],
         ["Verkiezingen", "/"],
         ["Werking", "/"],
         ["Nieuws", "/nieuws"],
@@ -29,7 +29,7 @@ export async function load({ params, url }) {
         ["Contact", "/"],
         ["Enlight", "/"],
       ] : [
-        ["Who", "/en/"],
+        ["Who", "/en/wie"],
         ["Elections", "/en/"],
         ["Structure", "/en/"],
         ["News", "/en/nieuws"],
