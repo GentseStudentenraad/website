@@ -25,7 +25,7 @@ export async function load({ params, url }) {
         ["Verkiezingen", "/"],
         ["Werking", "/"],
         ["Nieuws", "/nieuws"],
-        ["FAQ", "/"],
+        ["FAQ", "/faq"],
         ["Contact", "/"],
         ["Enlight", "/"],
       ] : [
@@ -33,7 +33,7 @@ export async function load({ params, url }) {
         ["Elections", "/en/"],
         ["Structure", "/en/"],
         ["News", "/en/nieuws"],
-        ["FAQ", "/en/"],
+        ["FAQ", "/en/faq"],
         ["Contact", "/en/"],
         ["Enlight", "/en/"]
     ];
