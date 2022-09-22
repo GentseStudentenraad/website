@@ -1,0 +1,34 @@
+{
+    "meta": {
+      "language_code": "en",
+      "language": "English"
+    },
+    "home": {
+      "greeting": "Welcome",
+      "introduction": "The Ghent Student Council is the central student council of Ghent University. We represent and defend (the interests of) the students at the university board. Ranging from educational matters (Education and Examination Regulations (OER), special statutes, study measures ...) to social affairs (homes, student restos), the themes that we address with the Ghent Student Council are extremely diverse. However, we are present on more levels than just the university. In the first place, the Ghent Student Council supports the eleven faculty student councils. The Ghent Student Council is also active at the urban and Flemish level. In addition, the Ghent Student Council also supports various large and smaller projects such as the Bicycle Embassy, ​​Student Kick-Off and Zeus WPI. Are you interested or do you have any questions? Then take a look at this page or feel free to contact us via info@gentsestudentenraad.be. You are also always welcome at our meetings and working groups that are open to all students.",
+      "news": "News",
+      "calendar": "Calendar"
+    },
+    "who": {
+      "title": "Learn more about us."
+    },
+    "news": {
+      "title": "News",
+      "subtitle": "Discover everything topical and relevant at the student council here.",
+      "archive": "Archive",
+      "published": "Published on"
+    },
+    "faq": {
+      "title": "Questions and Answers",
+      "subtitle": "We answer some of our most frequently asked questions. Haven't found what you're looking for? Contact us here.",
+      "selector": "Navigate to",
+      "not_found": "Haven't found what you're looking for?<br>Contact us here."
+    },
+    "footer": {
+      "social_media": "Social Media",
+      "contact": "Contact",
+      "varia": "Varia",
+      "rss_feed": "RSS feed",
+      "complaints": "Complaints"
+    }
+  }

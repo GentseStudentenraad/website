@@ -12,7 +12,8 @@
         language: Language,
         host: Host,
         calendar: CalendarItem[],
-        news: NewsItem[]
+        news: NewsItem[],
+        translations: any
     }
 </script>
 
@@ -26,9 +27,9 @@
 
     <div class="">
         <div class="container pt-12 pb-6 space-y-2">
-            <p class="col-span-2 text-6xl font-serif font-bold">welkom</p>
+            <p class="col-span-2 text-6xl font-serif font-bold lowercase">{data.translations.home.greeting}</p>
             <div class="w-full h-[4px] bg-primary/50"></div>
-            <p class="col-span-3 text-justify">De Gentse Studentenraad is de centrale studentenraad van de UGent. We vertegenwoordigen en verdedigen (de belangen van) de studenten bij het universiteitsbestuur. Gaande van onderwijsaangelegenheden (Onderwijs- en examenreglement (OER), bijzondere statuten, studiemaatregelen ...) tot sociale zaken (homes, studentenresto's), de thema's die we met de Gentse Studentenraad aansnijden zijn bijzonder divers. We zijn echter op meer niveaus aanwezig dan enkel het universitaire. In de eerste plaats ondersteunt de Gentse Studentenraad de elf facultaire studentenraden. Ook op het stedelijk niveau en op het Vlaams niveau is de Gentse Studentenraad actief. Daarenboven ondersteunt de Gentse Studentenraad ook verschillende grote en minder grote projecten zoals de Fietsambassade, Student Kick-Off en Zeus WPI. Ben je geïnteresseerd of heb je vragen? Neem dan zeker eens een kijkje op deze pagina of neem gerust contact op via info@gentsestudentenraad.be. Je bent eveneens steeds welkom op onze vergaderingen en werkgroepen die openstaan voor alle studenten.</p>
+            <p class="col-span-3 text-justify">{data.translations.home.introduction}</p>
         </div>
 
         <div class="grid grid-cols-6 items-center container py-6">
@@ -39,12 +40,12 @@
             </div>
 
             <a href="/nieuws" class="flex flex-col col-span-2 text-right">
-                <p class="text-8xl font-serif font-bold transition hover:scale-[1.01]">nieuws</p>
+                <p class="text-8xl font-serif font-bold transition hover:scale-[1.01] lowercase">{data.translations.home.news}</p>
             </a>
         </div>
 
-        <div class="grid grid-cols-6 items-center container py-6">
-            <p class="text-7xl font-serif font-bold w-fit col-span-2">kalender</p>
+        <div class="grid grid-cols-6 items-center container py-6 lowercase">
+            <p class="text-7xl font-serif font-bold w-fit col-span-2">{data.translations.home.calendar}</p>
 
             <div class="col-span-4 flex flex-col divide-y-2">
                 {#each data.calendar.slice(0, 3) as calendar_item}

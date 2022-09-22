@@ -10,10 +10,15 @@ import { CalendarItem } from "$lib/CalendarItem";
 // @ts-ignore
 import { NewsItem } from "$lib/NewsItem";
 
+// @ts-ignore
+import dutch from "$lib/i18n/nl.json";
+
+// @ts-ignore
+import english from "$lib/i18n/en.json"
+
 export const prerender = false;
 export const ssr = true;
 export const csr = true;
-
 
 // @ts-ignore
 export async function load({ params, url }) {
@@ -33,6 +38,7 @@ export async function load({ params, url }) {
 		language,
         host,
         calendar,
-        news
+        news,
+        translations: language === Language.DUTCH ? dutch : english,
 	};
 }

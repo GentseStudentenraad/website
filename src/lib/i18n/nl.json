@@ -1,0 +1,34 @@
+{
+    "meta": {
+      "language_code": "nl",
+      "language": "Nederlands"
+    },
+    "home": {
+      "greeting": "Welkom",
+      "introduction": "De Gentse Studentenraad is de centrale studentenraad van de UGent. We vertegenwoordigen en verdedigen (de belangen van) de studenten bij het universiteitsbestuur. Gaande van onderwijsaangelegenheden (Onderwijs- en examenreglement (OER), bijzondere statuten, studiemaatregelen ...) tot sociale zaken (homes, studentenresto's), de thema's die we met de Gentse Studentenraad aansnijden zijn bijzonder divers. We zijn echter op meer niveaus aanwezig dan enkel het universitaire. In de eerste plaats ondersteunt de Gentse Studentenraad de elf facultaire studentenraden. Ook op het stedelijk niveau en op het Vlaams niveau is de Gentse Studentenraad actief. Daarenboven ondersteunt de Gentse Studentenraad ook verschillende grote en minder grote projecten zoals de Fietsambassade, Student Kick-Off en Zeus WPI. Ben je geïnteresseerd of heb je vragen? Neem dan zeker eens een kijkje op deze pagina of neem gerust contact op via info@gentsestudentenraad.be. Je bent eveneens steeds welkom op onze vergaderingen en werkgroepen die openstaan voor alle studenten.",
+      "news": "Nieuws",
+      "calendar": "Kalender"
+    },
+    "who": {
+      "title": "Wie zijn wij?"
+    },
+    "news": {
+      "title": "nieuws",
+      "subtitle": "Ontdek hier wat relevant en actueel is bij de studentenraad.",
+      "archive": "Archief",
+      "published": "Gepubliceerd op"
+    },
+    "faq": {
+      "title": "Vraag en Antwoord",
+      "subtitle": "We beantwoorden hier alvast de meest frequent gestelde vragen. Toch geen antwoord gevonden? Contacteer ons dan gerust hier.",
+      "selector": "Ga snel naar..",
+      "not_found": "Niet gevonden wat je zocht?<br>Contacteer ons dan hier."
+    },
+    "footer": {
+      "social_media": "Social Media",
+      "contact": "Contact",
+      "varia": "Varia",
+      "rss_feed": "RSS feed",
+      "complaints": "Klachten"
+    }
+  }
