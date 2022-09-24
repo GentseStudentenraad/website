@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	// @ts-ignore
     import { NewsItem } from "$lib/NewsItem";
     import NewsItemVertical from "$lib/components/NewsItemVertical.svelte"
@@ -8,7 +8,10 @@
     export /**
 	* @type {{ news: NewsItem[]; }}
 	*/
-    let data;
+    let data: {
+        news: NewsItem[],
+        translations: any,
+    };
 </script>
 
 
@@ -17,8 +20,8 @@
 <div class="container space-y-8 py-12">
     <div class="space-y-4">
         <div>
-            <p class="font-serif text-6xl font-bold">nieuws</p>
-            <p>Ontdek hier wat relevant en actueel is bij de studentenraad.</p>
+            <p class="font-serif text-6xl font-bold lowercase">{ data.translations.news.title }</p>
+            <p>{ data.translations.news.subtitle }</p>
         </div>
 
         <div class="grid grid-cols-4 gap-6">
@@ -29,7 +32,7 @@
     </div>
 
     <div class="space-y-1">
-        <h4>Archief</h4>
+        <h4>{ data.translations.news.archive }</h4>
 
         <div class="flex flex-col border-t-2 border-b-2 divide-y-2">
             {#each data.news.slice(5) as news_item}

@@ -6,7 +6,8 @@
     let selected: number = 2022
 
     export let data: {
-        groups: Array<Group>
+        groups: Array<Group>,
+        translations: any
     }
 </script>
 
@@ -18,7 +19,7 @@
 >
 
 <div class="container grid grid-cols-2 gap-x-8 gap-y-2 py-12">
-    <p class="font-serif font-bold text-4xl col-span-2">Wie zijn wij?</p>
+    <p class="font-serif font-bold text-4xl col-span-2">{data.translations.who.title}</p>
     <p>{Chance().paragraph()}</p>
     <p>{Chance().paragraph()}</p>
 </div>

@@ -7,13 +7,14 @@
   export let data: {
     language: Language,
     routes: [String, String],
-    host: Host
+    host: Host,
+    translations: any,
   }
 </script>
 
 <div class="flex flex-col justify-between w-full min-h-[100vh]">
     <nav class="sticky top-0 shadow-md w-full z-[100] bg-primary p-3 flex items-center gap-6 text-white">
-        <a href="/">
+        <a href="/{data.translations.meta.language_code}">
             <img
                 src="https://gentsestudentenraad.be/static/persistent/images/logo.png"
                 class="h-8"

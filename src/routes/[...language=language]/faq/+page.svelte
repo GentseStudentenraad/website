@@ -14,18 +14,19 @@
     }
 
     export let data: {
-        faq: QuestionCategory[]
+        faq: QuestionCategory[],
+        translations: any
     }
 </script>
 
 <div class="grid grid-cols-3 relative h-[60vh] items-center text-white bg-neutral-900">
     <div class="p-12 space-y-4">
         <div class="space-y-1">
-            <p class="text-5xl font-serif font-bold shadow">Vraag en Antwoord</p>
-            <p>We beantwoorden hier alvast de meest frequent gestelde vragen. Toch geen antwoord gevonden? Contacteer ons dan gerust hier.</p>
+            <p class="text-5xl font-serif font-bold shadow">{data.translations.faq.title}</p>
+            <p>{data.translations.faq.subtitle}</p>
         </div>
         <select bind:value={selected}>
-            <option value={null}>Ga snel naar..</option>
+            <option value={null}>{data.translations.faq.selector}</option>
             {#each data.faq as category}
                 <option value={category}>{category.title}</option>
             {/each}
@@ -50,7 +51,7 @@
         </div>
     {/each}
 
-    <p class="text-center opacity-75 font-medium font-lg">Niet gevonden wat je zocht?<br>Contacteer ons dan <a href="/" class="fat-link">hier</a>.</p>
+    <p class="text-center opacity-75 font-medium font-lg">{@html data.translations.faq.not_found}</p>
 </div>
 
 <style>

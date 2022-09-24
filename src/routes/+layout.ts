@@ -4,6 +4,12 @@ import { Language } from "$lib/Language";
 // @ts-ignore
 import { Host, getHost } from "$lib/Host";
 
+// @ts-ignore
+import dutch from "$lib/i18n/nl.json";
+
+// @ts-ignore
+import english from "$lib/i18n/en.json"
+
 export const prerender = false;
 export const ssr = true;
 export const csr = false;
@@ -28,7 +34,6 @@ export async function load({ params, url }) {
       ] : [
         ["Who", "/en/wie"],
         ["Elections", "/en/verkiezingen"],
-        ["Structure", "/en/"],
         ["News", "/en/nieuws"],
         ["FAQ", "/en/faq"],
     ];
@@ -36,6 +41,7 @@ export async function load({ params, url }) {
 	return {
 		language,
         routes,
-        host
+        host,
+        translations: language === Language.DUTCH ? dutch : english,
 	};
 }

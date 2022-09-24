@@ -24,6 +24,9 @@
       "selector": "Navigate to",
       "not_found": "Haven't found what you're looking for?<br>Contact us here."
     },
+    "elections": {
+      "title": "Elections of the Executive Committee"
+    },
     "footer": {
       "social_media": "Social Media",
       "contact": "Contact",
