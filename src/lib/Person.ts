@@ -4,6 +4,7 @@ export class Person {
     id!: number
     name!: string
     image!: string
+    mail: string | null = null
 
     constructor(data: Partial<Person>) {
         Object.assign(this, data)
@@ -14,7 +15,7 @@ export class Person {
             id: Chance().integer(),
             name: Chance().name(),
             image: `http://source.unsplash.com/random/500x${500 + Chance().integer({min: -10, max: 10})}/?girl`,
-
+            mail: Chance().integer({min: 0, max: 1}) === 0 ? null : Chance().email()
         }
     }
 }

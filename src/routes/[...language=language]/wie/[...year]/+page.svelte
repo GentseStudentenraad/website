@@ -24,20 +24,29 @@
 </div>
 
 
-<div class="container space-y-4">
+<div class="space-y-4">
     {#each data.groups as group}
-        <div>
-            <p class="font-serif font-bold text-2xl">{group.name}</p>
-            <p>{group.description}</p>
-
-            <div class="grid grid-cols-3 gap-6 py-8">
+        <div class="odd:bg-neutral-100">
+            <div class="container grid grid-cols-2 gap-12 py-12">
+                <div class="space-y-1">
+                    <p class="font-serif font-bold text-3xl">{group.name}</p>
+                    <div class="h-[2px] bg-neutral-200"></div>
+                    <p class="opacity-90">{group.description}</p>
+                </div>
                 {#each group.positions as position}
                     <div class="flex gap-4 items-center">
-                        <img src={position.person.image} alt="Portrait of {position.person.name}" class="h-24 w-24 object-cover rounded-full">
-                        <div class="-space-y-1">
+                        <img src={position.person.image} alt="Portrait of {position.person.name}" class="h-40 w-40 object-cover rounded-full">
+                        <div class="space-y-1">
                             <p class="uppercase font-bold text-xs opacity-75">{position.name}</p>
-                            <p class="font-medium text-lg">{position.person.name}</p>
-                            <p class="text-sm opacity-90">{position.education}</p>
+                            <div class="-space-y-1">
+                                <p class="font-medium text-xl">{position.person.name}</p>
+                                <p class="opacity-90">{position.education}</p>
+                            </div>
+                            {#if position.person.mail !== null}
+                                <a href="mailto:{position.person.mail}" class="mt-2 w-fit opacity-90">
+                                    <p class="text-sm font-semibold">{position.person.mail}</p>
+                                </a>
+                            {/if}
                         </div>
                     </div>
                 {/each}
