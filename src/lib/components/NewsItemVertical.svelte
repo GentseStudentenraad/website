@@ -4,7 +4,7 @@
     export let news_item: NewsItem
 </script>
 
-<a href="/" class="transition hover:scale-[1.01]">
+<a href="/nieuws/{news_item.id}" class="transition hover:scale-[1.01]">
     <img
         src={news_item.banner_image}
         class="object-cover overflow-hidden aspect-square w-full rounded-md mb-2"

@@ -43,7 +43,7 @@
                                 <p class="opacity-90">{position.education}</p>
                             </div>
                             {#if position.person.mail !== null}
-                                <a href="mailto:{position.person.mail}" class="mt-2 w-fit opacity-90">
+                                <a href="mailto:{position.person.mail}" class="mt-4 w-fit opacity-90">
                                     <p class="text-sm font-semibold">{position.person.mail}</p>
                                 </a>
                             {/if}

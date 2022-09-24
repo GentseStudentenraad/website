@@ -23,7 +23,6 @@ export async function load({ params, url }) {
     const routes = language === Language.DUTCH ? [
         ["Wie", "/wie"],
         ["Verkiezingen", "/verkiezingen"],
-        ["Werking", "/"],
         ["Nieuws", "/nieuws"],
         ["FAQ", "/faq"],
       ] : [
