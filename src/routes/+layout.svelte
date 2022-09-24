@@ -1,5 +1,5 @@
 <script lang="ts">
-  import "../../app.css";
+  import "../app.css";
   import { Language} from "$lib/Language";
   import { page } from '$app/stores';
   import type { Host } from "$lib/Host";
@@ -31,7 +31,7 @@
 
         <div class="flex items-center gap-2">
             <img src="/icons/translation.png" class="h-4 w-4" alt="Translation Icon">
-            <a href='/{$page.routeId?.replace("[...language]", data.language === Language.DUTCH ? "en" : "nl")}'>
+            <a href='/{$page.routeId?.replace("[...language=language]", data.language === Language.DUTCH ? "en" : "nl")}'>
                 {data.language === Language.DUTCH ? "English" : "Dutch"}
             </a>
         </div>
