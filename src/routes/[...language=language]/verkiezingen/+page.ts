@@ -4,10 +4,18 @@ import { Language } from "$lib/Language";
 // @ts-ignore
 import { Host, getHost } from "$lib/Host";
 
+// @ts-ignore
+import { ElectionGroup } from "$lib/Election";
+
+// @ts-ignore
+import dutch from "$lib/i18n/nl.json";
+
+// @ts-ignore
+import english from "$lib/i18n/en.json"
+
 export const prerender = false;
 export const ssr = true;
-export const csr = false;
-
+export const csr = true;
 
 // @ts-ignore
 export async function load({ params, url }) {
@@ -20,23 +28,12 @@ export async function load({ params, url }) {
     // Defaults to Dutch for obvious reasons.
     const language = params.language === "en" ? Language.ENGLISH : Language.DUTCH
 
-    const routes = language === Language.DUTCH ? [
-        ["Wie", "/wie"],
-        ["Verkiezingen", "/verkiezingen"],
-        ["Werking", "/"],
-        ["Nieuws", "/nieuws"],
-        ["FAQ", "/faq"],
-      ] : [
-        ["Who", "/en/wie"],
-        ["Elections", "/en/verkiezingen"],
-        ["Structure", "/en/"],
-        ["News", "/en/nieuws"],
-        ["FAQ", "/en/faq"],
-    ];
+    const electionGroups = ElectionGroup.getAll(5);
 
 	return {
 		language,
-        routes,
-        host
+        host,
+        electionGroups,
+        translations: language === Language.DUTCH ? dutch : english,
 	};
 }

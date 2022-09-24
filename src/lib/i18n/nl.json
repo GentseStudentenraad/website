@@ -24,6 +24,9 @@
       "selector": "Ga snel naar..",
       "not_found": "Niet gevonden wat je zocht?<br>Contacteer ons dan hier."
     },
+    "elections": {
+      "title": "Verkiezingen dagelijks bestuur"
+    },
     "footer": {
       "social_media": "Social Media",
       "contact": "Contact",
