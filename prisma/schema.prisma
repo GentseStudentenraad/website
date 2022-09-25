@@ -1,0 +1,35 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model OpinionGroup {
+  id       Int       @id @default(autoincrement())
+  sort_index     Int
+  name     String
+  about    String?
+  opinions Opinion[]
+
+  @@map("opinion_group")
+}
+
+model Opinion {
+  id           Int      @id @default(autoincrement())
+  published_at DateTime
+  title        String
+  about        String?
+  document_link String
+  published Boolean
+
+  opinion_group_id Int
+  opinion_group   OpinionGroup @relation(fields: [opinion_group_id], references: [id])
+
+  @@map("opinion")
+}

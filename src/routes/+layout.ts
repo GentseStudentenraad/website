@@ -31,11 +31,13 @@ export async function load({ params, url }) {
         ["Verkiezingen", "/verkiezingen"],
         ["Nieuws", "/nieuws"],
         ["FAQ", "/faq"],
+        ["Standpunten", "/standpunten"]
       ] : [
         ["Who", "/en/wie"],
         ["Elections", "/en/verkiezingen"],
         ["News", "/en/nieuws"],
         ["FAQ", "/en/faq"],
+        ["Opinions", "/en/standpunten"],
     ];
 
 	return {
