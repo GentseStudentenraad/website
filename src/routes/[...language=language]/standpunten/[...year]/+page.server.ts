@@ -11,18 +11,14 @@ import dutch from "$lib/i18n/nl.json";
 
 // @ts-ignore
 import english from "$lib/i18n/en.json"
+import { Organization } from "@prisma/client";
 
 export const prerender = false;
 export const ssr = true;
 export const csr = true;
 
 // @ts-ignore
-export async function load({ params, url }) {
-    // Retrieve the selected organization based on:
-    // 1. A URL query such as `?host=gentsestudentenraad.be`, for development purposes.
-    // 2. The hostname contained in the request headers.
-    const host: Host = getHost(url.searchParams.get('host') || url.hostname)
-
+export async function load({ params, url, locals }) {
     // An optional language URL parameter which indicates which language to use.
     // Defaults to Dutch for obvious reasons.
     const language = params.language === "en" ? Language.ENGLISH : Language.DUTCH
@@ -64,11 +60,14 @@ export async function load({ params, url }) {
                 }
             }
         },
+        where: {
+            organization: locals.organization
+        }
     });
 
 	return {
 		language,
-        host,
+        organization: locals.organization,
         translations: language === Language.DUTCH ? dutch : english,
         opinionGroups,
 	};

@@ -13,7 +13,8 @@
         host: Host,
         calendar: CalendarItem[],
         news: NewsItem[],
-        translations: any
+        translations: any,
+        configuration: any
     }
 </script>
 
@@ -28,7 +29,7 @@
     <div class="">
         <div class="container pt-12 pb-6 space-y-2">
             <p class="col-span-2 text-6xl font-serif font-bold lowercase">{data.translations.home.greeting}</p>
-            <div class="w-full h-[4px] bg-primary/50"></div>
+            <div class="w-full h-[4px] opacity-50" style:background-color={data.configuration.brand_color_primary}></div>
             <p class="col-span-3 text-justify">{data.translations.home.introduction}</p>
         </div>
 
@@ -89,7 +90,7 @@
             </div>
         </div>
 
-        <div class="grid grid-cols-5 items-center bg-primary">
+        <div class="grid grid-cols-5 items-center" style:background-color={data.configuration.brand_color_primary}>
             <div class="col-span-2  text-white p-12 space-y-2">
                 <p class="font-bold font-serif text-4xl">{Chance().sentence({words: 6})}</p>
                 <div class="w-full bg-white/50 h-[2px]"></div>

@@ -80,7 +80,7 @@ h6 {
 }
 
 .fat-link {
-	@apply text-primary font-semibold hover:underline hover:cursor-pointer underline-offset-1 decoration-2;
+	@apply font-semibold hover:underline hover:cursor-pointer underline-offset-1 decoration-2;
 }
 
 .font-serif {

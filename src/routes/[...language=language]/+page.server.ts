@@ -5,18 +5,25 @@ import { Language } from "$lib/Language";
 import { Host, getHost } from "$lib/Host";
 
 // @ts-ignore
+import { CalendarItem } from "$lib/CalendarItem";
+
+// @ts-ignore
+import { NewsItem } from "$lib/NewsItem";
+
+// @ts-ignore
 import dutch from "$lib/i18n/nl.json";
 
 // @ts-ignore
 import english from "$lib/i18n/en.json"
+import { prisma } from "$lib/Prisma";
+import { error } from "@sveltejs/kit";
 
 export const prerender = false;
 export const ssr = true;
-export const csr = false;
-
+export const csr = true;
 
 // @ts-ignore
-export async function load({ params, url }) {
+export async function load({ params, url, locals }) {
     // Retrieve the selected organization based on:
     // 1. A URL query such as `?host=gentsestudentenraad.be`, for development purposes.
     // 2. The hostname contained in the request headers.
@@ -26,24 +33,26 @@ export async function load({ params, url }) {
     // Defaults to Dutch for obvious reasons.
     const language = params.language === "en" ? Language.ENGLISH : Language.DUTCH
 
-    const routes = language === Language.DUTCH ? [
-        ["Wie", "/wie"],
-        ["Verkiezingen", "/verkiezingen"],
-        ["Nieuws", "/nieuws"],
-        ["FAQ", "/faq"],
-        ["Standpunten", "/standpunten"]
-      ] : [
-        ["Who", "/en/wie"],
-        ["Elections", "/en/verkiezingen"],
-        ["News", "/en/nieuws"],
-        ["FAQ", "/en/faq"],
-        ["Opinions", "/en/standpunten"],
-    ];
+    const calendar = CalendarItem.getAll(language, 100);
+    const news = NewsItem.getAll(language, 4);
+
+    // Retrieve the configuration of the website, and if missing, throw an error.
+    const configuration = await prisma.configuration.findUnique({
+        where: {
+            organization: locals.organization
+        }
+    });
+
+    if (configuration === null) {
+        error(500, "An internal error occurred.")
+    }
 
 	return {
 		language,
-        routes,
         host,
+        calendar,
+        news,
         translations: language === Language.DUTCH ? dutch : english,
+        configuration
 	};
 }
