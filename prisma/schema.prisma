@@ -70,12 +70,13 @@ model OpinionGroup {
 }
 
 model Opinion {
-  id            Int      @id @default(autoincrement())
+  id            Int           @id @default(autoincrement())
   published_at  DateTime
   title         String
   about         String?
   document_link String
   published     Boolean
+  organization  Organization?
 
   opinion_group_id Int
   opinion_group    OpinionGroup @relation(fields: [opinion_group_id], references: [id])
@@ -84,21 +85,41 @@ model Opinion {
 }
 
 model News {
-    id            Int      @id @default(autoincrement())
-    title String
-    content String
-    synopsis String
-    published Boolean
-    published_at DateTime
-    author String
-    banner_image String
-    banner_image_alt String?
-    organization Organization?
+  id               Int           @id @default(autoincrement())
+  title            String
+  content          String
+  synopsis         String
+  published        Boolean
+  published_at     DateTime
+  author           String
+  banner_image     String
+  banner_image_alt String?
+  organization     Organization?
 
-    @@map("news")
+  @@map("news")
+}
+
+model Question {
+  id           Int           @id @default(autoincrement())
+  question     String
+  answer       String
+  sort_index   Int           @default(0)
+  organization Organization?
+
+  question_category_id Int
+  question_category    QuestionCategory @relation(fields: [question_category_id], references: [id])
+
+  @@map("question")
 }
 
 model QuestionCategory {
-    id            Int      @id @default(autoincrement())
-    @@map("question_category")
+  id           Int           @id @default(autoincrement())
+  description  String?
+  sort_index   Int           @default(0)
+  title        String
+  questions    Question[]
+  slug         String
+  organization Organization?
+
+  @@map("question_category")
 }

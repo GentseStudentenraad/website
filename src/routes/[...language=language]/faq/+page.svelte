@@ -1,9 +1,13 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
-	import type { QuestionCategory } from '$lib/FAQ';
 	import { browser } from '$app/environment';
+	import type { Configuration, Prisma, Question } from '@prisma/client'
 
-	let selected: QuestionCategory | null;
+	type QuestionCategoryJoined = Prisma.QuestionCategoryGetPayload<{
+		include: { questions: true }
+	}>
+
+	let selected: QuestionCategoryJoined | null;
 
 	$: {
 		if (browser && selected) {
@@ -14,7 +18,8 @@
 	}
 
 	export let data: {
-		faq: QuestionCategory[];
+		faq: QuestionCategoryJoined[];
+		configuration: Configuration;
 		translations: any;
 	};
 </script>
@@ -41,16 +46,19 @@
 
 <div class="container py-12 space-y-24">
 	{#each data.faq as category}
-		<div class="space-y-4">
+		<div class="space-y-2">
 			<p id={category.slug} class="font-bold text-4xl font-serif" style="scroll-margin-top: 75px">
 				{category.title}
 			</p>
-			<div class="h-[3px] bg-primary/50" />
+			<div
+				class="h-[3px] opacity-50"
+				style:background-color={data.configuration.brand_color_primary}
+			/>
 			<div class="grid grid-cols-2 gap-12">
-				{#each category.contents as questionAnswer}
+				{#each category.questions as questionAnswer}
 					<div>
 						<p class="font-semibold text-lg">{questionAnswer.question}</p>
-						<p class="opacity-90">{questionAnswer.answer}</p>
+						<p class="opacity-90">{@html questionAnswer.answer}</p>
 					</div>
 				{/each}
 			</div>

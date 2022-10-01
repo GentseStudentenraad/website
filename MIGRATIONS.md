@@ -50,7 +50,38 @@ SELECT
     IF(n.public = 1, 'TRUE', 'FALSE') AS published,
     n.date AS published_at,
     n.author AS author,
-    '404.png' AS banner_image,
-    NULL as banner_image_alt
-FROM news n;
+    i.path AS banner_image,
+    i.name as banner_image_alt
+FROM news n
+LEFT JOIN image i on n.image_id = i.id;
+```
+
+### QuestionCategory
+
+The original data doesn't have an integer identifier, so we use the ASCII value of the first index of the abbreviation. This is used in the `question` table as well.
+
+```sql
+SELECT
+    ASCII(SUBSTRING(fs.abbr, 1, 1)) as id,
+    IF(fs.`rank` IS NULL, 0, fs.`rank`) as sort_index,
+    fs.name as title,
+    IF(fs.description = '', NULL, fs.description) as description,
+    fs.abbr as slug,
+    'GSR' as organization
+FROM faq_subject fs;
+```
+
+### Question
+
+```sql
+SELECT
+    f.id as id,
+    f.title as question,
+    f.text as answer,
+    0 as sort_index,
+    'GSR' as organization,
+    ASCII(SUBSTRING(s.abbr, 1, 1)) as question_category_id
+FROM faq f
+LEFT JOIN faq_subsubject fs on fs.id = f.subsubject_id
+LEFT JOIN faq_subject s on fs.subject_abbr = s.abbr;
 ```
