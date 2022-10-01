@@ -1,5 +1,5 @@
-import { Chance } from "chance";
-import { Language } from "./Language";
+import { Chance } from 'chance';
+import { Language } from './Language';
 
 const test = `
 ## Iano dixerat rescindere Lycaon
@@ -57,55 +57,52 @@ Rex tulit, rostroque minari! Saturnia adspexi decepto penates atque classem
 Minervae, hoc videre foedera regit auctor monimenta tardae cursus, et Ladonis
 conde. Semiramio vidi. Reliquit *patresque secures* sic novae est imperio
 suadet. Argo ictu moenia, vincis pallidaque tecta.
-`
+`;
 
 export class NewsItem {
-    id!: number
-    title!: string
-    content!: string
-    synopsis!: string
-    published!: boolean
-    published_at!: Date
-    author!: string
-    banner_image!: string
-    banner_image_alt!: string
+	id!: number;
+	title!: string;
+	content!: string;
+	synopsis!: string;
+	published!: boolean;
+	published_at!: Date;
+	author!: string;
+	banner_image!: string;
+	banner_image_alt!: string;
 
-    constructor(data: Partial<NewsItem>) {
-        Object.assign(this, data)
-    }
+	constructor(data: Partial<NewsItem>) {
+		Object.assign(this, data);
+	}
 
-    static getAll(language: Language = Language.DUTCH, n: number = 100): Array<NewsItem> {
-        const chance = Chance()
+	static getAll(language: Language = Language.DUTCH, n: number = 100): Array<NewsItem> {
+		const chance = Chance();
 
-        return Array.from(Array(n).keys()).map(e => (
-            {
-                id: chance.integer(),
-                title: chance.sentence({words: chance.integer({min: 2, max: 7})}),
-                content: chance.paragraph(),
-                synopsis: chance.paragraph({ sentences: 1 }),
-                published: true,
-                published_at: chance.date(),
-                author: chance.name(),
-                banner_image: `http://source.unsplash.com/random/500x${500 + e}/?newspaper`,
-                banner_image_alt: "Newspaper"
-            }
-        ));
-    }
+		return Array.from(Array(n).keys()).map((e) => ({
+			id: chance.integer(),
+			title: chance.sentence({ words: chance.integer({ min: 2, max: 7 }) }),
+			content: chance.paragraph(),
+			synopsis: chance.paragraph({ sentences: 1 }),
+			published: true,
+			published_at: chance.date(),
+			author: chance.name(),
+			banner_image: `http://source.unsplash.com/random/500x${500 + e}/?newspaper`,
+			banner_image_alt: 'Newspaper'
+		}));
+	}
 
-    static getOne(language: Language = Language.DUTCH, id: number) {
-        const chance = Chance()
+	static getOne(language: Language = Language.DUTCH, id: number) {
+		const chance = Chance();
 
-        return {
-            id: chance.integer(),
-            title: chance.sentence({words: chance.integer({min: 2, max: 7})}),
-            content: test,
-            synopsis: chance.paragraph({ sentences: 1 }),
-            published: true,
-            published_at: chance.date(),
-            author: chance.name(),
-            banner_image: `http://source.unsplash.com/random/500x500/?newspaper`,
-            banner_image_alt: "Newspaper"
-        };
-    }
+		return {
+			id: chance.integer(),
+			title: chance.sentence({ words: chance.integer({ min: 2, max: 7 }) }),
+			content: test,
+			synopsis: chance.paragraph({ sentences: 1 }),
+			published: true,
+			published_at: chance.date(),
+			author: chance.name(),
+			banner_image: `http://source.unsplash.com/random/500x500/?newspaper`,
+			banner_image_alt: 'Newspaper'
+		};
+	}
 }
-

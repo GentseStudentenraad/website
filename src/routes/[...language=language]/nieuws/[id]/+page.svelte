@@ -1,12 +1,12 @@
 <script lang="ts">
-	import type { NewsItem } from "$lib/NewsItem";
-    import NewsItemVertical from "$lib/components/NewsItemVertical.svelte";
+	import type { NewsItem } from '$lib/NewsItem';
+	import NewsItemVertical from '$lib/components/NewsItemVertical.svelte';
 
 	// State
 	export let data: {
-        news_item: NewsItem,
-        news: NewsItem[]
-    }
+		news_item: NewsItem;
+		news: NewsItem[];
+	};
 </script>
 
 <div class="container py-12 space-y-8">
@@ -18,12 +18,10 @@
 		<p class="text-[16px] md:text-lg opacity-90">{data.news_item.synopsis}</p>
 	</div>
 
-
-
 	<img
 		class="rounded-md overflow-hidden w-full object-cover aspect-video"
-	    src={data.news_item.banner_image}
-        alt={data.news_item.banner_image_alt}
+		src={data.news_item.banner_image}
+		alt={data.news_item.banner_image_alt}
 		width={1000}
 	/>
 
@@ -48,11 +46,11 @@
 
 	<div class="h-[3px] max-w-[800px] m-auto bg-primary/50" />
 
-	<div class='max-w-[800px] mx-auto space-y-2'>
+	<div class="max-w-[800px] mx-auto space-y-2">
 		<p class="text-xl font-bold ">Lees verder</p>
 		<div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
-			{#each data.news.filter((e) =>  e.id !== data.news_item.id).slice(0, 3) as news_item}
-				<NewsItemVertical news_item={news_item} />
+			{#each data.news.filter((e) => e.id !== data.news_item.id).slice(0, 3) as news_item}
+				<NewsItemVertical {news_item} />
 			{/each}
 		</div>
 	</div>

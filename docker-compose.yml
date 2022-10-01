@@ -2,8 +2,6 @@ version: '3.5'
 services:
   website:
     build: .
-    networks:
-      - 'dmz'
     labels:
       - 'traefik.enable=true'
       - 'traefik.http.routers.website.rule=Host(`gsr.jenspots.com`)'
@@ -11,10 +9,10 @@ services:
       - 'traefik.http.routers.website.tls.certresolver=letsencrypt'
       - 'traefik.http.services.website.loadbalancer.server.port=3000'
       - 'com.centurylinklabs.watchtower.enable="false"'
-
-      networks:
-        - 'gsr'
-      restart: unless-stopped
+    networks:
+      - 'gsr'
+      - 'dmz'
+    restart: unless-stopped
 
 networks:
   gsr:
