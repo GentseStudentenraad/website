@@ -1,17 +1,7 @@
-// @ts-ignore
 import { Language } from '$lib/Language';
-
-// @ts-ignore
-import { Host, getHost } from '$lib/Host';
-
 import { prisma } from '$lib/Prisma';
-2;
-// @ts-ignore
 import dutch from '$lib/i18n/nl.json';
-
-// @ts-ignore
 import english from '$lib/i18n/en.json';
-import { Organization } from '@prisma/client';
 
 export const prerender = false;
 export const ssr = true;

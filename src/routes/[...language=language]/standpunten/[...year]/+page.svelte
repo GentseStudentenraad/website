@@ -1,6 +1,12 @@
 <script lang="ts">
+	import type { Prisma } from '@prisma/client'
+
+	type OpinionGroupWithOpinions = Prisma.OpinionGroupGetPayload<{
+		include: { opinions: true }
+	}>
+
 	export let data: {
-		opinionGroups: any[];
+		opinionGroups: OpinionGroupWithOpinions[];
 	};
 </script>
 
@@ -11,8 +17,8 @@
 				<div class="space-y-0">
 					<div>
 						<p class="font-serif font-bold text-6xl text-center">{group.name}</p>
-						{#if group.description}
-							<p>{group.description}</p>
+						{#if group.about}
+							<p>{group.about}</p>
 						{/if}
 					</div>
 
