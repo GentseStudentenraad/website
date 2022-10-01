@@ -19,9 +19,7 @@ export const csr = true;
 
 // @ts-ignore
 export async function load({ params, url, locals }) {
-	// An optional language URL parameter which indicates which language to use.
-	// Defaults to Dutch for obvious reasons.
-	const language = params.language === 'en' ? Language.ENGLISH : Language.DUTCH;
+	const _ = params.language // SVELTEKIT BUG, DO NOT REMOVE
 
 	// Results are filtered based on the academic year. If a parameter n is
 	// given, we filter based on the academic year n-(n + 1). Otherwise we
@@ -66,9 +64,8 @@ export async function load({ params, url, locals }) {
 	});
 
 	return {
-		language,
 		organization: locals.organization,
-		translations: language === Language.DUTCH ? dutch : english,
+		translations: locals.language === Language.DUTCH ? dutch : english,
 		opinionGroups
 	};
 }

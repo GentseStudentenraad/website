@@ -18,13 +18,13 @@ export const ssr = true;
 export const csr = true;
 
 // @ts-ignore
-export async function load({ params }) {
-	let language = params.language === 'en' ? Language.ENGLISH : Language.DUTCH;
+export async function load({ params, url, locals }) {
+	const _ = params.language // SVELTEKIT BUG, DO NOT REMOVE
+
 	let faq = QuestionCategory.getAll();
 
 	return {
-		faq,
-		language,
-		translations: language === Language.DUTCH ? dutch : english
+		faq: QuestionCategory.getAll(),
+		translations: locals.language === Language.DUTCH ? dutch : english
 	};
 }

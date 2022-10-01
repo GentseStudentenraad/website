@@ -12,15 +12,14 @@ import english from '$lib/i18n/en.json';
 
 export const prerender = false;
 export const ssr = true;
-export const csr = false;
+export const csr = true;
 
 // @ts-ignore
-export async function load({ params }) {
-	let language = params.language === 'en' ? Language.ENGLISH : Language.DUTCH;
+export async function load({ params, url, locals }) {
+	const _ = params.language // SVELTEKIT BUG, DO NOT REMOVE
 
 	return {
-		news: NewsItem.getAll((language = language), 20),
-		language,
-		translations: language === Language.DUTCH ? dutch : english
+		news: NewsItem.getAll(locals.language, 20),
+		translations: locals.language === Language.DUTCH ? dutch : english
 	};
 }

@@ -1,16 +1,12 @@
 <script lang="ts">
 	import type { CalendarItem } from '$lib/CalendarItem';
 	import CalendarItemRow from '$lib/components/CalendarItemRow.svelte';
-	import type { Host } from '$lib/Host';
-	import type { Language } from '$lib/Language';
 	import type { NewsItem } from '$lib/NewsItem';
 	import NewsItemVertical from '$lib/components/NewsItemVertical.svelte';
 	import 'chance';
 	import { Chance } from 'chance';
 
 	export let data: {
-		language: Language;
-		host: Host;
 		calendar: CalendarItem[];
 		news: NewsItem[];
 		translations: any;

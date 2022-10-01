@@ -24,35 +24,12 @@ export const csr = true;
 
 // @ts-ignore
 export async function load({ params, url, locals }) {
-	// Retrieve the selected organization based on:
-	// 1. A URL query such as `?host=gentsestudentenraad.be`, for development purposes.
-	// 2. The hostname contained in the request headers.
-	const host: Host = getHost(url.searchParams.get('host') || url.hostname);
-
-	// An optional language URL parameter which indicates which language to use.
-	// Defaults to Dutch for obvious reasons.
-	const language = params.language === 'en' ? Language.ENGLISH : Language.DUTCH;
-
-	const calendar = CalendarItem.getAll(language, 100);
-	const news = NewsItem.getAll(language, 4);
-
-	// Retrieve the configuration of the website, and if missing, throw an error.
-	const configuration = await prisma.configuration.findUnique({
-		where: {
-			organization: locals.organization
-		}
-	});
-
-	if (configuration === null) {
-		error(500, 'An internal error occurred.');
-	}
+	const _ = params.language // SVELTEKIT BUG, DO NOT REMOVE
 
 	return {
-		language,
-		host,
-		calendar,
-		news,
-		translations: language === Language.DUTCH ? dutch : english,
-		configuration
+		calendar: CalendarItem.getAll(locals.language, 100),
+		news: NewsItem.getAll(locals.language, 4),
+		translations: locals.language === Language.DUTCH ? dutch : english,
+		configuration: locals.configuration
 	};
 }
