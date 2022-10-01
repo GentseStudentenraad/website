@@ -1,18 +1,19 @@
 <script lang="ts">
-	import type { NewsItem } from '$lib/NewsItem';
 	import NewsItemVertical from '$lib/components/NewsItemVertical.svelte';
+	import type { News } from '@prisma/client';
 
 	// State
 	export let data: {
-		news_item: NewsItem;
-		news: NewsItem[];
+		news_item: News;
+		news: News[];
+		configuration: any;
 	};
 </script>
 
 <div class="container py-12 space-y-8">
 	<div class="max-w-[800px] m-auto md:text-center flex flex-col md:items-center space-y-1">
 		<p class="opacity-75 text-sm md:text-[16px]">
-			Gepubliceerd op {data.news_item?.published_at.toLocaleDateString()}
+			Gepubliceerd op {data.news_item.published_at.toLocaleDateString()}
 		</p>
 		<p class="text-2xl md:text-4xl font-bold font-serif">{data.news_item.title}</p>
 		<p class="text-[16px] md:text-lg opacity-90">{data.news_item.synopsis}</p>
@@ -20,7 +21,7 @@
 
 	<img
 		class="rounded-md overflow-hidden w-full object-cover aspect-video"
-		src={data.news_item.banner_image}
+		src="https://gentsestudentenraad.be/static/persistent/images/{data.news_item.banner_image}"
 		alt={data.news_item.banner_image_alt}
 		width={1000}
 	/>
@@ -44,7 +45,10 @@
 		</article>
 	</div>
 
-	<div class="h-[3px] max-w-[800px] m-auto bg-primary/50" />
+	<div
+		class="h-[3px] max-w-[800px] m-auto opacity-50" 
+		style:background-color={data.configuration.brand_color_primary}
+	/>
 
 	<div class="max-w-[800px] mx-auto space-y-2">
 		<p class="text-xl font-bold ">Lees verder</p>

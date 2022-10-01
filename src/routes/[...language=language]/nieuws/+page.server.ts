@@ -1,5 +1,5 @@
 // @ts-ignore
-import { NewsItem } from '$lib/NewsItem';
+import { prisma } from '$lib/Prisma';
 
 // @ts-ignore
 import { Language } from '$lib/Language';
@@ -18,8 +18,20 @@ export const csr = true;
 export async function load({ params, url, locals }) {
 	const _ = params.language // SVELTEKIT BUG, DO NOT REMOVE
 
+	const news = await prisma.news.findMany({
+		orderBy: [
+			{
+				published: 'desc',
+			}
+		],
+		where: {
+			organization: locals.organization!
+		}
+	});
+
+
 	return {
-		news: NewsItem.getAll(locals.language, 20),
+		news,
 		translations: locals.language === Language.DUTCH ? dutch : english
 	};
 }

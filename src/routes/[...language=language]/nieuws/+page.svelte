@@ -1,15 +1,12 @@
 <script lang="ts">
-	// @ts-ignore
-	import { NewsItem } from '$lib/NewsItem';
+	import type { News } from '@prisma/client'
+
 	import NewsItemVertical from '$lib/components/NewsItemVertical.svelte';
 	import NewsItemRow from '$lib/components/NewsItemRow.svelte';
 	import NewsItemBig from '$lib/components/NewsItemBig.svelte';
 
-	export /**
-	 * @type {{ news: NewsItem[]; }}
-	 */
-	let data: {
-		news: NewsItem[];
+	export let data: {
+		news: News[];
 		translations: any;
 	};
 </script>

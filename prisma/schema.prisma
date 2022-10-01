@@ -82,3 +82,18 @@ model Opinion {
 
   @@map("opinion")
 }
+
+model News {
+    id            Int      @id @default(autoincrement())
+    title String
+    content String
+    synopsis String
+    published Boolean
+    published_at DateTime
+    author String
+    banner_image String
+    banner_image_alt String?
+    organization Organization?
+
+    @@map("news")
+}

@@ -1,14 +1,14 @@
 <script lang="ts">
 	import type { CalendarItem } from '$lib/CalendarItem';
 	import CalendarItemRow from '$lib/components/CalendarItemRow.svelte';
-	import type { NewsItem } from '$lib/NewsItem';
+	import type { News } from '@prisma/client';
 	import NewsItemVertical from '$lib/components/NewsItemVertical.svelte';
 	import 'chance';
 	import { Chance } from 'chance';
 
 	export let data: {
 		calendar: CalendarItem[];
-		news: NewsItem[];
+		news: News[];
 		translations: any;
 		configuration: any;
 	};

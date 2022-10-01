@@ -1,12 +1,12 @@
 <script lang="ts">
-	import type { NewsItem } from '$lib/NewsItem';
+	import type { News } from '@prisma/client'
 
-	export let news_item: NewsItem;
+	export let news_item: News;
 </script>
 
 <a href="/nieuws/{news_item.id}" class="transition hover:scale-[1.01]">
 	<img
-		src={news_item.banner_image}
+		src="https://gentsestudentenraad.be/static/persistent/images/{news_item.banner_image}"
 		class="object-cover overflow-hidden aspect-square w-full rounded-md mb-2"
 		alt={news_item.banner_image_alt}
 	/>

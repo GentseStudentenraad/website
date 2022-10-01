@@ -2,13 +2,9 @@
 import { Language } from '$lib/Language';
 
 // @ts-ignore
-import { Host, getHost } from '$lib/Host';
-
-// @ts-ignore
 import { CalendarItem } from '$lib/CalendarItem';
 
-// @ts-ignore
-import { NewsItem } from '$lib/NewsItem';
+import type { News } from '@prisma/client';
 
 // @ts-ignore
 import dutch from '$lib/i18n/nl.json';
@@ -26,9 +22,21 @@ export const csr = true;
 export async function load({ params, url, locals }) {
 	const _ = params.language // SVELTEKIT BUG, DO NOT REMOVE
 
+	const news = await prisma.news.findMany({
+		orderBy: [
+			{
+				published: 'desc',
+			}
+		],
+		where: {
+			organization: locals.organization!,
+		},
+		take: 4,
+	});
+
 	return {
 		calendar: CalendarItem.getAll(locals.language, 100),
-		news: NewsItem.getAll(locals.language, 4),
+		news,
 		translations: locals.language === Language.DUTCH ? dutch : english,
 		configuration: locals.configuration
 	};

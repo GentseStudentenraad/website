@@ -1,7 +1,4 @@
 // @ts-ignore
-import { NewsItem } from '$lib/NewsItem';
-
-// @ts-ignore
 import { Language } from '$lib/Language';
 
 // @ts-ignore
