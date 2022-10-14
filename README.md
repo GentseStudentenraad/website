@@ -1,38 +1,27 @@
-# create-svelte
+# Gentse Studentenraad
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
+> Deze readme is een *work-in-progress*.
 
-## Creating a project
+## Development
 
-If you're seeing this, you've probably already done this step. Congrats!
+Om aan de website te sleutelen moet je beschikken over een PostgreSQL databank en een NodeJS installatie. De volgende stappen gaan ervan uit dat je reeds over deze software beschikt en alvast eens `npm install` uitvoert.
 
-```bash
-# create a new project in the current directory
-npm create svelte@latest
+> In de toekomst zal je een directe verbinding kunnen maken met de *production* databank, of een *development* databank die we op een van onze servers draaien.
 
-# create a new project in my-app
-npm create svelte@latest my-app
-```
+### Databank/ORM initialiseren
 
-## Developing
+Het project maakt gebruik van Prisma ORM. A.d.h.v. `/prisma/schema.prisma` modelleren we hoe het schema eruit hoeft te zien. Wanneer je deze in jouw databank wilt laden maak je gebruik van het commando `npx prisma migrate dev`. Vervolgens kan je de TypeScript types genereren met `npx prisma generate`.
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+Om data in te laden gebruiken we voorlopig `/migrate/index.js`. Dit is een NodeJS script dat gegevens ophaalt uit de oude MariaDB instantie, en deze in jouw PostgreSQL databank laadt.
 
-```bash
-npm run dev
+### SvelteKit starten
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
+Je hoeft uitsluitend `npm run dev` uit te voeren, waarna de development server gestart wordt. 
 
-## Building
+## CI/CD
 
-To create a production version of your app:
+TODO
 
-```bash
-npm run build
-```
+## Deployment
 
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+TODO
