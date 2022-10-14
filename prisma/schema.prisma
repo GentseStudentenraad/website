@@ -64,7 +64,7 @@ model OpinionGroup {
   name         String
   about        String?
   opinions     Opinion[]
-  organization Organization?
+  organization Organization
 
   @@map("opinion_group")
 }
@@ -76,7 +76,7 @@ model Opinion {
   about         String?
   document_link String
   published     Boolean
-  organization  Organization?
+  organization  Organization
 
   opinion_group_id Int
   opinion_group    OpinionGroup @relation(fields: [opinion_group_id], references: [id])
@@ -94,7 +94,7 @@ model News {
   author           String?
   banner_image     String?
   banner_image_alt String?
-  organization     Organization?
+  organization     Organization
 
   @@map("news")
 }
@@ -104,7 +104,7 @@ model Question {
   question     String
   answer       String
   sort_index   Int           @default(0)
-  organization Organization?
+  organization Organization
 
   question_category_id Int
   question_category    QuestionCategory @relation(fields: [question_category_id], references: [id])
@@ -119,8 +119,48 @@ model QuestionCategory {
   title        String
   questions    Question[]
   slug         String
-  organization Organization?
+  organization Organization
 
   @@map("question_category")
 }
 
+model Person {
+  id    Int     @id @default(autoincrement())
+  name  String?
+  image String?
+  mail  String?
+  organization Organization
+
+  positions PersonPosition[]
+
+  @@map("person")
+}
+
+model PersonGroup {
+  id          Int    @id @default(autoincrement())
+  name        String
+  description String?
+  sort_index   Int           @default(0)
+  organization Organization
+
+  positions PersonPosition[]
+
+  @@map("person_group")
+}
+
+model PersonPosition {
+  id         Int    @id @default(autoincrement())
+  year       Int
+  name       String
+  sort_index Int @default(0)
+  education  String?
+  organization Organization
+
+  person_id Int
+  person    Person @relation(fields: [person_id], references: [id])
+
+  person_group_id Int
+  person_group PersonGroup @relation(fields: [person_group_id], references: [id])
+
+  @@map("person_position")
+}

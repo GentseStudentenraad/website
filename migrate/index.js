@@ -19,6 +19,19 @@ const organizations = [
     { name: "stubio", offset: 8000 },
 ]
 
+// https://stackoverflow.com/a/7616484
+String.prototype.hashCode = function() {
+    var hash = 0,
+        i, chr;
+    if (this.length === 0) return hash;
+    for (i = 0; i < this.length; i++) {
+        chr = this.charCodeAt(i);
+        hash = ((hash << 5) - hash) + chr;
+        hash |= 0; // Convert to 32bit integer
+    }
+    return hash % 10000;
+}
+
 async function opinionGroup(org, maria) {
     const rows = await maria.query(`
         SELECT
@@ -136,6 +149,71 @@ async function question(org, maria) {
     }
 }
 
+async function group(org, maria) {
+    const rows = await maria.query(`
+        SELECT 
+            g.abbr as id, 
+            g.name, 
+            IF(g.text = '', NULL, g.text) as description 
+        FROM \`group\` g;
+    `);
+
+    for (const row of rows) {
+        await post`
+          insert into person_group
+            (id, name, description, organization)
+          values
+            (${row.id.hashCode() + org.offset}, ${row.name}, ${row.description}, ${org.name.toUpperCase()})
+        `
+    }
+}
+
+async function person(org, maria) {
+    const rows = await maria.query(`
+        SELECT s.id, s.first_name, s.last_name, i.path, s.email
+        FROM stuver s
+        LEFT JOIN image i on i.id = s.image_id;    
+    `);
+
+    for (const row of rows) {
+        const name = `${row.first_name} ${row.last_name}`
+        await post`
+          insert into person
+            (id, name, image, mail, organization)
+          values
+            (${row.id + org.offset}, ${name}, ${row.path}, ${row.email}, ${org.name.toUpperCase()})
+        `
+    }
+}
+
+async function position(org, maria) {
+    const rows = await maria.query(`
+        SELECT
+            p.id as id,
+            p.year as year,
+            p2.name as name,
+            p2.\`rank\` as sort_index,
+            se.education as education,
+            s.id as person_id,
+            p2.group_abbr as person_group
+        FROM stuver_position p
+        LEFT JOIN position p2 on p2.abbr = p.position_abbr
+        LEFT JOIN stuver s on s.id = p.stuver_id
+        LEFT JOIN stuver_education se on s.id = se.stuver_id
+        WHERE p2.group_abbr IS NOT NULL;    
+    `);
+
+    for (const row of rows) {
+        await post`
+          insert into person_position
+            (year, name, sort_index, education, person_id, person_group_id, organization)
+          values
+            (${row.year}, ${row.name}, ${row.sort_index || 0}, ${row.education}, ${row.person_id + org.offset}, ${row.person_group.hashCode() + org.offset}, ${org.name.toUpperCase()})
+        `
+    }
+}
+
+
 for (const org of organizations) {
     const maria = await mariadb.createConnection({
         host: 'gentsestudentenraad.be',
@@ -164,6 +242,18 @@ for (const org of organizations) {
 
     await question(org, maria).then(() => {
         console.log(`${org.name.toUpperCase()}: question`)
+    });
+
+    await group(org, maria).then(() => {
+        console.log(`${org.name.toUpperCase()}: group`)
+    });
+
+    await person(org, maria).then(() => {
+        console.log(`${org.name.toUpperCase()}: person`)
+    });
+
+    await position(org, maria).then(() => {
+        console.log(`${org.name.toUpperCase()}: position`)
     });
 
     await maria.end()
