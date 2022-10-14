@@ -16,7 +16,7 @@ export const csr = true;
 
 // @ts-ignore
 export async function load({ params, url, locals }) {
-	const _ = params.language // SVELTEKIT BUG, DO NOT REMOVE
+	const _ = params.language; // SVELTEKIT BUG, DO NOT REMOVE
 
 	const electionGroups = ElectionGroup.getAll(5);
 

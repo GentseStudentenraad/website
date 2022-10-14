@@ -19,7 +19,7 @@ const hosts = {
 	'dsr.gentsestudentenraad.be': Organization.DSR,
 	'stugg.gentsestudentenraad.be': Organization.STUGG,
 	'stuff.gentsestudentenraad.be': Organization.STUFF,
-	'localhost': Organization.GSR,
+	localhost: Organization.GSR
 };
 
 // TODO: CAS authentication.
@@ -46,12 +46,15 @@ export async function handle({
 	}
 
 	if (organization === null) {
-		return new Response("400: bad request. You have connected to the server using an invalid hostname.", { status: 400 })
+		return new Response(
+			'400: bad request. You have connected to the server using an invalid hostname.',
+			{ status: 400 }
+		);
 		// handle error
 	}
 
 	// @ts-ignore
-	event.locals.organization = organization
+	event.locals.organization = organization;
 
 	// Retrieve the configuration of the website, and if missing, throw an error.
 	const configuration = await prisma.configuration.findUnique({
@@ -61,14 +64,14 @@ export async function handle({
 	});
 
 	// @ts-ignore
-	event.locals.configuration = configuration
+	event.locals.configuration = configuration;
 
 	// An optional language URL parameter which indicates which language to use.
 	// Defaults to Dutch for obvious reasons.
 	const language = event.params.language === 'en' ? Language.ENGLISH : Language.DUTCH;
 
 	// @ts-ignore
-	event.locals.language = language
+	event.locals.language = language;
 
 	return await resolve(event);
 }

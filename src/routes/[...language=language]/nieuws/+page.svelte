@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { News } from '@prisma/client'
+	import type { News } from '@prisma/client';
 
 	import NewsItemVertical from '$lib/components/NewsItemVertical.svelte';
 	import NewsItemRow from '$lib/components/NewsItemRow.svelte';

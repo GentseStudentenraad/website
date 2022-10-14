@@ -13,7 +13,7 @@ export const csr = true;
 
 // @ts-ignore
 export async function load({ params, url, locals }) {
-	const _ = params.language // SVELTEKIT BUG, DO NOT REMOVE
+	const _ = params.language; // SVELTEKIT BUG, DO NOT REMOVE
 
 	// Create navigation bar routes. It's a bit messy but it's our only option.
 	const routes = [];
@@ -31,11 +31,17 @@ export async function load({ params, url, locals }) {
 	}
 
 	if (locals.configuration.faq_section) {
-		routes.push(locals.language == Language.DUTCH ? ['Standpunten', '/standpunten'] : ['Opinions', '/en/standpunten']);
+		routes.push(
+			locals.language == Language.DUTCH
+				? ['Standpunten', '/standpunten']
+				: ['Opinions', '/en/standpunten']
+		);
 	}
 
 	routes.push(
-		locals.language == Language.DUTCH ? ['Verkiezingen', '/verkiezingen'] : ['Elections', '/en/verkiezingen']
+		locals.language == Language.DUTCH
+			? ['Verkiezingen', '/verkiezingen']
+			: ['Elections', '/en/verkiezingen']
 	);
 
 	// Done! Pass to the view.

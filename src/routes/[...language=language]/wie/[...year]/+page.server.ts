@@ -19,12 +19,10 @@ export const csr = true;
 
 // @ts-ignore
 export async function load({ params, url, locals }) {
-	const _ = params.language // SVELTEKIT BUG, DO NOT REMOVE
+	const _ = params.language; // SVELTEKIT BUG, DO NOT REMOVE
 
 	const groups = await prisma.personGroup.findMany({
-		orderBy: [
-			{ sort_index: 'asc'}
-		],
+		orderBy: [{ sort_index: 'asc' }],
 		include: {
 			positions: {
 				where: {
@@ -37,12 +35,12 @@ export async function load({ params, url, locals }) {
 				include: {
 					person: {}
 				}
-			},
+			}
 		},
 		where: {
-			organization: locals.organization!,
+			organization: locals.organization!
 		}
-	})
+	});
 
 	return {
 		groups: groups,

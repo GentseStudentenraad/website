@@ -1,11 +1,11 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
 	import { browser } from '$app/environment';
-	import type { Configuration, Prisma, Question } from '@prisma/client'
+	import type { Configuration, Prisma, Question } from '@prisma/client';
 
 	type QuestionCategoryJoined = Prisma.QuestionCategoryGetPayload<{
-		include: { questions: true }
-	}>
+		include: { questions: true };
+	}>;
 
 	let selected: QuestionCategoryJoined | null;
 

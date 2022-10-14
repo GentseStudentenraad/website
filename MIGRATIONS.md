@@ -38,7 +38,6 @@ LEFT JOIN file f on s.file_id = f.id
 WHERE s.policy_id IS NOT NULL AND s.name NOT LIKE '';
 ```
 
-
 ### News
 
 ```sql

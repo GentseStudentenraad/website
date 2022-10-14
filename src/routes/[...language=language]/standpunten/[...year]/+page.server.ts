@@ -9,7 +9,7 @@ export const csr = true;
 
 // @ts-ignore
 export async function load({ params, url, locals }) {
-	const _ = params.language // SVELTEKIT BUG, DO NOT REMOVE
+	const _ = params.language; // SVELTEKIT BUG, DO NOT REMOVE
 
 	// Results are filtered based on the academic year. If a parameter n is
 	// given, we filter based on the academic year n-(n + 1). Otherwise we

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { News } from '@prisma/client'
+	import type { News } from '@prisma/client';
 
 	export let news_item: News;
 </script>

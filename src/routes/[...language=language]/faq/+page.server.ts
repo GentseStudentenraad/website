@@ -4,7 +4,7 @@ import english from '$lib/i18n/en.json';
 import { marked } from 'marked';
 import sanitizeHtml from 'sanitize-html';
 
-import { prisma } from "$lib/Prisma";
+import { prisma } from '$lib/Prisma';
 
 export const prerender = false;
 export const ssr = true;
@@ -12,7 +12,7 @@ export const csr = true;
 
 // @ts-ignore
 export async function load({ params, url, locals }) {
-	const _ = params.language // SVELTEKIT BUG, DO NOT REMOVE
+	const _ = params.language; // SVELTEKIT BUG, DO NOT REMOVE
 
 	let faq = await prisma.questionCategory.findMany({
 		orderBy: {
@@ -33,11 +33,11 @@ export async function load({ params, url, locals }) {
 		}
 	});
 
-	faq.forEach(category => {
-		category.questions.forEach(question => {
-			question.answer = sanitizeHtml(marked.parse(question.answer))
-		})
-	})
+	faq.forEach((category) => {
+		category.questions.forEach((question) => {
+			question.answer = sanitizeHtml(marked.parse(question.answer));
+		});
+	});
 
 	return {
 		configuration: locals.configuration,

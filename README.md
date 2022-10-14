@@ -1,12 +1,12 @@
 # Gentse Studentenraad
 
-> Deze readme is een *work-in-progress*.
+> Deze readme is een _work-in-progress_.
 
 ## Development
 
 Om aan de website te sleutelen moet je beschikken over een PostgreSQL databank en een NodeJS installatie. De volgende stappen gaan ervan uit dat je reeds over deze software beschikt en alvast eens `npm install` uitvoert.
 
-> In de toekomst zal je een directe verbinding kunnen maken met de *production* databank, of een *development* databank die we op een van onze servers draaien.
+> In de toekomst zal je een directe verbinding kunnen maken met de _production_ databank, of een _development_ databank die we op een van onze servers draaien.
 
 ### Databank/ORM initialiseren
 
@@ -16,7 +16,7 @@ Om data in te laden gebruiken we voorlopig `/migrate/index.js`. Dit is een NodeJ
 
 ### SvelteKit starten
 
-Je hoeft uitsluitend `npm run dev` uit te voeren, waarna de development server gestart wordt. 
+Je hoeft uitsluitend `npm run dev` uit te voeren, waarna de development server gestart wordt.
 
 ## CI/CD
 

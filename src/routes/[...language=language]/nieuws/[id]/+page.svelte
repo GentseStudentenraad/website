@@ -46,7 +46,7 @@
 	</div>
 
 	<div
-		class="h-[3px] max-w-[800px] m-auto opacity-50" 
+		class="h-[3px] max-w-[800px] m-auto opacity-50"
 		style:background-color={data.configuration.brand_color_primary}
 	/>
 
