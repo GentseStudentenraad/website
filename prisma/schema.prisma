@@ -91,8 +91,8 @@ model News {
   synopsis         String
   published        Boolean
   published_at     DateTime
-  author           String
-  banner_image     String
+  author           String?
+  banner_image     String?
   banner_image_alt String?
   organization     Organization?
 
@@ -123,3 +123,4 @@ model QuestionCategory {
 
   @@map("question_category")
 }
+
