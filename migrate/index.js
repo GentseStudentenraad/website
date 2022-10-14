@@ -188,7 +188,7 @@ async function person(org, maria) {
 
 async function position(org, maria) {
     const rows = await maria.query(`
-        SELECT
+        SELECT DISTINCT
             p.id as id,
             p.year as year,
             p2.name as name,
@@ -200,7 +200,8 @@ async function position(org, maria) {
         LEFT JOIN position p2 on p2.abbr = p.position_abbr
         LEFT JOIN stuver s on s.id = p.stuver_id
         LEFT JOIN stuver_education se on s.id = se.stuver_id
-        WHERE p2.group_abbr IS NOT NULL;    
+        WHERE p2.group_abbr IS NOT NULL
+        GROUP BY p.year, p2.name, person_id;
     `);
 
     for (const row of rows) {
