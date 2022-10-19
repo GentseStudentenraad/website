@@ -2,7 +2,6 @@
 	import 'chance';
 	import { Chance } from 'chance';
 	import type { Configuration, Prisma, Person, PersonGroup, PersonPosition } from '@prisma/client';
-	import { Position } from '$lib/Person';
 
 	let selected: number = 2022;
 
