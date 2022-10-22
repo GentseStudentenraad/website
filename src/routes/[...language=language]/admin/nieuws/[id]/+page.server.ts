@@ -15,6 +15,6 @@ export async function load({ params, url, locals }) {
 	});
 
 	return {
-		news_item,
+		news_item
 	};
 }

@@ -20,6 +20,6 @@ export async function load({ params, url, locals }) {
 	});
 
 	return {
-		news,
+		news
 	};
 }
