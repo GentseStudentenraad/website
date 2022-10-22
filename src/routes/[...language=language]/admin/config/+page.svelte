@@ -1,16 +1,36 @@
 <script lang="ts">
-    import type { Configuration } from '@prisma/client';
     import ColorPicker from 'svelte-awesome-color-picker';
+    import type { PageData } from "./$types";
 
-    export let data: {
-        configuration: Configuration
+    export let data: PageData
+
+    async function post() {
+        const res = await fetch('/admin/config', {
+            method: 'POST',
+            body: JSON.stringify(data.configuration),
+            headers: {
+                'content-type': 'application/json'
+            }
+        });
+
+        if (res.status === 200) {
+            window.location.href = "/admin";
+        } else {
+            console.log(res);
+        }
     }
-
-    let primary_color = data.configuration.brand_color_primary
-    let secondary_color = data.configuration.brand_color_secondary
 </script>
 
-<div class="bg-neutral-100 h-[100vh] py-12">
+
+<svelte:head>
+    <style>
+        :root {
+            @apply bg-neutral-100; 
+        }
+    </style>
+</svelte:head>
+
+<div class="py-12">
     <div class="container space-y-2 py-12">
         <p class="text-2xl font-bold col-span-2">Siteconfiguratie</p>
 
@@ -18,29 +38,29 @@
             <div class="space-y-2">
                 <p class="font-medium">Opties</p>
                 <div class="flex items-center gap-4">
-                    <input id="default-checkbox" type="checkbox" value="" class="check" checked={data.configuration.active}>
+                    <input id="default-checkbox" type="checkbox" value="" class="check" bind:checked={data.configuration.active}>
                     <label for="default-checkbox">Actief</label>
                 </div>
 
                 <div class="flex items-center gap-4">
-                    <input id="default-checkbox" type="checkbox" value="" class="check" checked={data.configuration.news_section}>
+                    <input id="default-checkbox" type="checkbox" value="" class="check" bind:checked={data.configuration.news_section}>
                     <label for="default-checkbox">Nieuws</label>
                 </div>
 
                 <div class="flex items-center gap-4">
-                    <input id="default-checkbox" type="checkbox" value="" class="check checked={data.configuration.who_section}">
+                    <input id="default-checkbox" type="checkbox" value="" class="check" bind:checked={data.configuration.who_section}>
                     <label for="default-checkbox">Wie</label>
                 </div>
                 <div class="flex items-center gap-4">
-                    <input id="default-checkbox" type="checkbox" value="" class="check" checked={data.configuration.faq_section}>
+                    <input id="default-checkbox" type="checkbox" value="" class="check" bind:checked={data.configuration.faq_section}>
                     <label for="default-checkbox">FAQ</label>
                 </div>
                 <div class="flex items-center gap-4">
-                    <input id="default-checkbox" type="checkbox" value="" class="check" checked={data.configuration.opinions_section}>
+                    <input id="default-checkbox" type="checkbox" value="" class="check" bind:checked={data.configuration.opinions_section}>
                     <label for="default-checkbox">Standpunten</label>
                 </div>
                 <div class="flex items-center gap-4">
-                    <input id="default-checkbox" type="checkbox" value="" class="check" checked={data.configuration.i18n}>
+                    <input id="default-checkbox" type="checkbox" value="" class="check" bind:checked={data.configuration.i18n}>
                     <label for="default-checkbox">Engelse versie</label>
                 </div>
             </div>
@@ -48,10 +68,10 @@
             <div class="space-y-2">
                 <p class="font-medium">Stijl</p>
                 <div>
-                    <ColorPicker hex={data.configuration.brand_color_primary} label="Primaire kleur ({data.configuration.brand_color_primary})" />
+                    <ColorPicker bind:hex={data.configuration.brand_color_primary} label="Primaire kleur ({data.configuration.brand_color_primary})" />
                 </div>
                 <div>
-                    <ColorPicker hex={data.configuration.brand_color_secondary} label="Secundaire kleur ({data.configuration.brand_color_secondary})" />
+                    <ColorPicker bind:hex={data.configuration.brand_color_secondary} label="Secundaire kleur ({data.configuration.brand_color_secondary})" />
                 </div>
             </div>
 
@@ -69,7 +89,13 @@
                 <input type="text" class="textfield" placeholder="Instagram URL" bind:value={data.configuration.instagram_url}>
             </div>
 
-            <p class="col-span-2 p-4 text-center text-white bg-neutral-700 rounded-md text-lg font-bold hover:cursor-pointer">Sla wijzigingen op</p>
+            <button
+                on:click={() => post()} 
+                class="col-span-2 p-4 text-center text-white bg-neutral-700 rounded-md text-lg font-bold hover:cursor-pointer"
+                style:background-color={data.configuration.brand_color_primary}
+                >
+                Sla wijzigingen op
+            </button>
 
         </div>
     </div>
