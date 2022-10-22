@@ -1,6 +1,5 @@
 <script lang="ts">
 	import type { ElectionGroup } from '$lib/Election';
-	import { Group } from '$lib/Person';
 	import 'chance';
 	import { Chance } from 'chance';
 
