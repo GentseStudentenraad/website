@@ -25,14 +25,18 @@
 <svelte:head>
     <style>
         :root {
-            @apply bg-neutral-100; 
+            @apply bg-neutral-100;
         }
     </style>
 </svelte:head>
 
 <div class="py-12">
     <div class="container space-y-2 py-12">
-        <p class="text-2xl font-bold col-span-2">Siteconfiguratie</p>
+        <div class="flex items-center text-xl font-bold gap-1 child:opacity-75">
+            <a href="/admin">admin</a>
+            <p>/</p>
+            <p>siteconfiguratie</p>
+        </div>
 
         <div class="grid grid-cols-2 gap-12">
             <div class="space-y-2">
