@@ -32,6 +32,7 @@ model Configuration {
   id           Int          @id @default(autoincrement())
   organization Organization @unique
   active       Boolean      @default(false)
+  hostnames    String[]     @default([])
 
   // Socials
   facebook_url  String?
