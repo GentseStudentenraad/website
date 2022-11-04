@@ -1,20 +1,40 @@
-version: '3.5'
+version: '3.9'
 services:
   website:
     build: .
+    environment:
+      DATABASE_URL: 'postgresql://gsr:gsr@postgres:5432/gsr?schema=public'
     labels:
       - 'traefik.enable=true'
-      - 'traefik.http.routers.website.rule=Host(`gsr.jenspots.com`)'
-      - 'traefik.http.routers.website.entrypoints=websecure'
-      - 'traefik.http.routers.website.tls.certresolver=letsencrypt'
-      - 'traefik.http.services.website.loadbalancer.server.port=3000'
-      - 'com.centurylinklabs.watchtower.enable="false"'
+      - 'traefik.http.routers.staging.rule=Host(`staging.gentsestudentenraad.be`)'
+      - 'traefik.http.routers.staging.entrypoints=websecure'
+      - 'traefik.http.routers.staging.tls.certresolver=letsencrypt'
+      - 'traefik.http.services.staging.loadbalancer.server.port=3000'
+      - 'traefik.http.middlewares.staging.basicauth.users=gsr:$apr1$adnlyj9x$bR8CRohaQqbazVT6Gumjq1'
     networks:
-      - 'gsr'
-      - 'dmz'
+      - 'web2022'
+      - 'server_default'
     restart: unless-stopped
+    depends_on:
+      - postgres
+
+  postgres:
+    container_name: website-postgres
+    hostname: postgres
+    image: postgres
+    environment:
+        POSTGRES_DB: gsr
+        POSTGRES_USER: gsr
+        POSTGRES_PASSWORD: gsr
+        PGDATA: /var/lib/postgresql/data/pgdata
+    volumes:
+        - '/home/jens/volumes/staging/postgresql:/var/lib/postgresql/data'
+    restart: always
+    networks:
+      - 'web2022'
+
 
 networks:
-  gsr:
-  dmz:
+  web2022:
+  server_default:
     external: true

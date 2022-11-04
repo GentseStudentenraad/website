@@ -3,8 +3,9 @@ import postgres from 'postgres';
 
 const post = postgres({
 	host: '127.0.0.1',
-	user: 'jens',
-	password: ''
+	user: 'gsr',
+	password: 'gsr',
+  database: 'gsr',
 });
 
 const organizations = [
@@ -147,7 +148,7 @@ async function question(org, maria) {
         FROM faq f
         LEFT JOIN faq_subsubject fs on fs.id = f.subsubject_id
         LEFT JOIN faq_subject s on fs.subject_abbr = s.abbr
-        WHERE s.abbr IS NOT NULL;    
+        WHERE s.abbr IS NOT NULL;
     `);
 
 	for (const row of rows) {
@@ -233,11 +234,11 @@ async function position(org, maria) {
 
 for (const org of organizations) {
 	const maria = await mariadb.createConnection({
-		host: 'gentsestudentenraad.be',
+		host: 'localhost',
 		user: org.name,
 		password: org.name,
 		database: `${org.name}-prod`,
-		port: 80,
+		port: 3306,
 		connectionLimit: 5
 	});
 
