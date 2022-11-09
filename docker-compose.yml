@@ -6,7 +6,7 @@ services:
       DATABASE_URL: 'postgresql://gsr:gsr@postgres:5432/gsr?schema=public'
     labels:
       - 'traefik.enable=true'
-      - 'traefik.http.routers.staging.rule=Host(`staging.gentsestudentenraad.be`)'
+      - 'traefik.http.routers.staging.rule=Host(`staging.gentsestudentenraad.be`,`gsr.ugent.be`)'
       - 'traefik.http.routers.staging.entrypoints=websecure'
       - 'traefik.http.routers.staging.tls.certresolver=letsencrypt'
       - 'traefik.http.services.staging.loadbalancer.server.port=3000'
