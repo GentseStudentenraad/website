@@ -48,6 +48,8 @@ model Configuration {
   brand_color_primary   String
   brand_color_secondary String
   logo_url              String
+  name                  String
+  short_description     String
 
   // Features
   i18n             Boolean @default(false)

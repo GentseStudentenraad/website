@@ -2,47 +2,59 @@
 	import '../app.css';
 	import { Language } from '$lib/Language';
 	import { page } from '$app/stores';
+	import type { PageData } from './$types';
 
-	export let data: {
-		language: Language;
-		routes: [String, String];
-		organization: String;
-		configuration: any;
-		translations: any;
-	};
+	let showLinks = false;
+
+	export let data: PageData;
 </script>
 
 <div class="flex flex-col justify-between w-full min-h-[100vh]">
 	<nav
-		class="sticky top-0 shadow-md w-full z-[100] p-3 flex items-center gap-6 text-white"
+		class="sticky top-0 w-full z-[100]"
 		style:background-color={data.configuration.brand_color_primary}
 	>
-		<a href="/{data.translations.meta.language_code}">
-			<img src={data.configuration.logo_url} class="h-8" alt="Logo" />
-		</a>
+		<div class=" shadow-md p-3 flex items-center gap-6 text-white">
+			<i class="bi bi-list -mr-4 hover:cursor-pointer text-lg" on:click={() => showLinks = true}></i>
 
-		{#each data.routes as route}
-			<a class="font-medium" href={route[1]}>{route[0]}</a>
-		{/each}
+			<a href="/{data.translations.meta.language_code}">
+				<img src={data.configuration.logo_url} class="h-8" alt="Logo" />
+			</a>
 
-		<div class="grow" />
 
-		<div>{data.organization}</div>
+			{#each data.routes as route}
+				<a class="font-medium" href={route[1]}>{route[0]}</a>
+			{/each}
 
-		{#if data.configuration.i18n}
-			<div class="flex items-center gap-2">
-				<img src="/icons/translation.png" class="h-4 w-4" alt="Translation Icon" />
+			<div class="grow" />
+
+			{#if data.configuration.i18n}
 				<a
 					href="/{$page.routeId?.replace(
 						'[...language=language]',
 						data.language === Language.DUTCH ? 'en' : 'nl'
 					)}"
 				>
-					{data.language === Language.DUTCH ? 'English' : 'Dutch'}
+				<img src="/icons/translation.png" class="h-4 w-4" alt="Translation Icon" />
 				</a>
+			{/if}	
+		</div>
+
+		{#if showLinks}
+			<div class="panel-contents" on:mouseleave={() => showLinks = false}>
+			{#each data.configs as config}
+				<a href={config.hostnames[0]} class="panel-link flex items-center justify-start gap-4">
+					<img class="invert h-8 w-16 object-contain" src={config.logo_url}>
+					<div class="-space-y-1">
+						<p class="m-0 text-lg font-bold">{config.name}</p>
+						<p class="m-0 opacity-75 text-sm">{config.short_description}</p>
+					</div>
+				</a>
+			{/each}
 			</div>
 		{/if}
 	</nav>
+
 
 	<slot />
 
@@ -107,3 +119,13 @@
 		</div>
 	</footer>
 </div>
+
+<style>
+	.panel-contents {
+		@apply grid grid-cols-4 p-4 bg-neutral-200 gap-4 w-[100vw];
+	}
+
+	.panel-link {
+		@apply rounded-md p-4 bg-neutral-100 w-full h-24;
+	}
+</style>

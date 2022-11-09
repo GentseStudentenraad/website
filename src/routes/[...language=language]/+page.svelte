@@ -14,6 +14,14 @@
 	};
 </script>
 
+<svelte:head>
+	<style>
+		:root {
+			@apply bg-neutral-100;
+		}
+	</style>
+</svelte:head>
+
 <main>
 	<img
 		src="https://unsplash.com/photos/G96J64iNrHo/download?ixid=MnwxMjA3fDB8MXxhbGx8fHx8fHx8fHwxNjYzNzczMzUy&force=true&w=1920"

@@ -7,6 +7,8 @@ import dutch from '$lib/i18n/nl.json';
 // @ts-ignore
 import english from '$lib/i18n/en.json';
 
+import { prisma } from '$lib/Prisma';
+
 export const prerender = false;
 export const ssr = true;
 export const csr = true;
@@ -17,6 +19,8 @@ export async function load({ params, url, locals }) {
 
 	// Create navigation bar routes. It's a bit messy but it's our only option.
 	const routes = [];
+
+	const configs = await prisma.configuration.findMany();
 
 	if (locals.configuration.who_section) {
 		routes.push(locals.language == Language.DUTCH ? ['Wie', '/wie'] : ['Who', '/en/wie']);
@@ -48,6 +52,7 @@ export async function load({ params, url, locals }) {
 	return {
 		language: locals.language,
 		routes,
+		configs: configs.filter(e => e.id != locals.configuration.id),
 		configuration: locals.configuration,
 		organization: locals.organization,
 		translations: locals.language === Language.DUTCH ? dutch : english
