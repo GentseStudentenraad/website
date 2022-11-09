@@ -20,7 +20,7 @@ export async function handle({
 	const requestedHost = event.url.searchParams.get('host') || event.url.hostname;
 
 	const configs = await prisma.configuration.findMany();
-	let organization = configs.filter(c => c.hostnames.includes(requestedHost)).at(0)?.organization;
+	let organization = configs.filter((c) => c.hostnames.includes(requestedHost)).at(0)?.organization;
 
 	if (organization === undefined) {
 		return new Response(

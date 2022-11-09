@@ -23,16 +23,15 @@ services:
     hostname: postgres
     image: postgres
     environment:
-        POSTGRES_DB: gsr
-        POSTGRES_USER: gsr
-        POSTGRES_PASSWORD: gsr
-        PGDATA: /var/lib/postgresql/data/pgdata
+      POSTGRES_DB: gsr
+      POSTGRES_USER: gsr
+      POSTGRES_PASSWORD: gsr
+      PGDATA: /var/lib/postgresql/data/pgdata
     volumes:
-        - '/home/jens/volumes/staging/postgresql:/var/lib/postgresql/data'
+      - '/home/jens/volumes/staging/postgresql:/var/lib/postgresql/data'
     restart: always
     networks:
       - 'web2022'
-
 
 networks:
   web2022:

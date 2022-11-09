@@ -5,7 +5,7 @@ const post = postgres({
 	host: '127.0.0.1',
 	user: 'gsr',
 	password: 'gsr',
-  database: 'gsr',
+	database: 'gsr'
 });
 
 const organizations = [
