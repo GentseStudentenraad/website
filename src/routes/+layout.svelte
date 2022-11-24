@@ -41,7 +41,7 @@
 		</div>
 
 		{#if showLinks}
-			<div class="panel-contents" on:mouseleave={() => showLinks = false}>
+			<div class="absolute panel-contents" on:mouseleave={() => showLinks = false}>
 			{#each data.configs as config}
 				<a href={config.hostnames[0]} class="panel-link flex items-center justify-start gap-4">
 					<img class="invert h-8 w-16 object-contain" src={config.logo_url}>
