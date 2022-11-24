@@ -24,7 +24,7 @@ export async function load({ params, url, locals }) {
 			positions: {
 				where: {
 					organization: locals.organization,
-					year: 2022
+					year: parseInt(params.year ? params.year : 2022)
 				},
 				orderBy: {
 					sort_index: 'asc'
