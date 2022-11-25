@@ -1,12 +1,18 @@
 <script lang="ts">
 	import 'chance';
 	import { Chance } from 'chance';
-	import type { Configuration, Prisma, Person, PersonGroup, PersonPosition } from '@prisma/client';
+	import type { Prisma, Person, PersonGroup, PersonPosition } from '@prisma/client';
 	import { goto } from '$app/navigation';
+
+	let selected = "2022";
 
 	type PersonGroupJoined = Prisma.PersonGroupGetPayload<{
 		include: {
-			positions: true;
+			positions: {
+				include: {
+					person: true
+				}
+			}
 		};
 	}>;
 
@@ -81,8 +87,8 @@
 
 	<div class="container flex items-center justify-center py-12 gap-4">
 		<p>Bekijk historische data:</p>
-		<select name="year" id="year" on:change={(e) => goto(`/wie/${e.target?.value ?? ''}`)}>
-			{#each [2022, 2021, 2020] as year}
+		<select name="year" id="year" bind:value={selected} on:change={() => goto(`/wie/${selected}`)}>
+			{#each ["2022", "2021", "2020"] as year}
 				<option value={year}>{year}</option>
 			{/each}
 		</select>

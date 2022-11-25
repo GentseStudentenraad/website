@@ -2,6 +2,7 @@
 	import '../app.css';
 	import { Language } from '$lib/Language';
 	import { page } from '$app/stores';
+	// @ts-ignore geen idee waarom deze import een TS fout genereert.
 	import type { PageData } from './$types';
 
 	let showLinks = false;
