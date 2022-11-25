@@ -39,7 +39,7 @@
 	</div>
 	<img
 		class="col-span-2 h-[60vh] object-cover w-full"
-		src="https://unsplash.com/photos/4V1dC_eoCwg/download?ixid=MnwxMjA3fDB8MXxhbGx8fHx8fHx8fHwxNjYzODQ4NDU0&force=true&w=1920"
+		src="https://unsplash.com/photos/NboyPdtHqFc/download?ixid=MnwxMjA3fDB8MXxhbGx8fHx8fHx8fHwxNjY5Mzk2NjE4&force=true&w=1920"
 		style="object-position: 50% 75%;"
 	/>
 </div>

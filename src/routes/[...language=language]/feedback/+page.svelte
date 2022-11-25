@@ -1,8 +1,10 @@
 <script lang="ts">
+  import {Course} from "@prisma/client"
   import {Chance} from 'chance';
   let text = "";
 
   export let data;
+  let course: Course | null;
 </script>
 
 <svelte:head>
@@ -35,10 +37,19 @@
     </div>
 
     <div class="space-y-4">
-      <select class="w-full py-2 text-center rounded-md font-bold">
-        <option>VAK #1</option>
-        <option>VAK #2</option>
-        <option>VAK #3</option>
+      <select class="w-full p-2 rounded-md font-bold" bind:value={course}>
+        <option value="{null}">Selecteer jouw richting</option>
+        {#each data.courses as course}
+          <option value={course}>{course.name}</option>
+        {/each}
+      </select>
+      <select class="w-full p-2 rounded-md font-bold">
+        <option>Kies een vak</option>
+        {#if course}
+        {#each course.subjects as subject}
+          <option>{subject.subject.name} ({subject.subject_code})</option>
+        {/each}
+        {/if}
       </select>
       <textarea class="order-1 row-span-2" type="text" rows="10" bind:value={text} placeholder="Vul hier jouw bericht in."></textarea>
 

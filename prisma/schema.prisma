@@ -187,9 +187,9 @@ enum Faculty {
 }
 
 model Course {
-  id      Int     @id @default(autoincrement())
-  title   String
+  name    String
   faculty Faculty
+  code    String  @id
 
   subjects CourseSubject[]
 
@@ -207,11 +207,12 @@ model Subject {
 }
 
 model CourseSubject {
-  course_id Int
-  course    Course @relation(fields: [course_id], references: [id])
+  course_code String
+  course      Course @relation(fields: [course_code], references: [code])
 
   subject_code String
   subject      Subject @relation(fields: [subject_code], references: [code])
 
-  @@id([course_id, subject_code])
+  @@id([course_code, subject_code])
+  @@map("course_subject")
 }
