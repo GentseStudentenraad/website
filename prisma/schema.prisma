@@ -62,7 +62,7 @@ model Configuration {
 }
 
 model OpinionGroup {
-  id           Int           @id @default(autoincrement())
+  id           Int          @id @default(autoincrement())
   sort_index   Int
   name         String
   about        String?
@@ -73,7 +73,7 @@ model OpinionGroup {
 }
 
 model Opinion {
-  id            Int           @id @default(autoincrement())
+  id            Int          @id @default(autoincrement())
   published_at  DateTime
   title         String
   about         String?
@@ -88,7 +88,7 @@ model Opinion {
 }
 
 model News {
-  id               Int           @id @default(autoincrement())
+  id               Int          @id @default(autoincrement())
   title            String
   content          String
   synopsis         String
@@ -103,10 +103,10 @@ model News {
 }
 
 model Question {
-  id           Int           @id @default(autoincrement())
+  id           Int          @id @default(autoincrement())
   question     String
   answer       String
-  sort_index   Int           @default(0)
+  sort_index   Int          @default(0)
   organization Organization
 
   question_category_id Int
@@ -116,9 +116,9 @@ model Question {
 }
 
 model QuestionCategory {
-  id           Int           @id @default(autoincrement())
+  id           Int          @id @default(autoincrement())
   description  String?
-  sort_index   Int           @default(0)
+  sort_index   Int          @default(0)
   title        String
   questions    Question[]
   slug         String
@@ -128,10 +128,10 @@ model QuestionCategory {
 }
 
 model Person {
-  id    Int     @id @default(autoincrement())
-  name  String?
-  image String?
-  mail  String?
+  id           Int          @id @default(autoincrement())
+  name         String?
+  image        String?
+  mail         String?
   organization Organization
 
   positions PersonPosition[]
@@ -140,10 +140,10 @@ model Person {
 }
 
 model PersonGroup {
-  id          Int    @id @default(autoincrement())
-  name        String
-  description String?
-  sort_index   Int           @default(0)
+  id           Int          @id @default(autoincrement())
+  name         String
+  description  String?
+  sort_index   Int          @default(0)
   organization Organization
 
   positions PersonPosition[]
@@ -152,18 +152,66 @@ model PersonGroup {
 }
 
 model PersonPosition {
-  id         Int    @id @default(autoincrement())
-  year       Int
-  name       String
-  sort_index Int @default(0)
-  education  String?
+  id           Int          @id @default(autoincrement())
+  year         Int
+  name         String
+  sort_index   Int          @default(0)
+  education    String?
   organization Organization
 
   person_id Int
   person    Person @relation(fields: [person_id], references: [id])
 
   person_group_id Int
-  person_group PersonGroup @relation(fields: [person_group_id], references: [id])
+  person_group    PersonGroup @relation(fields: [person_group_id], references: [id])
 
   @@map("person_position")
+}
+
+enum Faculty {
+  LW // Letteren en Wijsbegeerte
+  RE // Recht en Criminologie
+  WE // Wetenschappen
+  GE // Geneeskunde en Gezondheidswetenschappen
+  EA // Ingenieurswetenschappen en Architectuur
+  TW // Ingenieurswetenschappen en Architectuur, nogmaals?
+  EB // Economie en Bedrijfskunde
+  DI // Diergeneeskunde
+  PP // Psychologie en Pedagogische Wetenschappen
+  BW // Bio-ingenieurswetenschappen
+  FW // Farmaceutische Wetenschappen
+  PS // Politieke en Sociale Wetenschappen
+  LA // Bio-ingenieurswetenschappen
+
+  @@map("faculty")
+}
+
+model Course {
+  id      Int     @id @default(autoincrement())
+  title   String
+  faculty Faculty
+
+  subjects CourseSubject[]
+
+  @@map("course")
+}
+
+model Subject {
+  name    String
+  code    String @id
+  teacher String
+
+  courses CourseSubject[]
+
+  @@map("subject")
+}
+
+model CourseSubject {
+  course_id Int
+  course    Course @relation(fields: [course_id], references: [id])
+
+  subject_code String
+  subject      Subject @relation(fields: [subject_code], references: [code])
+
+  @@id([course_id, subject_code])
 }
