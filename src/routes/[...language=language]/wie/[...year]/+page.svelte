@@ -30,7 +30,7 @@
 </div>
 
 <div class="space-y-4">
-	{#each data.groups.filter(e => e.positions.length > 0) as group, i}
+	{#each data.groups.filter((e) => e.positions.length > 0) as group, i}
 		<div class="odd:bg-neutral-100">
 			<div class="container grid grid-cols-2 gap-12 py-12">
 				<div class="space-y-1 col-span-2">
@@ -44,7 +44,8 @@
 					<div class="rounded-lg p-4 space-y-4 bg-neutral-50">
 						<div class="flex items-center gap-4 overflow-hidden">
 							<img
-								src="https://gentsestudentenraad.be/static/persistent/images/{position.person.image}"
+								src="https://gentsestudentenraad.be/static/persistent/images/{position.person
+									.image}"
 								alt="Portrait of {position.person.name}"
 								class="h-16 w-16 object-cover rounded-full"
 							/>
@@ -56,19 +57,21 @@
 								<p class="opacity-90 text-xs truncate text-ellipsis">{position.education}</p>
 							</div>
 
-							<div class="grow"></div>
+							<div class="grow" />
 
 							{#if position.person.mail !== null}
-							<p class="opacity-90 text-xl truncate text-ellipsis">
-								<i class="bi bi-mailbox"></i>
-							</p>
+								<p class="opacity-90 text-xl truncate text-ellipsis">
+									<i class="bi bi-mailbox" />
+								</p>
 							{/if}
 						</div>
 
-						<div class="h-[2px] bg-black/10 w-full"></div>
+						<div class="h-[2px] bg-black/10 w-full" />
 
 						<p>
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.
+							Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+							incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+							exercitation ullamco laboris.
 						</p>
 					</div>
 				{/each}
@@ -77,8 +80,8 @@
 	{/each}
 
 	<div class="container flex items-center justify-center py-12 gap-4">
-		<p>Bekijk historische data: </p>
-		<select name="year" id="year" on:change="{e => goto(`/wie/${e.target.value}`)}">
+		<p>Bekijk historische data:</p>
+		<select name="year" id="year" on:change={(e) => goto(`/wie/${e.target?.value ?? ''}`)}>
 			{#each [2022, 2021, 2020] as year}
 				<option value={year}>{year}</option>
 			{/each}

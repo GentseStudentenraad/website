@@ -15,12 +15,14 @@
 		style:background-color={data.configuration.brand_color_primary}
 	>
 		<div class=" shadow-md p-3 flex items-center gap-6 text-white">
-			<i class="bi bi-list -mr-4 hover:cursor-pointer text-lg" on:click={() => showLinks = true}></i>
+			<i
+				class="bi bi-list -mr-4 hover:cursor-pointer text-lg"
+				on:click={() => (showLinks = true)}
+			/>
 
 			<a href="/{data.translations.meta.language_code}">
 				<img src={data.configuration.logo_url} class="h-8" alt="Logo" />
 			</a>
-
 
 			{#each data.routes as route}
 				<a class="font-medium" href={route[1]}>{route[0]}</a>
@@ -35,26 +37,25 @@
 						data.language === Language.DUTCH ? 'en' : 'nl'
 					)}"
 				>
-				<img src="/icons/translation.png" class="h-4 w-4" alt="Translation Icon" />
+					<img src="/icons/translation.png" class="h-4 w-4" alt="Translation Icon" />
 				</a>
-			{/if}	
+			{/if}
 		</div>
 
 		{#if showLinks}
-			<div class="absolute panel-contents" on:mouseleave={() => showLinks = false}>
-			{#each data.configs as config}
-				<a href={config.hostnames[0]} class="panel-link flex items-center justify-start gap-4">
-					<img class="invert h-8 w-16 object-contain" src={config.logo_url}>
-					<div class="-space-y-1">
-						<p class="m-0 text-lg font-bold">{config.name}</p>
-						<p class="m-0 opacity-75 text-sm">{config.short_description}</p>
-					</div>
-				</a>
-			{/each}
+			<div class="absolute panel-contents" on:mouseleave={() => (showLinks = false)}>
+				{#each data.configs as config}
+					<a href={config.hostnames[0]} class="panel-link flex items-center justify-start gap-4">
+						<img class="invert h-8 w-16 object-contain" src={config.logo_url} />
+						<div class="-space-y-1">
+							<p class="m-0 text-lg font-bold">{config.name}</p>
+							<p class="m-0 opacity-75 text-sm">{config.short_description}</p>
+						</div>
+					</a>
+				{/each}
 			</div>
 		{/if}
 	</nav>
-
 
 	<slot />
 

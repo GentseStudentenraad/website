@@ -52,7 +52,7 @@ export async function load({ params, url, locals }) {
 	return {
 		language: locals.language,
 		routes,
-		configs: configs.filter(e => e.id != locals.configuration.id),
+		configs: configs.filter((e) => e.id != locals.configuration.id),
 		configuration: locals.configuration,
 		organization: locals.organization,
 		translations: locals.language === Language.DUTCH ? dutch : english
