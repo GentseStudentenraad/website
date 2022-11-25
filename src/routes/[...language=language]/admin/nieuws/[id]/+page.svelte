@@ -1,9 +1,9 @@
 <script lang="ts">
-	import type { PageData } from './$types';
-	import NewsItemVertical from '$lib/components/NewsItemVertical.svelte';
-	import NewsItemRow from '$lib/components/NewsItemRow.svelte';
+  import type {PageData} from './$types';
+  import NewsItemVertical from '$lib/components/NewsItemVertical.svelte';
+  import NewsItemRow from '$lib/components/NewsItemRow.svelte';
 
-	async function post() {
+  async function post() {
 		const res = await fetch(`/admin/nieuws/${data.news_item!.id}`, {
 			method: 'POST',
 			body: JSON.stringify(data.news_item),

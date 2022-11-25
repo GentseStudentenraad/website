@@ -1,8 +1,8 @@
 <script lang="ts">
-	import ColorPicker from 'svelte-awesome-color-picker';
-	import type { PageData } from './$types';
+  import ColorPicker from 'svelte-awesome-color-picker';
+  import type {PageData} from './$types';
 
-	export let data: PageData;
+  export let data: PageData;
 
 	async function post() {
 		const res = await fetch('/admin/config', {

@@ -1,18 +1,15 @@
 // @ts-ignore
-import { Language } from '$lib/Language';
+import {Language} from '$lib/Language';
 
 // @ts-ignore
-import { CalendarItem } from '$lib/CalendarItem';
-
-import type { News } from '@prisma/client';
+import {CalendarItem} from '$lib/CalendarItem';
 
 // @ts-ignore
 import dutch from '$lib/i18n/nl.json';
 
 // @ts-ignore
 import english from '$lib/i18n/en.json';
-import { prisma } from '$lib/Prisma';
-import { error } from '@sveltejs/kit';
+import {prisma} from '$lib/Prisma';
 
 export const prerender = false;
 export const ssr = true;

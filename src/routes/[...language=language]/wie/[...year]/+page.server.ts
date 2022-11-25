@@ -1,5 +1,5 @@
 // @ts-ignore
-import { Language } from '$lib/Language';
+import {Language} from '$lib/Language';
 
 // @ts-ignore
 import dutch from '$lib/i18n/nl.json';
@@ -8,7 +8,7 @@ import dutch from '$lib/i18n/nl.json';
 import english from '$lib/i18n/en.json';
 
 // @ts-ignore
-import { prisma } from '$lib/Prisma';
+import {prisma} from '$lib/Prisma';
 
 export const prerender = false;
 export const ssr = true;

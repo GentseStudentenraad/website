@@ -1,5 +1,5 @@
-import { Language } from '$lib/Language';
-import { prisma } from '$lib/Prisma';
+import {Language} from '$lib/Language';
+import {prisma} from '$lib/Prisma';
 import dutch from '$lib/i18n/nl.json';
 import english from '$lib/i18n/en.json';
 

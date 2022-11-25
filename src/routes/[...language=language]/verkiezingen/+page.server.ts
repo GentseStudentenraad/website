@@ -1,8 +1,8 @@
 // @ts-ignore
-import { Language } from '$lib/Language';
+import {Language} from '$lib/Language';
 
 // @ts-ignore
-import { ElectionGroup } from '$lib/Election';
+import {ElectionGroup} from '$lib/Election';
 
 // @ts-ignore
 import dutch from '$lib/i18n/nl.json';

@@ -1,5 +1,5 @@
-import { Chance } from 'chance';
-import { Language } from './Language';
+import {Chance} from 'chance';
+import {Language} from './Language';
 
 export class CalendarItem {
 	id!: number;

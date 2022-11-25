@@ -1,9 +1,7 @@
-import { Organization } from '@prisma/client';
-import type { ResolveOptions } from '@sveltejs/kit';
-import type { RequestEvent } from '@sveltejs/kit';
-import type { MaybePromise } from '@sveltejs/kit/types/private';
-import { prisma } from '$lib/Prisma';
-import { Language } from '$lib/Language';
+import type {RequestEvent, ResolveOptions} from '@sveltejs/kit';
+import type {MaybePromise} from '@sveltejs/kit/types/private';
+import {prisma} from '$lib/Prisma';
+import {Language} from '$lib/Language';
 
 // TODO: CAS authentication.
 // TODO: Should not default to GSR, but fine for development.

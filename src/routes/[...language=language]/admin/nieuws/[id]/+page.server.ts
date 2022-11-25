@@ -1,4 +1,4 @@
-import { prisma } from '$lib/Prisma';
+import {prisma} from '$lib/Prisma';
 
 export const prerender = false;
 export const ssr = false;

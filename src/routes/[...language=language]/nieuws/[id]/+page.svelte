@@ -1,8 +1,8 @@
 <script lang="ts">
-	import NewsItemVertical from '$lib/components/NewsItemVertical.svelte';
-	import type { News } from '@prisma/client';
+  import NewsItemVertical from '$lib/components/NewsItemVertical.svelte';
+  import type {News} from '@prisma/client';
 
-	// State
+  // State
 	export let data: {
 		news_item: News;
 		news: News[];

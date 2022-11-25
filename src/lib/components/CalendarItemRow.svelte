@@ -1,7 +1,7 @@
 <script lang="ts">
-	import type { CalendarItem } from '$lib/CalendarItem';
+  import type {CalendarItem} from '$lib/CalendarItem';
 
-	export let calendar_item: CalendarItem;
+  export let calendar_item: CalendarItem;
 </script>
 
 <div class="flex py-3 items-center justify-between">

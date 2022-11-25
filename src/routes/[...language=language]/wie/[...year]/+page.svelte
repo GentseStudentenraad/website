@@ -1,8 +1,8 @@
 <script lang="ts">
 	import 'chance';
-	import { Chance } from 'chance';
-	import type { Prisma, Person, PersonGroup, PersonPosition } from '@prisma/client';
-	import { goto } from '$app/navigation';
+	import {Chance} from 'chance';
+	import type {Prisma} from '@prisma/client';
+	import {goto} from '$app/navigation';
 
 	let selected = "2022";
 

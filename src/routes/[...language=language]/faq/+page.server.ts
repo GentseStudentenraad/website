@@ -1,10 +1,10 @@
-import { Language } from '$lib/Language';
+import {Language} from '$lib/Language';
 import dutch from '$lib/i18n/nl.json';
 import english from '$lib/i18n/en.json';
-import { marked } from 'marked';
+import {marked} from 'marked';
 import sanitizeHtml from 'sanitize-html';
 
-import { prisma } from '$lib/Prisma';
+import {prisma} from '$lib/Prisma';
 
 export const prerender = false;
 export const ssr = true;
