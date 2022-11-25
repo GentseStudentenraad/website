@@ -31,6 +31,24 @@
 
 			<div class="grow" />
 
+			{#if data.configuration.facebook_url}
+				<a href={data.configuration.facebook_url}>
+					<img src="/icons/facebook.png" alt="Facebook Logo" class="h-4 w-4" />
+				</a>
+			{/if}
+
+			{#if data.configuration.twitter_url}
+				<a href={data.configuration.twitter_url}>
+					<img src="/icons/twitter.png" alt="Twitter Logo" class="h-4 w-4" />
+				</a>
+			{/if}
+
+			{#if data.configuration.instagram_url}
+				<a href={data.configuration.instagram_url}>
+					<img src="/icons/instagram.png" alt="Instagram Logo" class="h-4 w-4" />
+				</a>
+			{/if}
+
 			{#if data.configuration.i18n}
 				<a
 					href="/{$page.routeId?.replace(

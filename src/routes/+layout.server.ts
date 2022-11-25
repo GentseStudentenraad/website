@@ -48,6 +48,10 @@ export async function load({ params, url, locals }) {
 			: ['Elections', '/en/verkiezingen']
 	);
 
+	if (locals.configuration.news_section) {
+		routes.push(locals.language == Language.DUTCH ? ['Vakfeedback', '/feedback'] : ['Course Feedback', '/en/feedback']);
+	}
+
 	// Done! Pass to the view.
 	return {
 		language: locals.language,
