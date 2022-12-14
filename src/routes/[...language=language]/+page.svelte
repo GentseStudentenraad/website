@@ -5,6 +5,7 @@
   import NewsItemVertical from '$lib/components/NewsItemVertical.svelte';
   import 'chance';
   import {Chance} from 'chance';
+  import SeparatedBanner from '$lib/components/SeparatedBanner.svelte';
 
   export let data: {
 		calendar: CalendarItem[];
@@ -68,18 +69,15 @@
 			</div>
 		</div>
 
-		<div class="grid grid-cols-5 items-center bg-neutral-900 text-white">
-			<img
-				class="col-span-3"
-				src="https://www.ugent.be/img/dcom/logos/ugentflag.jpg"
-				alt="UGent Flag"
-			/>
-			<div class="col-span-2 p-12 space-y-2">
-				<p class="font-bold font-serif text-4xl opacity-90">{Chance().sentence({ words: 6 })}</p>
-				<div class="w-full bg-white/50 h-[2px]" />
-				<p class="opacity-75">{Chance().paragraph()}</p>
-			</div>
-		</div>
+		<SeparatedBanner
+			title={Chance().sentence({ words: 6 })}
+			body={Chance().paragraph()}
+			imageUrl="https://www.ugent.be/img/dcom/logos/ugentflag.jpg"
+			imageAlt="UGent Flag"
+			css="bg-neutral-900 text-white"
+			imagePosition="left"
+		/>
+
 
 		<div class="container py-12 space-y-2">
 			<div class="gap-10 grid grid-cols-2">
@@ -102,20 +100,14 @@
 			</div>
 		</div>
 
-		<div
-			class="grid grid-cols-5 items-center"
-			style:background-color={data.configuration.brand_color_primary}
-		>
-			<div class="col-span-2  text-white p-12 space-y-2">
-				<p class="font-bold font-serif text-4xl">{Chance().sentence({ words: 6 })}</p>
-				<div class="w-full bg-white/50 h-[2px]" />
-				<p class="">{Chance().paragraph()}</p>
-			</div>
-			<img
-				class="col-span-3"
-				src="https://unsplash.com/photos/ewGMqs2tmJI/download?ixid=MnwxMjA3fDB8MXxzZWFyY2h8MjJ8fHVuaXZlcnNpdHl8ZW58MHx8fHwxNjYzNzYzMzI3&force=true&w=1920"
-				alt="UGent Flag"
-			/>
-		</div>
+		<SeparatedBanner
+			title={Chance().sentence({ words: 6 })}
+			body={Chance().paragraph()}
+			imageUrl="https://unsplash.com/photos/ewGMqs2tmJI/download?ixid=MnwxMjA3fDB8MXxzZWFyY2h8MjJ8fHVuaXZlcnNpdHl8ZW58MHx8fHwxNjYzNzYzMzI3&force=true&w=1920"
+			imageAlt="Classroom"
+			css="text-white"
+			color={data.configuration.brand_color_primary}
+			imagePosition="right"
+		 />
 	</div>
 </main>

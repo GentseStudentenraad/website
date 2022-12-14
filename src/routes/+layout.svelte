@@ -2,12 +2,11 @@
   import '../app.css';
   import {Language} from '$lib/Language';
   import {page} from '$app/stores';
-  // @ts-ignore geen idee waarom deze import een TS fout genereert.
-  import type {PageData} from './$types';
+  import type { LayoutData } from './$types';
 
   let showLinks = false;
 
-	export let data: PageData;
+	export let data: LayoutData;
 </script>
 
 <div class="flex flex-col justify-between w-full min-h-[100vh]">
