@@ -11,29 +11,39 @@
 	};
 </script>
 
-<NewsItemBig news_item={data.news[0]} />
+<svelte:head>
+	<style>
+		:root {
+			@apply bg-neutral-100;
+		}
+	</style>
+</svelte:head>
 
 <div class="container space-y-8 py-12">
-	<div class="space-y-4">
-		<div>
-			<p class="font-serif text-6xl font-bold lowercase">{data.translations.news.title}</p>
-			<p>{data.translations.news.subtitle}</p>
+	<div class="space-y-12">
+		<div class="space-y-2">
+			<div>
+				<p class="font-serif text-6xl font-bold lowercase">{data.translations.news.title}</p>
+				<p>{data.translations.news.subtitle}</p>
+			</div>
+			<NewsItemBig news_item={data.news[0]} />
 		</div>
 
-		<div class="grid grid-cols-4 gap-6">
+
+		<div class="grid grid-cols-4 gap-4">
 			{#each data.news.slice(1, 5) as news_item}
 				<NewsItemVertical {news_item} />
 			{/each}
 		</div>
-	</div>
 
-	<div class="space-y-1">
-		<h4>{data.translations.news.archive}</h4>
+		<div class="space-y-2">
+			<h4>{data.translations.news.archive}</h4>
 
-		<div class="flex flex-col border-t-2 border-b-2 divide-y-2">
-			{#each data.news.slice(5) as news_item}
-				<NewsItemRow {news_item} />
-			{/each}
+			<div class="flex flex-col gap-4">
+				{#each data.news.slice(5) as news_item}
+					<NewsItemRow {news_item} />
+				{/each}
+			</div>
 		</div>
 	</div>
 </div>

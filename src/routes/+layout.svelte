@@ -50,7 +50,7 @@
 
 			{#if data.configuration.i18n}
 				<a
-					href="/{$page.routeId?.replace(
+					href="/{$page.route.id?.replace(
 						'[...language=language]',
 						data.language === Language.DUTCH ? 'en' : 'nl'
 					)}"
