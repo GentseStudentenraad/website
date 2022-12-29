@@ -1,4 +1,4 @@
-FROM node:16-alpine AS build
+FROM node:19-alpine3.16 AS build
 WORKDIR /app
 
 # Dependencies
@@ -17,7 +17,7 @@ RUN npm run build
 
 ################################################################################
 
-FROM node:16-alpine
+FROM node:19-alpine3.16
 WORKDIR /app
 
 # Install run time dependencies.
