@@ -9,6 +9,7 @@
 	import LongTextField from "$lib/components/Admin/LongTextField.svelte";
 	import Checkbox from "$lib/components/Admin/Checkbox.svelte";
 	import DatePicker from "$lib/components/Admin/DatePicker.svelte";
+	import ImageUploader from "$lib/components/Admin/ImageUploader.svelte";
 
   async function post() {
 		const res = await fetch(`/admin/nieuws/${data.news_item!.id}`, {
@@ -47,6 +48,8 @@
 		bind:value={data.news_item.synopsis}
 		description="Synopsis"
 	/>
+
+	<ImageUploader description="Coverfoto" source="https://gentsestudentenraad.be/static/persistent/images/{data.news_item.banner_image}"/>
 
 	<LongTextField
 		bind:value={data.news_item.content}

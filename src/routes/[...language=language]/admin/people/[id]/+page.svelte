@@ -4,6 +4,7 @@
   import Divider from "$lib/components/Divider.svelte";
   import ActionButton from "$lib/components/Admin/ActionButton.svelte";
   import LongTextField from "$lib/components/Admin/LongTextField.svelte";
+  import ImageUploader from "$lib/components/Admin/ImageUploader.svelte";
 
   export let data: PageData;
   export let description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris."
@@ -21,6 +22,8 @@
   <Divider text="Over"/>
 
   <TextField description="Naam" bind:value={data.person.name}/>
+
+  <ImageUploader description="Portretfoto" source="https://gentsestudentenraad.be/static/persistent/images/{data.person.image}"/>
 
   <TextField description="Afbeelding" bind:value={data.person.image}/>
 
