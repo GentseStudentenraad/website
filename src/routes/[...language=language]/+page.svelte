@@ -31,38 +31,26 @@
 		style="object-position: 50% 75%"
 	/>
 
-	<div class="">
-		<div class="container pt-12 pb-6 space-y-2">
+	<div class="space-y-6 pt-12">
+		<div class="container space-y-2">
 			<p class="col-span-2 text-6xl font-serif font-bold lowercase">
 				{data.translations.home.greeting}
 			</p>
-			<div
-				class="w-full h-[4px] opacity-50"
-				style:background-color={data.configuration.brand_color_primary}
-			/>
 			<p class="col-span-3 text-justify">{data.translations.home.introduction}</p>
 		</div>
 
-		<div class="grid grid-cols-6 items-center container py-6">
-			<div class="col-span-4 grid grid-cols-3 gap-6 py-12">
-				{#each data.news.slice(0, 3) as news_item}
-					<NewsItemVertical {news_item} />
-				{/each}
-			</div>
-
-			<a href="/nieuws" class="flex flex-col col-span-2 text-right">
-				<p class="text-8xl font-serif font-bold transition hover:scale-[1.01] lowercase">
-					{data.translations.home.news}
-				</p>
-			</a>
+		<div class="grid grid-cols-4 items-center container py-6 w-full gap-4">
+			{#each data.news.slice(0, 4) as news_item}
+				<NewsItemVertical {news_item} />
+			{/each}
 		</div>
 
-		<div class="grid grid-cols-6 items-center container py-6 lowercase">
-			<p class="text-7xl font-serif font-bold w-fit col-span-2">
-				{data.translations.home.calendar}
-			</p>
+		<div class="grid grid-cols-2 gap-4 items-center container">
+			<div class="aspect-square bg-neutral-200 rounded-md flex items-center justify-center shadow-sm">TODO: calendar view</div>
 
-			<div class="col-span-4 flex flex-col divide-y-2">
+			<div class="space-y-4 w-full overflow-scroll">
+				<p class="font-medium text-lg">Gebeurtenissen</p>
+
 				{#each data.calendar.slice(0, 3) as calendar_item}
 					<CalendarItemRow {calendar_item} />
 				{/each}
@@ -77,7 +65,6 @@
 			css="bg-neutral-900 text-white"
 			imagePosition="left"
 		/>
-
 
 		<div class="container py-12 space-y-2">
 			<div class="gap-10 grid grid-cols-2">

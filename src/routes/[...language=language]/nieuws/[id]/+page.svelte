@@ -10,17 +10,33 @@
 	};
 </script>
 
+<svelte:head>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+
+	<style>
+		:root {
+			@apply bg-white;
+		}
+	</style>
+</svelte:head>
+
 <div class="container py-12 space-y-8">
-	<div class="max-w-[800px] m-auto md:text-center flex flex-col md:items-center space-y-1">
-		<p class="opacity-75 text-sm md:text-[16px]">
-			Gepubliceerd op {data.news_item.published_at.toLocaleDateString()}
-		</p>
-		<p class="text-2xl md:text-4xl font-bold font-serif">{data.news_item.title}</p>
-		<p class="text-[16px] md:text-lg opacity-90">{data.news_item.synopsis}</p>
+	<div class="max-w-[800px] m-auto md:text-center flex flex-col md:items-center space-y-4">
+		<p class="text-5xl font-semibold font-serif">{data.news_item.title}</p>
+		<div class="flex items-center opacity-75 text-sm font-semibold space-x-1">
+			<i class="bi bi-calendar-event"></i>
+			<p class="pr-2">
+				{data.news_item.published_at.toLocaleString()}
+			</p>
+			<i class="pl-2 bi bi-person-circle"></i>
+			<p class="">
+				Auteur
+			</p>
+		</div>
 	</div>
 
 	<img
-		class="rounded-md overflow-hidden w-full object-cover aspect-video"
+		class="overflow-hidden w-full object-cover aspect-video max-w-[900px] m-auto"
 		src="https://gentsestudentenraad.be/static/persistent/images/{data.news_item.banner_image}"
 		alt={data.news_item.banner_image_alt}
 		width={1000}
@@ -44,12 +60,9 @@
 			{@html data.news_item.content}
 		</article>
 	</div>
+</div>
 
-	<div
-		class="h-[3px] max-w-[800px] m-auto opacity-50"
-		style:background-color={data.configuration.brand_color_primary}
-	/>
-
+<div class="bg-neutral-100 py-12">
 	<div class="max-w-[800px] mx-auto space-y-2">
 		<p class="text-xl font-bold ">Lees verder</p>
 		<div class="grid grid-cols-1 lg:grid-cols-3 gap-4">

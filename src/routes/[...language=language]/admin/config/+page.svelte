@@ -1,6 +1,8 @@
 <script lang="ts">
   import ColorPicker from 'svelte-awesome-color-picker';
   import type {PageData} from './$types';
+	import TextField from "$lib/components/Admin/TextField.svelte";
+	import ActionButton from "$lib/components/Admin/ActionButton.svelte";
 
   export let data: PageData;
 
@@ -120,51 +122,45 @@
 				</div>
 			</div>
 
-			<div class="space-y-2">
+			<div>
 				<p class="font-medium">Contactgegevens</p>
-				<input
-					type="text"
-					class="textfield"
-					placeholder="Adres"
-					bind:value={data.configuration.adres}
+				<TextField
+								placeholder="Straatnaam 1, 9000 Gent"
+								bind:value={data.configuration.adres}
+								description="Adres"
 				/>
-				<input
-					type="text"
-					class="textfield"
-					placeholder="Telefoon"
-					bind:value={data.configuration.phone}
+				<TextField
+								placeholder="091234567"
+								bind:value={data.configuration.phone}
+								description="Telefoonnummer"
 				/>
 			</div>
 
-			<div class="space-y-2">
+			<div>
 				<p class="font-medium">Sociale Media</p>
-				<input
-					type="text"
-					class="textfield"
-					placeholder="Facebook URL"
+				<TextField
+					placeholder="https://facebook.com"
 					bind:value={data.configuration.facebook_url}
+					description="Facebook"
 				/>
-				<input
-					type="text"
-					class="textfield"
-					placeholder="Twitter URL"
-					bind:value={data.configuration.twitter_url}
+
+				<TextField
+								placeholder="https://twitter.com"
+								bind:value={data.configuration.twitter_url}
+								description="Twitter"
 				/>
-				<input
-					type="text"
-					class="textfield"
-					placeholder="Instagram URL"
-					bind:value={data.configuration.instagram_url}
+
+				<TextField
+								placeholder="https://instagram.com"
+								bind:value={data.configuration.instagram_url}
+								description="Instagram"
 				/>
 			</div>
 
-			<button
-				on:click={() => post()}
-				class="col-span-2 p-4 text-center text-white bg-neutral-700 rounded-md text-lg font-bold hover:cursor-pointer"
-				style:background-color={data.configuration.brand_color_primary}
-			>
-				Sla wijzigingen op
-			</button>
+			<ActionButton
+				action={post}
+				color={data.configuration.brand_color_primary}
+			/>
 		</div>
 	</div>
 
@@ -174,9 +170,5 @@
 <style>
 	.check {
 		@apply w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600;
-	}
-
-	.textfield {
-		@apply bg-white px-4 py-2 rounded-md w-full border-neutral-200 border-[1px];
 	}
 </style>

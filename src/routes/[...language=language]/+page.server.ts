@@ -28,6 +28,5 @@ export const load = (async ({ params, locals }) => {
 		calendar: CalendarItem.getAll(locals.language, 100),
 		news,
 		translations: locals.language === Language.DUTCH ? dutch : english,
-		configuration: locals.configuration
 	};
 }) satisfies PageServerLoad;

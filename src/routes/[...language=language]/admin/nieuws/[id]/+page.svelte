@@ -2,6 +2,9 @@
   import type {PageData} from './$types';
   import NewsItemVertical from '$lib/components/NewsItemVertical.svelte';
   import NewsItemRow from '$lib/components/NewsItemRow.svelte';
+	import Divider from "$lib/components/Divider.svelte";
+	import ActionButton from "$lib/components/Admin/ActionButton.svelte";
+	import NewsItemBig from "$lib/components/NewsItemBig.svelte";
 
   async function post() {
 		const res = await fetch(`/admin/nieuws/${data.news_item!.id}`, {
@@ -99,27 +102,20 @@
 		<p class="text-sm">Je kan jouw bericht verbergen door deze optie uit te schakelen.</p>
 	</div>
 
-	<button
-		on:click={() => post()}
-		class="w-full col-span-2 p-4 text-center text-white bg-neutral-700 rounded-md text-lg font-bold hover:cursor-pointer"
-		style:background-color={data.configuration.brand_color_primary}
-	>
-		Sla wijzigingen op
-	</button>
+	<Divider text="Voorbeelden"/>
 
-	<div class="space-y-2">
-		<p class="font-semibold text-xl">Kolomweergave</p>
-		<div class="grid grid-cols-5 gap-4">
-			{#each [0, 0, 0, 0, 0] as index}
-				<NewsItemVertical news_item={data.news_item} />
-			{/each}
-		</div>
+	<NewsItemBig news_item={data.news_item} />
+
+	<div class="grid grid-cols-4 gap-4">
+		{#each [0, 0, 0, 0] as index}
+			<NewsItemVertical news_item={data.news_item} />
+		{/each}
 	</div>
 
 	<div>
-		<p class="font-semibold text-xl">Rijweergave</p>
 		<NewsItemRow news_item={data.news_item} />
 	</div>
+	<ActionButton action={post} color={data.configuration.brand_color_primary}/>
 </div>
 
 <style>

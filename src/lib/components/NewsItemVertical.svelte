@@ -4,10 +4,10 @@
   export let news_item: News;
 </script>
 
-<a href="/nieuws/{news_item.id}" class="bg-white rounded-md">
+<a href="/nieuws/{news_item.id}" class="bg-white rounded-md shadow-sm h-full">
 	<img
 		src="https://gentsestudentenraad.be/static/persistent/images/{news_item.banner_image}"
-		class="object-cover overflow-hidden aspect-square w-full rounded-md mb-2"
+		class="object-cover overflow-hidden aspect-square w-full rounded-t-md mb-2"
 		alt={news_item.banner_image_alt}
 	/>
 	<div class="p-4">

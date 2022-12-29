@@ -19,10 +19,10 @@ export class CalendarItem {
 		return Array.from(Array(n).keys()).map(() => ({
 			id: chance.integer(),
 			title: chance.sentence({ words: chance.integer({ min: 1, max: 4 }) }),
-			contents: chance.paragraph({ sentences: 1 }),
+			contents: chance.sentence({ words: 12 }),
 			start_time: chance.date(),
 			end_time: chance.date(),
-			location: chance.sentence().slice(0, 30)
+			location: chance.sentence().slice(0, 10)
 		}));
 	}
 }

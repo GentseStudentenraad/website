@@ -12,6 +12,7 @@
 </script>
 
 <svelte:head>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
 	<style>
 		:root {
 			@apply bg-neutral-100;
@@ -19,31 +20,18 @@
 	</style>
 </svelte:head>
 
-<div class="container space-y-8 py-12">
-	<div class="space-y-12">
-		<div class="space-y-2">
-			<div>
-				<p class="font-serif text-6xl font-bold lowercase">{data.translations.news.title}</p>
-				<p>{data.translations.news.subtitle}</p>
-			</div>
-			<NewsItemBig news_item={data.news[0]} />
-		</div>
+<div class="container py-12 space-y-4">
+	<NewsItemBig news_item={data.news[0]} />
 
+	<div class="grid grid-cols-4 gap-4">
+		{#each data.news.slice(1, 5) as news_item}
+			<NewsItemVertical {news_item} />
+		{/each}
+	</div>
 
-		<div class="grid grid-cols-4 gap-4">
-			{#each data.news.slice(1, 5) as news_item}
-				<NewsItemVertical {news_item} />
-			{/each}
-		</div>
-
-		<div class="space-y-2">
-			<h4>{data.translations.news.archive}</h4>
-
-			<div class="flex flex-col gap-4">
-				{#each data.news.slice(5) as news_item}
-					<NewsItemRow {news_item} />
-				{/each}
-			</div>
-		</div>
+	<div class="flex flex-col gap-4">
+		{#each data.news.slice(5) as news_item}
+			<NewsItemRow {news_item} />
+		{/each}
 	</div>
 </div>
