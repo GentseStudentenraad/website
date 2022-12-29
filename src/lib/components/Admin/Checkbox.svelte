@@ -6,7 +6,7 @@
 </script>
 
 <div>
-  {#if description !== null}
+  {#if description !== undefined}
     <p class="text-[12px] opacity-50 font-semibold uppercase">{description}</p>
   {/if}
 
