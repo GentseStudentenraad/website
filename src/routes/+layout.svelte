@@ -30,6 +30,8 @@
 
 			<div class="grow" />
 
+			<a class="font-medium" href="/admin">Admin</a>
+
 			{#if data.configuration.facebook_url}
 				<a href={data.configuration.facebook_url}>
 					<img src="/icons/facebook.png" alt="Facebook Logo" class="h-4 w-4" />
