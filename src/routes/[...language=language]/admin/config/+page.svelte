@@ -3,6 +3,8 @@
   import type {PageData} from './$types';
 	import TextField from "$lib/components/Admin/TextField.svelte";
 	import ActionButton from "$lib/components/Admin/ActionButton.svelte";
+	import LongTextField from "$lib/components/Admin/LongTextField.svelte";
+	import Checkbox from "$lib/components/Admin/Checkbox.svelte";
 
   export let data: PageData;
 
@@ -31,140 +33,85 @@
 	</style>
 </svelte:head>
 
-<div class="py-12">
-	<div class="container space-y-2 py-12">
-		<div class="flex items-center text-xl font-bold gap-1 child:opacity-75">
-			<a href="/admin">admin</a>
-			<p>/</p>
-			<p>siteconfiguratie</p>
-		</div>
-
-		<div class="grid grid-cols-2 gap-12">
-			<div class="space-y-2">
-				<p class="font-medium">Opties</p>
-				<div class="flex items-center gap-4">
-					<input
-						id="default-checkbox"
-						type="checkbox"
-						value=""
-						class="check"
-						bind:checked={data.configuration.active}
-					/>
-					<label for="default-checkbox">Actief</label>
-				</div>
-
-				<div class="flex items-center gap-4">
-					<input
-						id="default-checkbox"
-						type="checkbox"
-						value=""
-						class="check"
-						bind:checked={data.configuration.news_section}
-					/>
-					<label for="default-checkbox">Nieuws</label>
-				</div>
-
-				<div class="flex items-center gap-4">
-					<input
-						id="default-checkbox"
-						type="checkbox"
-						value=""
-						class="check"
-						bind:checked={data.configuration.who_section}
-					/>
-					<label for="default-checkbox">Wie</label>
-				</div>
-				<div class="flex items-center gap-4">
-					<input
-						id="default-checkbox"
-						type="checkbox"
-						value=""
-						class="check"
-						bind:checked={data.configuration.faq_section}
-					/>
-					<label for="default-checkbox">FAQ</label>
-				</div>
-				<div class="flex items-center gap-4">
-					<input
-						id="default-checkbox"
-						type="checkbox"
-						value=""
-						class="check"
-						bind:checked={data.configuration.opinions_section}
-					/>
-					<label for="default-checkbox">Standpunten</label>
-				</div>
-				<div class="flex items-center gap-4">
-					<input
-						id="default-checkbox"
-						type="checkbox"
-						value=""
-						class="check"
-						bind:checked={data.configuration.i18n}
-					/>
-					<label for="default-checkbox">Engelse versie</label>
-				</div>
-			</div>
-
-			<div class="space-y-2">
-				<p class="font-medium">Stijl</p>
-				<div>
-					<ColorPicker
-						bind:hex={data.configuration.brand_color_primary}
-						label="Primaire kleur ({data.configuration.brand_color_primary})"
-					/>
-				</div>
-				<div>
-					<ColorPicker
-						bind:hex={data.configuration.brand_color_secondary}
-						label="Secundaire kleur ({data.configuration.brand_color_secondary})"
-					/>
-				</div>
-			</div>
-
-			<div>
-				<p class="font-medium">Contactgegevens</p>
-				<TextField
-								placeholder="Straatnaam 1, 9000 Gent"
-								bind:value={data.configuration.adres}
-								description="Adres"
-				/>
-				<TextField
-								placeholder="091234567"
-								bind:value={data.configuration.phone}
-								description="Telefoonnummer"
-				/>
-			</div>
-
-			<div>
-				<p class="font-medium">Sociale Media</p>
-				<TextField
-					placeholder="https://facebook.com"
-					bind:value={data.configuration.facebook_url}
-					description="Facebook"
-				/>
-
-				<TextField
-								placeholder="https://twitter.com"
-								bind:value={data.configuration.twitter_url}
-								description="Twitter"
-				/>
-
-				<TextField
-								placeholder="https://instagram.com"
-								bind:value={data.configuration.instagram_url}
-								description="Instagram"
-				/>
-			</div>
-
-			<ActionButton
-				action={post}
-				color={data.configuration.brand_color_primary}
-			/>
-		</div>
+<div class="container space-y-12 py-12">
+	<div class="space-y-2">
+		<p class="font-medium text-lg">Optionele functies</p>
+		<Checkbox bind:value={data.configuration.active} label="Website is publiek"/>
+		<Checkbox bind:value={data.configuration.news_section} label="Nieuwssectie"/>
+		<Checkbox bind:value={data.configuration.who_section} label="Wie-sectie"/>
+		<Checkbox bind:value={data.configuration.faq_section} label="FAQ-sectie"/>
+		<Checkbox bind:value={data.configuration.opinions_section} label="Standpuntensectie"/>
+		<Checkbox bind:value={data.configuration.i18n} label="Vertalingen"/>
 	</div>
 
-	<div class="grow" />
+	<div class="space-y-2">
+		<p class="font-medium text-lg">Vormgeving</p>
+
+		<div class="flex gap-4">
+			<ColorPicker
+							bind:hex={data.configuration.brand_color_primary}
+							label="Primaire kleur ({data.configuration.brand_color_primary})"
+			/>
+			<ColorPicker
+							bind:hex={data.configuration.brand_color_secondary}
+							label="Secundaire kleur ({data.configuration.brand_color_secondary})"
+			/>
+		</div>
+
+		<TextField
+			placeholder="Gentse Studentenraad"
+			bind:value={data.configuration.name}
+			description="Organisatienaam"
+		/>
+
+		<TextField
+			placeholder=""
+			bind:value={data.configuration.short_description}
+			description="Korte beschrijving"
+		/>
+	</div>
+
+	<div>
+		<p class="font-medium text-lg">Contactgegevens</p>
+		<TextField
+			placeholder="Straatnaam 1, 9000 Gent"
+			bind:value={data.configuration.adres}
+			description="Adres"
+		/>
+		<TextField
+						placeholder="091234567"
+						bind:value={data.configuration.phone}
+						description="Telefoonnummer"
+		/>
+		<TextField
+						placeholder="hello@example.com"
+						bind:value={data.configuration.email_adres}
+						description="E-mailadres"
+		/>
+
+		<TextField
+			placeholder="https://facebook.com"
+			bind:value={data.configuration.facebook_url}
+			description="Facebook"
+		/>
+
+		<TextField
+			placeholder="https://twitter.com"
+			bind:value={data.configuration.twitter_url}
+			description="Twitter"
+		/>
+
+		<TextField
+			placeholder="https://instagram.com"
+			bind:value={data.configuration.instagram_url}
+			description="Instagram"
+		/>
+	</div>
+
+	<ActionButton
+		action={post}
+		color={data.configuration.brand_color_primary}
+	/>
 </div>
 
 <style>

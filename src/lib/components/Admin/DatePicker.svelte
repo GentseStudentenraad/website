@@ -1,6 +1,6 @@
 <script lang="ts">
   export let placeholder = ""
-  export let value: string
+  export let value: Date
   export let description: string | null
 </script>
 
@@ -10,10 +10,10 @@
       <p class="text-[12px] opacity-50 font-semibold uppercase">{description}</p>
     {/if}
     <input
-        type="text"
-        class="textfield"
-        placeholder={placeholder}
-        bind:value={value}
+      type="date"
+      class="textfield"
+      placeholder="Auteur"
+      bind:value={value}
     />
   </div>
 </template>

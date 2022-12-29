@@ -5,6 +5,10 @@
 	import Divider from "$lib/components/Divider.svelte";
 	import ActionButton from "$lib/components/Admin/ActionButton.svelte";
 	import NewsItemBig from "$lib/components/NewsItemBig.svelte";
+	import TextField from "$lib/components/Admin/TextField.svelte";
+	import LongTextField from "$lib/components/Admin/LongTextField.svelte";
+	import Checkbox from "$lib/components/Admin/Checkbox.svelte";
+	import DatePicker from "$lib/components/Admin/DatePicker.svelte";
 
   async function post() {
 		const res = await fetch(`/admin/nieuws/${data.news_item!.id}`, {
@@ -33,74 +37,30 @@
 	</style>
 </svelte:head>
 
-<div class="container space-y-8 py-12">
-	<div class="flex items-center text-xl font-bold gap-1 child:opacity-75">
-		<a href="/admin">admin</a>
-		<p>/</p>
-		<a href="/admin/nieuws">nieuws</a>
-		<p>/</p>
-		<p class="opacity-100">bericht</p>
-	</div>
+<div class="container space-y-4 py-12">
+	<TextField
+		bind:value={data.news_item.title}
+		description="Titel"
+	/>
 
-	<div class="space-y-1">
-		<p class="font-semibold text-xl">Titel</p>
-		<input type="text" class="textfield" placeholder="Titel" bind:value={data.news_item.title} />
-	</div>
+	<TextField
+		bind:value={data.news_item.synopsis}
+		description="Synopsis"
+	/>
 
-	<div class="space-y-1">
-		<p class="font-semibold text-xl">Synopsis</p>
-		<p class="opacity-50 text-xs">
-			Een zeer korte beschrijving. Wordt gebruikt bij het linken naar jouw nieuwsbericht.
-		</p>
-		<input
-			type="text"
-			class="textfield"
-			placeholder="Synopsis"
-			bind:value={data.news_item.synopsis}
-		/>
-	</div>
+	<LongTextField
+		bind:value={data.news_item.content}
+		description="Inhoud"
+	/>
 
-	<div class="space-y-1">
-		<p class="font-semibold text-xl">Inhoud</p>
-		<p class="opacity-50 text-xs">Je kan gebruik maken van MarkDown, inclusief in-line HTML.</p>
-		<textarea
-			type="text"
-			class="w-full"
-			rows="10"
-			placeholder="Inhoud"
-			bind:value={data.news_item.content}
-		/>
-	</div>
+	<TextField
+		bind:value={data.news_item.author}
+		description="Auteur"
+	/>
 
-	<div class="space-y-1">
-		<p class="font-semibold text-xl">Auteur</p>
-		<input type="text" class="textfield" placeholder="Auteur" bind:value={data.news_item.author} />
-	</div>
+	<DatePicker description="Publicatiedatum" bind:value={data.news_item.published_at}/>
 
-	<div class="space-y-1">
-		<p class="font-semibold text-xl">Gepubliceerd op</p>
-		<p class="opacity-50 text-xs">Vanaf dit moment wordt jouw bericht publiek.</p>
-		<input
-			type="date"
-			class="textfield"
-			placeholder="Auteur"
-			bind:value={data.news_item.published_at}
-		/>
-	</div>
-
-	<div class="">
-		<div class="flex items-center gap-2">
-			<input
-				id="default-checkbox"
-				type="checkbox"
-				value=""
-				class="check"
-				bind:checked={data.news_item.published}
-			/>
-			<p class="font-semibold text-xl">Publiek</p>
-		</div>
-		<p class="text-sm">Je kan jouw bericht verbergen door deze optie uit te schakelen.</p>
-	</div>
+	<Checkbox label="Publiek" bind:value={data.news_item.published} description="Opties"/>
 
 	<Divider text="Voorbeelden"/>
 
@@ -112,22 +72,7 @@
 		{/each}
 	</div>
 
-	<div>
-		<NewsItemRow news_item={data.news_item} />
-	</div>
+	<NewsItemRow news_item={data.news_item} />
+
 	<ActionButton action={post} color={data.configuration.brand_color_primary}/>
 </div>
-
-<style>
-	.check {
-		@apply w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600;
-	}
-
-	textarea {
-		@apply bg-white px-4 py-2 rounded-md w-full border-neutral-200 border-[1px];
-	}
-
-	.textfield {
-		@apply bg-white px-4 py-2 rounded-md w-full border-neutral-200 border-[1px];
-	}
-</style>
