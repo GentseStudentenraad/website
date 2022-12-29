@@ -15,12 +15,6 @@
 </svelte:head>
 
 <div class="container py-12 font-normal space-y-4">
-	<div class="flex items-center text-xl font-bold gap-1 child:opacity-75">
-		<a href="/admin">admin</a>
-		<p>/</p>
-		<p>nieuws</p>
-	</div>
-
 	<table class="table-auto text-left">
 		<thead class="">
 			<tr class="h-12 border-b child:p-4">
