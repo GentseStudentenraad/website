@@ -1,7 +1,9 @@
 version: '3.9'
 services:
   website:
-    build: .
+    container_name: website2022
+    hostname: website2022
+    image: ghcr.io/gentsestudentenraad/website:main
     environment:
       DATABASE_URL: 'postgresql://gsr:gsr@postgres:5432/gsr?schema=public'
     labels:

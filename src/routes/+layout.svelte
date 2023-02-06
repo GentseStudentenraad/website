@@ -1,36 +1,28 @@
 <script lang="ts">
 	import '../app.scss';
-	import { Language } from '$lib/Language';
 	import { page } from '$app/stores';
 	import type { LayoutData } from './$types';
+	import { Language } from '$lib/Language';
 
 	let showLinks = false;
-
 	export let data: LayoutData;
 </script>
 
 <div class="flex flex-col justify-between w-full min-h-[100vh]">
-	<nav
-		class="sticky top-0 w-full z-[100]"
-		style:background-color={data.configuration.brand_color_primary}
-	>
-		<div class=" shadow-md p-3 flex items-center gap-6 text-white">
-			<i
-				class="bi bi-list -mr-4 hover:cursor-pointer text-lg"
-				on:click={() => (showLinks = true)}
-			/>
-
-			<a href="/{data.translations.meta.language_code}">
+	<nav style:background-color={data.configuration.brand_color_primary}>
+		<div class="flex shadow-md p-3 items-center gap-6">
+			<!-- svelte-ignore a11y-mouse-events-have-key-events -->
+			<a href="{data.language == Language.DUTCH ? '/nl' : '/en'}" on:mouseover={() => (showLinks = true)}>
 				<img src={data.configuration.logo_url} class="h-8" alt="Logo" />
 			</a>
 
 			{#each data.routes as route}
-				<a class="font-medium" href={route[1]}>{route[0]}</a>
+				<a href={route[1]}>{route[0]}</a>
 			{/each}
 
 			<div class="grow" />
 
-			<a class="font-medium" href="/admin">Admin</a>
+			<a href="/admin">Admin</a>
 
 			{#if data.configuration.facebook_url}
 				<a href={data.configuration.facebook_url}>
@@ -89,21 +81,21 @@
 			{/if}
             {/if}
 		</div>
-
-		{#if showLinks}
-			<div class="absolute panel-contents" on:mouseleave={() => (showLinks = false)}>
-				{#each data.configs as config}
-					<a href={config.hostnames[0]} class="panel-link flex items-center justify-start gap-4">
-						<img class="invert h-8 w-16 object-contain" src={config.logo_url} />
-						<div class="-space-y-1">
-							<p class="m-0 text-lg font-bold">{config.name}</p>
-							<p class="m-0 opacity-75 text-sm">{config.short_description}</p>
-						</div>
-					</a>
-				{/each}
-			</div>
-		{/if}
 	</nav>
+
+    {#if showLinks}
+        <div class="panel-contents" on:mouseleave={() => showLinks = false}>
+            {#each data.configs as config}
+                <a href={config.hostnames[0]} class="panel-link flex items-center justify-start gap-4">
+                    <img class="invert h-8 w-16 object-contain" src={config.logo_url} alt="Logo" />
+                    <div class="-space-y-1">
+                        <p class="m-0 text-lg font-bold">{config.name}</p>
+                        <p class="m-0 opacity-75 text-sm">{config.short_description}</p>
+                    </div>
+                </a>
+            {/each}
+        </div>
+    {/if}
 
 	<slot />
 
@@ -191,14 +183,18 @@
 				<p class="">Klachten</p>
 			</div>
 
-			<img class="m-auto" src="https://gentsestudentenraad.be/static/persistent/images/logo.png" />
+			<img class="m-auto" src="https://gentsestudentenraad.be/static/persistent/images/logo.png" alt="Logo" />
 		</div>
 	</footer>
 </div>
 
-<style>
+<style lang="postcss">
+    nav {
+        @apply relative w-full z-[100] text-sm font-medium text-neutral-100;
+    }
+
 	.panel-contents {
-		@apply grid grid-cols-4 p-4 bg-neutral-200 gap-4 w-[100vw];
+		@apply grid grid-cols-4 p-4 bg-neutral-200 gap-4 w-[100vw] absolute top-14;
 	}
 
 	.panel-link {
