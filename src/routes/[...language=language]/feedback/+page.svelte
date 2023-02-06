@@ -1,9 +1,10 @@
 <script lang="ts">
-	import { Course } from '@prisma/client';
+	import type { Course } from '@prisma/client';
 	import { Chance } from 'chance';
+	import type { PageData } from './$types';
 	let text = '';
 
-	export let data;
+	export let data: PageData;
 	let course: Course | null;
 </script>
 
@@ -25,7 +26,7 @@
 />
 
 <div class="container py-16 space-y-8">
-	<p class="font-serif font-bold text-6xl col-span-2">Vakfeedback</p>
+    {@html data.i18n.get('feedback-title')}
 
 	<div class="grid grid-cols-2 gap-16 items-center">
 		<div class="space-y-16">

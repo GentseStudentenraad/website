@@ -11,6 +11,7 @@ datasource db {
 }
 
 enum Organization {
+  COMMON
   GSR
   PPSR
   FRIS
@@ -40,7 +41,7 @@ model i18n {
   key String?
   dutch String
   english String?
-  organization Organization?
+  organization Organization
 
   @@map("i18n")
   @@unique([key, organization])

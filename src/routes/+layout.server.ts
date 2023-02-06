@@ -2,6 +2,7 @@ import { Language } from '$lib/Language';
 import dutch from '$lib/i18n/nl.json';
 import english from '$lib/i18n/en.json';
 import { prisma } from '$lib/Prisma';
+import { Organization } from '@prisma/client';
 import type { LayoutServerLoad } from './$types';
 import { marked } from 'marked';
 import sanitizeHtml from 'sanitize-html';
@@ -59,9 +60,12 @@ export const load = (async ({ params, locals }) => {
             english: locals.language == Language.ENGLISH,
         },
         where: {
-            organization: locals.configuration.organization,
+            OR: [
+                { organization: locals.configuration.organization},
+                { organization: Organization.COMMON},
+            ]
         }
-    })
+    });
 
     const translations = new Map();
     i18n.forEach(e => {
