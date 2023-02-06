@@ -1,16 +1,17 @@
 <script lang="ts">
-	export let source: string | null = null;
+	export let source: string | undefined = undefined;
 	export let description: string | null = null;
+	let files: FileList;
 
-	const upload = (e) => {
-		let image = e.target.files[0];
-
-		let reader = new FileReader();
-		reader.readAsDataURL(image);
-		reader.onload = (e) => {
-			source = e.target.result.toString();
-		};
-	};
+    $: if (files) {
+		for (const file of files) {
+            let reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = (e) => {
+                source = e.target?.result?.toString();
+            };
+		}
+	}
 </script>
 
 <div class="py-2">
@@ -20,9 +21,9 @@
 
 	<div class="flex items-center gap-4 w-full bg-white rounded-md p-4 shadow-sm">
 		{#if source}
-			<img class="h-32 rounded-md " src={source} />
+			<img class="h-32 rounded-md " src={source} alt="Preview" />
 		{/if}
 
-		<input type="file" accept=".jpg, .jpeg, .png" on:change={(e) => upload(e)} />
+		<input type="file" accept=".jpg, .jpeg, .png" bind:files />
 	</div>
 </div>

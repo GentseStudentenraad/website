@@ -3,7 +3,6 @@
 	import type { PageData } from './$types';
 	import TextField from '$lib/components/Admin/TextField.svelte';
 	import ActionButton from '$lib/components/Admin/ActionButton.svelte';
-	import LongTextField from '$lib/components/Admin/LongTextField.svelte';
 	import Checkbox from '$lib/components/Admin/Checkbox.svelte';
 
 	export let data: PageData;
@@ -36,12 +35,12 @@
 <div class="container space-y-12 py-12">
 	<div class="space-y-2">
 		<p class="font-medium text-lg">Optionele functies</p>
-		<Checkbox bind:value={data.configuration.active} label="Website is publiek" />
-		<Checkbox bind:value={data.configuration.news_section} label="Nieuwssectie" />
-		<Checkbox bind:value={data.configuration.who_section} label="Wie-sectie" />
-		<Checkbox bind:value={data.configuration.faq_section} label="FAQ-sectie" />
-		<Checkbox bind:value={data.configuration.opinions_section} label="Standpuntensectie" />
-		<Checkbox bind:value={data.configuration.i18n} label="Vertalingen" />
+		<Checkbox bind:value={data.configuration.active} label="Website is publiek" description={null} />
+		<Checkbox bind:value={data.configuration.news_section} label="Nieuwssectie" description={null} />
+		<Checkbox bind:value={data.configuration.who_section} label="Wie-sectie" description={null} />
+		<Checkbox bind:value={data.configuration.faq_section} label="FAQ-sectie" description={null} />
+		<Checkbox bind:value={data.configuration.opinions_section} label="Standpuntensectie" description={null} />
+		<Checkbox bind:value={data.configuration.i18n} label="Vertalingen" description={null} />
 	</div>
 
 	<div class="space-y-2">

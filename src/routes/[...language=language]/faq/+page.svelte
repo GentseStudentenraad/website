@@ -41,6 +41,7 @@
 		class="col-span-2 h-[60vh] object-cover w-full"
 		src="https://unsplash.com/photos/NboyPdtHqFc/download?ixid=MnwxMjA3fDB8MXxhbGx8fHx8fHx8fHwxNjY5Mzk2NjE4&force=true&w=1920"
 		style="object-position: 50% 75%;"
+        alt="Books in a library."
 	/>
 </div>
 
@@ -68,7 +69,7 @@
 	<p class="text-center opacity-75 font-medium font-lg">{@html data.translations.faq.not_found}</p>
 </div>
 
-<style>
+<style lang="postcss">
 	select {
 		@apply text-center font-medium px-5;
 		appearance: none;

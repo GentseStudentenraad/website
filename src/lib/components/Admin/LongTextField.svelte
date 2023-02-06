@@ -1,5 +1,5 @@
 <script lang="ts">
-	export let placeholder: string;
+	export let placeholder: string = "";
 	export let value: string;
 	export let description: string | null = null;
 </script>
@@ -9,7 +9,7 @@
 		{#if description !== null}
 			<p class="text-[12px] opacity-50 font-semibold uppercase">{description}</p>
 		{/if}
-		<textarea type="text" class="w-full" rows="10" {placeholder} bind:value />
+		<textarea class="w-full" rows="10" {placeholder} bind:value />
 	</div>
 </template>
 

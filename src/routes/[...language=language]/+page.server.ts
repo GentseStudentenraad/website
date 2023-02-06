@@ -25,7 +25,7 @@ export const load = (async ({ params, locals }) => {
 	});
 
 	return {
-		calendar: CalendarItem.getAll(locals.language, 100),
+		calendar: CalendarItem.getAll(100),
 		news,
 		translations: locals.language === Language.DUTCH ? dutch : english
 	};
