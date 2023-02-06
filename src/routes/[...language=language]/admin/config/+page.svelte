@@ -46,7 +46,7 @@
 	<div class="space-y-2">
 		<p class="font-medium text-lg">Vormgeving</p>
 
-		<div class="flex gap-4">
+		<div class="flex gap-4 w-full">
 			<ColorPicker
 				bind:hex={data.configuration.brand_color_primary}
 				label="Primaire kleur ({data.configuration.brand_color_primary})"
@@ -105,6 +105,24 @@
 			bind:value={data.configuration.instagram_url}
 			description="Instagram"
 		/>
+
+        <TextField
+            placeholder="https://tiktok.com"
+            bind:value={data.configuration.tiktok_url}
+            description="TikTok"
+        />
+
+        <TextField
+            placeholder="https://discord.com"
+            bind:value={data.configuration.discord_url}
+            description="Discord"
+        />
+
+        <TextField
+            placeholder="https://discord.com"
+            bind:value={data.configuration.linkedin_url}
+            description="LinkedIn"
+        />
 	</div>
 
 	<ActionButton action={post} color={data.configuration.brand_color_primary} />

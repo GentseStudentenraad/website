@@ -38,6 +38,9 @@ model Configuration {
   facebook_url  String?
   twitter_url   String?
   instagram_url String?
+  tiktok_url    String?
+  linkedin_url  String?
+  discord_url   String?
 
   // Contact Information
   adres       String?

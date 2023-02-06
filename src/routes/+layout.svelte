@@ -34,21 +34,39 @@
 
 			{#if data.configuration.facebook_url}
 				<a href={data.configuration.facebook_url}>
-					<img src="/icons/facebook.png" alt="Facebook Logo" class="h-4 w-4" />
+                    <i class="bi bi-facebook" />
 				</a>
 			{/if}
 
 			{#if data.configuration.twitter_url}
 				<a href={data.configuration.twitter_url}>
-					<img src="/icons/twitter.png" alt="Twitter Logo" class="h-4 w-4" />
+                    <i class="bi bi-twitter" />
 				</a>
 			{/if}
 
 			{#if data.configuration.instagram_url}
 				<a href={data.configuration.instagram_url}>
-					<img src="/icons/instagram.png" alt="Instagram Logo" class="h-4 w-4" />
+                    <i class="bi bi-instagram" />
 				</a>
 			{/if}
+
+            {#if data.configuration.tiktok_url}
+                <a href={data.configuration.tiktok_url}>
+                    <i class="bi bi-tiktok" />
+                </a>
+            {/if}
+
+            {#if data.configuration.discord_url}
+                <a href={data.configuration.discord_url}>
+                    <i class="bi bi-discord" />
+                </a>
+            {/if}
+
+            {#if data.configuration.linkedin_url}
+                <a href={data.configuration.linkedin_url}>
+                    <i class="bi bi-linkedin" />
+                </a>
+            {/if}
 
 			{#if data.configuration.i18n}
 				<a
@@ -57,8 +75,8 @@
 						data.language === Language.DUTCH ? 'en' : 'nl'
 					)}"
 				>
-					<img src="/icons/translation.png" class="h-4 w-4" alt="Translation Icon" />
-				</a>
+                <i class="bi bi-translate" />
+            </a>
 			{/if}
 		</div>
 
@@ -88,7 +106,7 @@
 				{#if data.configuration.facebook_url}
 					<a href={data.configuration.facebook_url}>
 						<div class="flex gap-2 items-center">
-							<img src="/icons/facebook.png" alt="Facebook Logo" class="h-4 w-4" />
+                            <i class="bi bi-facebook" />
 							<p class="">Facebook</p>
 						</div>
 					</a>
@@ -97,7 +115,7 @@
 				{#if data.configuration.twitter_url}
 					<a href={data.configuration.twitter_url}>
 						<div class="flex gap-2 items-center">
-							<img src="/icons/twitter.png" alt="Twitter Logo" class="h-4 w-4" />
+                            <i class="bi bi-twitter" />
 							<p class="">Twitter</p>
 						</div>
 					</a>
@@ -106,11 +124,38 @@
 				{#if data.configuration.instagram_url}
 					<a href={data.configuration.instagram_url}>
 						<div class="flex gap-2 items-center">
-							<img src="/icons/instagram.png" alt="Instagram Logo" class="h-4 w-4" />
+                            <i class="bi bi-instagram" />
 							<p class="">Instagram</p>
 						</div>
 					</a>
 				{/if}
+
+                {#if data.configuration.tiktok_url}
+                    <a href={data.configuration.tiktok_url}>
+                        <div class="flex gap-2 items-center">
+                            <i class="bi bi-tiktok" />
+                            <p class="">TikTok</p>
+                        </div>
+                    </a>
+                {/if}
+
+                {#if data.configuration.discord_url}
+                    <a href={data.configuration.discord_url}>
+                        <div class="flex gap-2 items-center">
+                            <i class="bi bi-discord" />
+                            <p class="">Discord</p>
+                        </div>
+                    </a>
+                {/if}
+
+                {#if data.configuration.linkedin_url}
+                    <a href={data.configuration.linkedin_url}>
+                        <div class="flex gap-2 items-center">
+                            <i class="bi bi-linkedin" />
+                            <p class="">LinkedIn</p>
+                        </div>
+                    </a>
+                {/if}
 			</div>
 
 			<div class="space-y-2">
