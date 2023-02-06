@@ -37,12 +37,13 @@ enum Language {
 
 model i18n {
   id Int @id @default(autoincrement())
-  key String @unique
-  language Language
-  value String
+  key String?
+  dutch String
+  english String?
+  organization Organization?
 
   @@map("i18n")
-  @@unique([key, language])
+  @@unique([key, organization])
 }
 
 model Configuration {

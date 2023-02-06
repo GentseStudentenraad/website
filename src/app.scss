@@ -48,7 +48,7 @@
 }
 
 h1 {
-	@apply text-4xl font-semibold;
+	@apply text-7xl font-semibold;
 }
 
 h2 {
@@ -69,6 +69,18 @@ h5 {
 
 h6 {
 	@apply text-sm font-bold opacity-75;
+}
+
+.md {
+    @apply space-y-2;
+
+    h1 {
+        @apply font-serif col-span-full;
+    }
+
+    h2 {
+        @apply pt-8;
+    }
 }
 
 .container {

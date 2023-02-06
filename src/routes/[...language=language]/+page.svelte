@@ -1,18 +1,12 @@
 <script lang="ts">
-	import type { CalendarItem } from '$lib/CalendarItem';
 	import CalendarItemRow from '$lib/components/CalendarItemRow.svelte';
-	import type { News } from '@prisma/client';
 	import NewsItemVertical from '$lib/components/NewsItemVertical.svelte';
 	import 'chance';
 	import { Chance } from 'chance';
 	import SeparatedBanner from '$lib/components/SeparatedBanner.svelte';
+	import type { PageData } from './$types';
 
-	export let data: {
-		calendar: CalendarItem[];
-		news: News[];
-		translations: any;
-		configuration: any;
-	};
+	export let data: PageData
 </script>
 
 <svelte:head>
@@ -32,11 +26,8 @@
 	/>
 
 	<div class="space-y-6 pt-12">
-		<div class="container space-y-2">
-			<p class="col-span-2 text-6xl font-serif font-bold lowercase">
-				{data.translations.home.greeting}
-			</p>
-			<p class="col-span-3 text-justify">{data.translations.home.introduction}</p>
+		<div class="container md space-y-1">
+            {@html data.i18n.get('home-about')}
 		</div>
 
 		<div class="grid grid-cols-4 items-center container py-6 w-full gap-4">

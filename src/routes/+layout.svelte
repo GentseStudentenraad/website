@@ -1,6 +1,6 @@
 <script lang="ts">
-	import '../app.css';
-	import { Language } from '@prisma/client';
+	import '../app.scss';
+	import { Language } from '$lib/Language';
 	import { page } from '$app/stores';
 	import type { LayoutData } from './$types';
 
@@ -68,18 +68,26 @@
                 </a>
             {/if}
 
+
 			{#if data.configuration.i18n}
+            {#if $page.url.toString().includes('/en')}
             <a
                 class="rounded-full bg-neutral-900 px-3 py-1 flex gap-2 font-semibold items-center border-2 border-neutral-700"
-                href="{$page.route.id?.replace(
-                    '[...language=language]',
-                    data.language === Language.DUTCH ? 'en' : 'nl'
-                )}"
-            >
+                href="{$page.url.toString().replace('/en', '/nl')}"
+             >
                 <i class="bi bi-translate" />
-                <p class="text-xs">{data.language === Language.DUTCH ? 'EN' : 'NL'}</p>
+                <p class="text-xs">NL</p>
+            </a>
+            {:else}
+            <a
+                class="rounded-full bg-neutral-900 px-3 py-1 flex gap-2 font-semibold items-center border-2 border-neutral-700"
+                href="{$page.url.toString().replace('/nl', '/en')}"
+             >
+                <i class="bi bi-translate" />
+                <p class="text-xs">EN</p>
             </a>
 			{/if}
+            {/if}
 		</div>
 
 		{#if showLinks}

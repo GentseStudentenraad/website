@@ -1,7 +1,5 @@
 import { Language } from '$lib/Language';
 import { CalendarItem } from '$lib/CalendarItem';
-import dutch from '$lib/i18n/nl.json';
-import english from '$lib/i18n/en.json';
 import { prisma } from '$lib/Prisma';
 import type { PageServerLoad } from './$types';
 
@@ -10,7 +8,7 @@ export const ssr = true;
 export const csr = true;
 
 export const load = (async ({ params, locals }) => {
-	const _ = params.language; // SVELTEKIT BUG, DO NOT REMOVE
+    const _ = params.language;
 
 	const news = await prisma.news.findMany({
 		orderBy: [
@@ -19,7 +17,7 @@ export const load = (async ({ params, locals }) => {
 			}
 		],
 		where: {
-			organization: locals.organization!
+			organization: locals.configuration.organization
 		},
 		take: 4
 	});
@@ -27,6 +25,5 @@ export const load = (async ({ params, locals }) => {
 	return {
 		calendar: CalendarItem.getAll(100),
 		news,
-		translations: locals.language === Language.DUTCH ? dutch : english
 	};
 }) satisfies PageServerLoad;

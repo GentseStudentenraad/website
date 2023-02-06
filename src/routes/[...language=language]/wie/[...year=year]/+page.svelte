@@ -4,6 +4,7 @@
 	import type { Prisma } from '@prisma/client';
 	import { goto } from '$app/navigation';
 	import PositionCard from '$lib/components/PositionCard.svelte';
+	import type { PageData } from './$types';
 
 	let selected = '2022';
 
@@ -17,10 +18,7 @@
 		};
 	}>;
 
-	export let data: {
-		groups: Array<PersonGroupJoined>;
-		translations: any;
-	};
+	export let data: PageData;
 </script>
 
 <img
@@ -30,10 +28,8 @@
 	style="object-position: 50% 30%"
 />
 
-<div class="container grid grid-cols-2 gap-x-8 gap-y-2 py-12">
-	<p class="font-serif font-bold text-4xl col-span-2">{data.translations.who.title}</p>
-	<p>{Chance().paragraph()}</p>
-	<p>{Chance().paragraph()}</p>
+<div class="container md grid grid-cols-2 gap-x-8 gap-y-2 py-12">
+    {@html data.i18n.get('who-about')}
 </div>
 
 <div class="space-y-4">

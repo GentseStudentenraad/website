@@ -16,7 +16,7 @@ export const load = (async ({ params, locals }) => {
 		include: {
 			positions: {
 				where: {
-					organization: locals.organization,
+					organization: locals.configuration.organization,
 					year: parseInt(params.year ? params.year : '2022')
 				},
 				orderBy: {
@@ -28,7 +28,7 @@ export const load = (async ({ params, locals }) => {
 			}
 		},
 		where: {
-			organization: locals.organization
+			organization: locals.configuration.organization
 		}
 	});
 
