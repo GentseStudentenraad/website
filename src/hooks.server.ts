@@ -1,7 +1,7 @@
-import type {RequestEvent, ResolveOptions} from '@sveltejs/kit';
-import type {MaybePromise} from '@sveltejs/kit/types/private';
-import {prisma} from '$lib/Prisma';
-import {Language} from '$lib/Language';
+import type { RequestEvent, ResolveOptions } from '@sveltejs/kit';
+import type { MaybePromise } from '@sveltejs/kit/types/private';
+import { prisma } from '$lib/Prisma';
+import { Language } from '$lib/Language';
 
 // TODO: CAS authentication.
 // TODO: Should not default to GSR, but fine for development.
@@ -18,7 +18,9 @@ export async function handle({
 	const requestedHost = event.url.searchParams.get('host') || event.url.hostname;
 
 	const configs = await prisma.configuration.findMany();
-	let organization = configs.filter((c) => c.hostnames.includes(requestedHost)).at(0)?.organization;
+	const organization = configs
+		.filter((c) => c.hostnames.includes(requestedHost))
+		.at(0)?.organization;
 
 	if (organization === undefined) {
 		return new Response(
@@ -28,7 +30,6 @@ export async function handle({
 		// handle error
 	}
 
-	// @ts-ignore
 	event.locals.organization = organization;
 
 	// Retrieve the configuration of the website, and if missing, throw an error.

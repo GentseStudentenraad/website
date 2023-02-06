@@ -1,9 +1,9 @@
 <script lang="ts">
-  import type {ElectionGroup} from '$lib/Election';
-  import 'chance';
-  import {Chance} from 'chance';
+	import type { ElectionGroup } from '$lib/Election';
+	import 'chance';
+	import { Chance } from 'chance';
 
-  export let data: {
+	export let data: {
 		electionGroups: ElectionGroup[];
 		translations: any;
 	};

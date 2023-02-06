@@ -1,5 +1,5 @@
-import {prisma} from '$lib/Prisma';
-import type {PageServerLoad} from './$types';
+import { prisma } from '$lib/Prisma';
+import type { PageServerLoad } from './$types';
 
 export const prerender = false;
 export const ssr = false;

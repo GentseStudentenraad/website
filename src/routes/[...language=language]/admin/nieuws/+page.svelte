@@ -1,12 +1,15 @@
 <script lang="ts">
-  import type {PageData} from './$types';
-  import {goto} from '$app/navigation';
+	import type { PageData } from './$types';
+	import { goto } from '$app/navigation';
 
-  export let data: PageData;
+	export let data: PageData;
 </script>
 
 <svelte:head>
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+	<link
+		rel="stylesheet"
+		href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css"
+	/>
 	<style>
 		:root {
 			@apply bg-neutral-100;
@@ -31,14 +34,14 @@
 						<p class="opacity-75 text-xs truncate">{news_item.synopsis}</p>
 					</td>
 					<td class:opacity-50={news_item.author === null} class="text-sm">
-						{news_item.author ?? "/"}
+						{news_item.author ?? '/'}
 					</td>
 					<td class="text-sm font-bold">{news_item.published_at.toLocaleString()}</td>
 					<td on:click={() => goto(`/admin/nieuws/${news_item.id}`)}>
-						<i class="bi bi-pencil-square"></i>
+						<i class="bi bi-pencil-square" />
 					</td>
-					<td on:click={() => alert("Zeker dat je dit bericht wenst te verwijderen?")}>
-						<i class="bi bi-trash3-fill"></i>
+					<td on:click={() => alert('Zeker dat je dit bericht wenst te verwijderen?')}>
+						<i class="bi bi-trash3-fill" />
 					</td>
 				</tr>
 			{/each}

@@ -1,12 +1,12 @@
 <script lang="ts">
-  import ColorPicker from 'svelte-awesome-color-picker';
-  import type {PageData} from './$types';
-	import TextField from "$lib/components/Admin/TextField.svelte";
-	import ActionButton from "$lib/components/Admin/ActionButton.svelte";
-	import LongTextField from "$lib/components/Admin/LongTextField.svelte";
-	import Checkbox from "$lib/components/Admin/Checkbox.svelte";
+	import ColorPicker from 'svelte-awesome-color-picker';
+	import type { PageData } from './$types';
+	import TextField from '$lib/components/Admin/TextField.svelte';
+	import ActionButton from '$lib/components/Admin/ActionButton.svelte';
+	import LongTextField from '$lib/components/Admin/LongTextField.svelte';
+	import Checkbox from '$lib/components/Admin/Checkbox.svelte';
 
-  export let data: PageData;
+	export let data: PageData;
 
 	async function post() {
 		const res = await fetch('/admin/config', {
@@ -36,12 +36,12 @@
 <div class="container space-y-12 py-12">
 	<div class="space-y-2">
 		<p class="font-medium text-lg">Optionele functies</p>
-		<Checkbox bind:value={data.configuration.active} label="Website is publiek"/>
-		<Checkbox bind:value={data.configuration.news_section} label="Nieuwssectie"/>
-		<Checkbox bind:value={data.configuration.who_section} label="Wie-sectie"/>
-		<Checkbox bind:value={data.configuration.faq_section} label="FAQ-sectie"/>
-		<Checkbox bind:value={data.configuration.opinions_section} label="Standpuntensectie"/>
-		<Checkbox bind:value={data.configuration.i18n} label="Vertalingen"/>
+		<Checkbox bind:value={data.configuration.active} label="Website is publiek" />
+		<Checkbox bind:value={data.configuration.news_section} label="Nieuwssectie" />
+		<Checkbox bind:value={data.configuration.who_section} label="Wie-sectie" />
+		<Checkbox bind:value={data.configuration.faq_section} label="FAQ-sectie" />
+		<Checkbox bind:value={data.configuration.opinions_section} label="Standpuntensectie" />
+		<Checkbox bind:value={data.configuration.i18n} label="Vertalingen" />
 	</div>
 
 	<div class="space-y-2">
@@ -49,12 +49,12 @@
 
 		<div class="flex gap-4">
 			<ColorPicker
-							bind:hex={data.configuration.brand_color_primary}
-							label="Primaire kleur ({data.configuration.brand_color_primary})"
+				bind:hex={data.configuration.brand_color_primary}
+				label="Primaire kleur ({data.configuration.brand_color_primary})"
 			/>
 			<ColorPicker
-							bind:hex={data.configuration.brand_color_secondary}
-							label="Secundaire kleur ({data.configuration.brand_color_secondary})"
+				bind:hex={data.configuration.brand_color_secondary}
+				label="Secundaire kleur ({data.configuration.brand_color_secondary})"
 			/>
 		</div>
 
@@ -79,14 +79,14 @@
 			description="Adres"
 		/>
 		<TextField
-						placeholder="091234567"
-						bind:value={data.configuration.phone}
-						description="Telefoonnummer"
+			placeholder="091234567"
+			bind:value={data.configuration.phone}
+			description="Telefoonnummer"
 		/>
 		<TextField
-						placeholder="hello@example.com"
-						bind:value={data.configuration.email_adres}
-						description="E-mailadres"
+			placeholder="hello@example.com"
+			bind:value={data.configuration.email_adres}
+			description="E-mailadres"
 		/>
 
 		<TextField
@@ -108,14 +108,5 @@
 		/>
 	</div>
 
-	<ActionButton
-		action={post}
-		color={data.configuration.brand_color_primary}
-	/>
+	<ActionButton action={post} color={data.configuration.brand_color_primary} />
 </div>
-
-<style>
-	.check {
-		@apply w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600;
-	}
-</style>

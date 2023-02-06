@@ -1,4 +1,4 @@
-import {Chance} from 'chance';
+import { Chance } from 'chance';
 
 export class ElectionGroup {
 	id!: number;
@@ -6,7 +6,7 @@ export class ElectionGroup {
 	about: string;
 	elections: Array<Election>;
 
-	static getAll(n: number = 100): Array<ElectionGroup> {
+	static getAll(n = 100): Array<ElectionGroup> {
 		const chance = Chance();
 
 		return Array.from(Array(n).keys()).map(() => ({
@@ -24,7 +24,7 @@ export class Election {
 	about: string;
 	document_link: string | null = null;
 
-	static getAll(n: number = 100): Array<Election> {
+	static getAll(n = 100): Array<Election> {
 		const chance = Chance();
 
 		return Array.from(Array(n).keys()).map(() => ({

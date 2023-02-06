@@ -1,11 +1,14 @@
 <script lang="ts">
-  import type {News} from '@prisma/client';
+	import type { News } from '@prisma/client';
 
-  export let news_item: News;
+	export let news_item: News;
 </script>
 
 <svelte:head>
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+	<link
+		rel="stylesheet"
+		href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css"
+	/>
 </svelte:head>
 
 <div>
@@ -21,7 +24,7 @@
 				<p class="font-bold font-serif text-4xl">{news_item.title}</p>
 				<p class="font-medium font-lg">{news_item.synopsis}</p>
 				<div class="flex items-center gap-2">
-					<i class="bi bi-calendar-event"></i>
+					<i class="bi bi-calendar-event" />
 					<p class="font-semibold opacity-75 text-sm">
 						{news_item.published_at.toLocaleDateString().toUpperCase()}
 					</p>

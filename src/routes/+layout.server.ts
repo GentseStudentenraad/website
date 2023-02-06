@@ -1,7 +1,7 @@
-import {Language} from '$lib/Language';
+import { Language } from '$lib/Language';
 import dutch from '$lib/i18n/nl.json';
 import english from '$lib/i18n/en.json';
-import {prisma} from '$lib/Prisma';
+import { prisma } from '$lib/Prisma';
 import type { LayoutServerLoad } from './$types';
 
 export const prerender = false;
@@ -43,7 +43,11 @@ export const load = (async ({ params, locals }) => {
 	);
 
 	if (locals.configuration.news_section) {
-		routes.push(locals.language == Language.DUTCH ? ['Vakfeedback', '/feedback'] : ['Course Feedback', '/en/feedback']);
+		routes.push(
+			locals.language == Language.DUTCH
+				? ['Vakfeedback', '/feedback']
+				: ['Course Feedback', '/en/feedback']
+		);
 	}
 
 	// Done! Pass to the view.

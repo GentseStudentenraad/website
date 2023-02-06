@@ -1,4 +1,4 @@
-import {prisma} from '$lib/Prisma';
+import { prisma } from '$lib/Prisma';
 import type { PageLoad } from './$types';
 
 export const prerender = false;
@@ -12,22 +12,21 @@ export const load: PageLoad = async ({ params }) => {
 		include: {
 			subjects: {
 				include: {
-					subject: {
-					},
+					subject: {}
 				},
 				orderBy: {
 					subject: {
-						name: 'asc',
+						name: 'asc'
 					}
 				}
 			}
 		},
 		orderBy: {
-			name: 'asc',
+			name: 'asc'
 		}
-	})
+	});
 
 	return {
 		courses
 	};
-}
+};

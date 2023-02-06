@@ -1,19 +1,19 @@
 <script lang="ts">
 	import 'chance';
-	import {Chance} from 'chance';
-	import type {Prisma} from '@prisma/client';
-	import {goto} from '$app/navigation';
+	import { Chance } from 'chance';
+	import type { Prisma } from '@prisma/client';
+	import { goto } from '$app/navigation';
 	import PositionCard from '$lib/components/PositionCard.svelte';
 
-	let selected = "2022";
+	let selected = '2022';
 
 	type PersonGroupJoined = Prisma.PersonGroupGetPayload<{
 		include: {
 			positions: {
 				include: {
-					person: true
-				}
-			}
+					person: true;
+				};
+			};
 		};
 	}>;
 
@@ -38,27 +38,27 @@
 
 <div class="space-y-4">
 	{#each data.groups.filter((e) => e.positions.length > 0) as group, i}
-	<div class="odd:bg-neutral-100">
-		<div class="container grid grid-cols-2 gap-12 py-12">
-			<div class="space-y-1 col-span-2">
-				<p class="font-serif font-bold text-3xl">{group.name}</p>
-				<div class="h-[2px] bg-neutral-200" />
-				{#if group.description}
-				<p class="opacity-90">{@html group.description}</p>
-				{/if}
+		<div class="odd:bg-neutral-100">
+			<div class="container grid grid-cols-2 gap-12 py-12">
+				<div class="space-y-1 col-span-2">
+					<p class="font-serif font-bold text-3xl">{group.name}</p>
+					<div class="h-[2px] bg-neutral-200" />
+					{#if group.description}
+						<p class="opacity-90">{@html group.description}</p>
+					{/if}
+				</div>
+				{#each group.positions as position}
+					<PositionCard {position} />
+				{/each}
 			</div>
-			{#each group.positions as position}
-			<PositionCard position={position}/>
-			{/each}
 		</div>
-	</div>
 	{/each}
 
 	<div class="container flex items-center justify-center py-12 gap-4">
 		<p>Bekijk historische data:</p>
 		<select name="year" id="year" bind:value={selected} on:change={() => goto(`/wie/${selected}`)}>
-			{#each ["2022", "2021", "2020"] as year}
-			<option value={year}>{year}</option>
+			{#each ['2022', '2021', '2020'] as year}
+				<option value={year}>{year}</option>
 			{/each}
 		</select>
 	</div>

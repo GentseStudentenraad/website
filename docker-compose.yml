@@ -67,7 +67,7 @@ services:
     networks:
       - 'web2022'
       - 'server_default'
-    user: "1012:1012"
+    user: '1012:1012'
 
 networks:
   web2022:

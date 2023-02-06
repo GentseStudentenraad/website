@@ -1,5 +1,5 @@
-import {Chance} from 'chance';
-import {Language} from './Language';
+import { Chance } from 'chance';
+import { Language } from './Language';
 
 export class CalendarItem {
 	id!: number;
@@ -13,7 +13,7 @@ export class CalendarItem {
 		Object.assign(this, data);
 	}
 
-	static getAll(language: Language = Language.DUTCH, n: number = 100): Array<CalendarItem> {
+	static getAll(n: number = 100): Array<CalendarItem> {
 		const chance = Chance();
 
 		return Array.from(Array(n).keys()).map(() => ({

@@ -1,9 +1,9 @@
 <script lang="ts">
-  import {goto} from '$app/navigation';
-  import {browser} from '$app/environment';
-  import type {Configuration, Prisma} from '@prisma/client';
+	import { goto } from '$app/navigation';
+	import { browser } from '$app/environment';
+	import type { Configuration, Prisma } from '@prisma/client';
 
-  type QuestionCategoryJoined = Prisma.QuestionCategoryGetPayload<{
+	type QuestionCategoryJoined = Prisma.QuestionCategoryGetPayload<{
 		include: { questions: true };
 	}>;
 
@@ -12,7 +12,7 @@
 	$: {
 		if (browser && selected) {
 			console.log(selected?.slug);
-			goto(`#${selected!.slug}`);
+			goto(`#${selected.slug}`);
 			selected = null;
 		}
 	}

@@ -1,7 +1,7 @@
 <script lang="ts">
-  import type {Prisma} from '@prisma/client';
+	import type { Prisma } from '@prisma/client';
 
-  type OpinionGroupWithOpinions = Prisma.OpinionGroupGetPayload<{
+	type OpinionGroupWithOpinions = Prisma.OpinionGroupGetPayload<{
 		include: { opinions: true };
 	}>;
 

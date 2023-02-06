@@ -1,8 +1,8 @@
 <script lang="ts">
-  import NewsItemVertical from '$lib/components/NewsItemVertical.svelte';
-  import type {News} from '@prisma/client';
+	import NewsItemVertical from '$lib/components/NewsItemVertical.svelte';
+	import type { News } from '@prisma/client';
 
-  // State
+	// State
 	export let data: {
 		news_item: News;
 		news: News[];
@@ -11,7 +11,10 @@
 </script>
 
 <svelte:head>
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+	<link
+		rel="stylesheet"
+		href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css"
+	/>
 
 	<style>
 		:root {
@@ -24,14 +27,12 @@
 	<div class="max-w-[800px] m-auto md:text-center flex flex-col md:items-center space-y-4">
 		<p class="text-5xl font-semibold font-serif">{data.news_item.title}</p>
 		<div class="flex items-center opacity-75 text-sm font-semibold space-x-1">
-			<i class="bi bi-calendar-event"></i>
+			<i class="bi bi-calendar-event" />
 			<p class="pr-2">
 				{data.news_item.published_at.toLocaleString()}
 			</p>
-			<i class="pl-2 bi bi-person-circle"></i>
-			<p class="">
-				Auteur
-			</p>
+			<i class="pl-2 bi bi-person-circle" />
+			<p class="">Auteur</p>
 		</div>
 	</div>
 

@@ -1,13 +1,13 @@
 <script lang="ts">
-  import type {CalendarItem} from '$lib/CalendarItem';
-  import CalendarItemRow from '$lib/components/CalendarItemRow.svelte';
-  import type {News} from '@prisma/client';
-  import NewsItemVertical from '$lib/components/NewsItemVertical.svelte';
-  import 'chance';
-  import {Chance} from 'chance';
-  import SeparatedBanner from '$lib/components/SeparatedBanner.svelte';
+	import type { CalendarItem } from '$lib/CalendarItem';
+	import CalendarItemRow from '$lib/components/CalendarItemRow.svelte';
+	import type { News } from '@prisma/client';
+	import NewsItemVertical from '$lib/components/NewsItemVertical.svelte';
+	import 'chance';
+	import { Chance } from 'chance';
+	import SeparatedBanner from '$lib/components/SeparatedBanner.svelte';
 
-  export let data: {
+	export let data: {
 		calendar: CalendarItem[];
 		news: News[];
 		translations: any;
@@ -46,7 +46,11 @@
 		</div>
 
 		<div class="grid grid-cols-2 gap-4 items-center container">
-			<div class="aspect-square bg-neutral-200 rounded-md flex items-center justify-center shadow-sm">TODO: calendar view</div>
+			<div
+				class="aspect-square bg-neutral-200 rounded-md flex items-center justify-center shadow-sm"
+			>
+				TODO: calendar view
+			</div>
 
 			<div class="space-y-4 w-full overflow-scroll">
 				<p class="font-medium text-lg">Gebeurtenissen</p>
@@ -95,6 +99,6 @@
 			css="text-white"
 			color={data.configuration.brand_color_primary}
 			imagePosition="right"
-		 />
+		/>
 	</div>
 </main>

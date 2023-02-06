@@ -1,10 +1,10 @@
 <script lang="ts">
-  import '../app.css';
-  import {Language} from '$lib/Language';
-  import {page} from '$app/stores';
-  import type { LayoutData } from './$types';
+	import '../app.css';
+	import { Language } from '$lib/Language';
+	import { page } from '$app/stores';
+	import type { LayoutData } from './$types';
 
-  let showLinks = false;
+	let showLinks = false;
 
 	export let data: LayoutData;
 </script>

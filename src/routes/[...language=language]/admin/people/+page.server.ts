@@ -1,4 +1,4 @@
-import {prisma} from '$lib/Prisma';
+import { prisma } from '$lib/Prisma';
 import type { PageServerLoad } from './$types';
 
 export const prerender = false;
@@ -11,7 +11,7 @@ export const load = (async ({ params, locals }) => {
 	const people = await prisma.person.findMany({
 		orderBy: [
 			{
-				name: 'asc',
+				name: 'asc'
 			}
 		],
 		where: {

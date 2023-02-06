@@ -1,17 +1,17 @@
 <script lang="ts">
-  import type {PageData} from './$types';
-  import NewsItemVertical from '$lib/components/NewsItemVertical.svelte';
-  import NewsItemRow from '$lib/components/NewsItemRow.svelte';
-	import Divider from "$lib/components/Divider.svelte";
-	import ActionButton from "$lib/components/Admin/ActionButton.svelte";
-	import NewsItemBig from "$lib/components/NewsItemBig.svelte";
-	import TextField from "$lib/components/Admin/TextField.svelte";
-	import LongTextField from "$lib/components/Admin/LongTextField.svelte";
-	import Checkbox from "$lib/components/Admin/Checkbox.svelte";
-	import DatePicker from "$lib/components/Admin/DatePicker.svelte";
-	import ImageUploader from "$lib/components/Admin/ImageUploader.svelte";
+	import type { PageData } from './$types';
+	import NewsItemVertical from '$lib/components/NewsItemVertical.svelte';
+	import NewsItemRow from '$lib/components/NewsItemRow.svelte';
+	import Divider from '$lib/components/Divider.svelte';
+	import ActionButton from '$lib/components/Admin/ActionButton.svelte';
+	import NewsItemBig from '$lib/components/NewsItemBig.svelte';
+	import TextField from '$lib/components/Admin/TextField.svelte';
+	import LongTextField from '$lib/components/Admin/LongTextField.svelte';
+	import Checkbox from '$lib/components/Admin/Checkbox.svelte';
+	import DatePicker from '$lib/components/Admin/DatePicker.svelte';
+	import ImageUploader from '$lib/components/Admin/ImageUploader.svelte';
 
-  async function post() {
+	async function post() {
 		const res = await fetch(`/admin/nieuws/${data.news_item!.id}`, {
 			method: 'POST',
 			body: JSON.stringify(data.news_item),
@@ -39,33 +39,24 @@
 </svelte:head>
 
 <div class="container space-y-4 py-12">
-	<TextField
-		bind:value={data.news_item.title}
-		description="Titel"
+	<TextField bind:value={data.news_item.title} description="Titel" />
+
+	<TextField bind:value={data.news_item.synopsis} description="Synopsis" />
+
+	<ImageUploader
+		description="Coverfoto"
+		source="https://gentsestudentenraad.be/static/persistent/images/{data.news_item.banner_image}"
 	/>
 
-	<TextField
-		bind:value={data.news_item.synopsis}
-		description="Synopsis"
-	/>
+	<LongTextField bind:value={data.news_item.content} description="Inhoud" />
 
-	<ImageUploader description="Coverfoto" source="https://gentsestudentenraad.be/static/persistent/images/{data.news_item.banner_image}"/>
+	<TextField bind:value={data.news_item.author} description="Auteur" />
 
-	<LongTextField
-		bind:value={data.news_item.content}
-		description="Inhoud"
-	/>
+	<DatePicker description="Publicatiedatum" bind:value={data.news_item.published_at} />
 
-	<TextField
-		bind:value={data.news_item.author}
-		description="Auteur"
-	/>
+	<Checkbox label="Publiek" bind:value={data.news_item.published} description="Opties" />
 
-	<DatePicker description="Publicatiedatum" bind:value={data.news_item.published_at}/>
-
-	<Checkbox label="Publiek" bind:value={data.news_item.published} description="Opties"/>
-
-	<Divider text="Voorbeelden"/>
+	<Divider text="Voorbeelden" />
 
 	<NewsItemBig news_item={data.news_item} />
 
@@ -77,5 +68,5 @@
 
 	<NewsItemRow news_item={data.news_item} />
 
-	<ActionButton action={post} color={data.configuration.brand_color_primary}/>
+	<ActionButton action={post} color={data.configuration.brand_color_primary} />
 </div>

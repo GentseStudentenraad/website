@@ -1,18 +1,21 @@
 <script lang="ts">
-  import type {News} from '@prisma/client';
+	import type { News } from '@prisma/client';
 
-  import NewsItemVertical from '$lib/components/NewsItemVertical.svelte';
-  import NewsItemRow from '$lib/components/NewsItemRow.svelte';
-  import NewsItemBig from '$lib/components/NewsItemBig.svelte';
+	import NewsItemVertical from '$lib/components/NewsItemVertical.svelte';
+	import NewsItemRow from '$lib/components/NewsItemRow.svelte';
+	import NewsItemBig from '$lib/components/NewsItemBig.svelte';
 
-  export let data: {
+	export let data: {
 		news: News[];
 		translations: any;
 	};
 </script>
 
 <svelte:head>
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+	<link
+		rel="stylesheet"
+		href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css"
+	/>
 	<style>
 		:root {
 			@apply bg-neutral-100;

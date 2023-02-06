@@ -1,7 +1,7 @@
-import {error, json} from '@sveltejs/kit';
-import {prisma} from '$lib/Prisma';
-import type {News} from '@prisma/client';
-import type {RequestHandler} from './$types';
+import { error, json } from '@sveltejs/kit';
+import { prisma } from '$lib/Prisma';
+import type { News } from '@prisma/client';
+import type { RequestHandler } from './$types';
 
 export const POST: RequestHandler = async ({ request }) => {
 	const res: News = await request.json();
