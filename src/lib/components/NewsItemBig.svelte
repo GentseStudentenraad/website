@@ -13,23 +13,37 @@
 
 <div>
 	<a href="/nieuws/{news_item.id}">
-		<div class="flex aspect-[3] w-full bg-white overflow-hidden rounded-xl items-center shadow-sm">
+		<div class="grid grid-cols-2 items-center">
 			<img
 				src="https://gentsestudentenraad.be/static/persistent/images/{news_item.banner_image}"
-				class="object-cover overflow-hidden w-[60%]"
+				class="object-cover rounded-lg aspect-[3/2] w-full"
 				alt={news_item.banner_image_alt}
 			/>
 
-			<div class="p-12 space-y-2">
-				<p class="font-bold font-serif text-4xl">{news_item.title}</p>
-				<p class="font-medium font-lg">{news_item.synopsis}</p>
-				<div class="flex items-center gap-2">
-					<i class="bi bi-calendar-event" />
-					<p class="font-semibold opacity-75 text-sm">
-						{news_item.published_at.toLocaleDateString().toUpperCase()}
-					</p>
-				</div>
+			<div class="p-12 space-y-1">
+                <p class="font-bold uppercase text-sm opacity-50">Nieuws</p>
+				<p class="font-bold text-3xl">{news_item.title}</p>
+				<p class="font-medium font-lg opacity-75">{news_item.synopsis}</p>
+                <div class="flex gap-2 pt-2 flex-wrap">
+                    <div class="tag">
+                        <i class="bi bi-calendar-event" />
+                        <p>
+                            {news_item.published_at.toLocaleDateString().toUpperCase()}
+                        </p>
+                    </div>
+                    <div class="tag">
+                        <i class="bi bi-person-fill" />
+                        <p>
+                            {news_item.author}
+                        </p>
+                    </div>
+                </div>
 			</div>
 		</div>
 	</a>
 </div>
+
+<style lang="sass">
+    .tag
+        @apply flex items-center gap-2 px-3 text-sm py-1 bg-white rounded-full w-fit border-2 border-neutral-200 font-semibold text-sm
+</style>

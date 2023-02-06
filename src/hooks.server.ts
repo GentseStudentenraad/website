@@ -14,7 +14,6 @@ export async function handle({
 }) {
     // Setting the language even if not supplied makes i18n much easier!
     if (event.params.language === '') {
-        console.log(event.url);
         throw redirect(302, `/nl${event.url.pathname}`);
     }
 

@@ -23,17 +23,24 @@
 	</style>
 </svelte:head>
 
-<div class="container py-12 space-y-4">
-	<NewsItemBig news_item={data.news[0]} />
+<div class="bg-white py-12">
+    <div class="container">
+        <div class="-mx-24">
+            <NewsItemBig news_item={data.news[0]} />
+        </div>
+    </div>
+</div>
 
-	<div class="grid grid-cols-4 gap-4">
-		{#each data.news.slice(1, 5) as news_item}
+<div class="container py-12 space-y-4">
+
+	<div class="grid grid-cols-3 gap-4">
+		{#each data.news.slice(1, 4) as news_item}
 			<NewsItemVertical {news_item} />
 		{/each}
 	</div>
 
 	<div class="flex flex-col gap-4">
-		{#each data.news.slice(5) as news_item}
+		{#each data.news.slice(4) as news_item}
 			<NewsItemRow {news_item} />
 		{/each}
 	</div>
