@@ -1,7 +1,6 @@
 declare namespace App {
 	interface Locals {
-		organization: import('@prisma/client').Organization;
-		language: import('./lib/Language').Language;
+		language: import('@prisma/client').Language;
 		configuration: import('@prisma/client').Configuration;
 	}
 	// interface PageData {}

@@ -1,7 +1,7 @@
 import type { RequestEvent, ResolveOptions } from '@sveltejs/kit';
 import type { MaybePromise } from '@sveltejs/kit/types/private';
 import { prisma } from '$lib/Prisma';
-import { Language } from '$lib/Language';
+import { Language } from '@prisma/client';
 
 // TODO: CAS authentication.
 // TODO: Should not default to GSR, but fine for development.
@@ -17,37 +17,27 @@ export async function handle({
 	// 2. The hostname contained in the request headers.
 	const requestedHost = event.url.searchParams.get('host') || event.url.hostname;
 
-	const configs = await prisma.configuration.findMany();
-	const organization = configs
-		.filter((c) => c.hostnames.includes(requestedHost))
-		.at(0)?.organization;
+	const configuration = await prisma.configuration.findFirst({
+        where: {
+            hostnames: {
+                has: requestedHost
+            }
+        }
+    });
 
-	if (organization === undefined) {
-		return new Response(
-			'400: bad request. You have connected to the server using an invalid hostname.',
-			{ status: 400 }
-		);
-		// handle error
-	}
+    if (configuration == null) {
+        return new Response(
+            "500: Internal Server Error",
+            { status: 500 }
+        )
+    }
 
-	event.locals.organization = organization;
-
-	// Retrieve the configuration of the website, and if missing, throw an error.
-	const configuration = await prisma.configuration.findUnique({
-		where: {
-			organization: organization!
-		}
-	});
-
-	// @ts-ignore
-	event.locals.configuration = configuration;
-
-	// An optional language URL parameter which indicates which language to use.
-	// Defaults to Dutch for obvious reasons.
 	const language = event.params.language === 'en' ? Language.ENGLISH : Language.DUTCH;
 
-	// @ts-ignore
+    event.locals.configuration = configuration;
 	event.locals.language = language;
+
+    console.log(`${new Date().toLocaleTimeString()} - ${language}`)
 
 	return await resolve(event);
 }

@@ -28,6 +28,23 @@ enum Organization {
   @@map("organization")
 }
 
+enum Language {
+    DUTCH
+    ENGLISH
+
+    @@map("language")
+}
+
+model i18n {
+  id Int @id @default(autoincrement())
+  key String @unique
+  language Language
+  value String
+
+  @@map("i18n")
+  @@unique([key, language])
+}
+
 model Configuration {
   id           Int          @id @default(autoincrement())
   organization Organization @unique

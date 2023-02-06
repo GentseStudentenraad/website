@@ -1,4 +1,4 @@
-import { Language } from '$lib/Language';
+import { Language } from '@prisma/client';
 import dutch from '$lib/i18n/nl.json';
 import english from '$lib/i18n/en.json';
 import { prisma } from '$lib/Prisma';
@@ -8,9 +8,7 @@ export const prerender = false;
 export const ssr = true;
 export const csr = true;
 
-export const load = (async ({ params, locals }) => {
-	const _ = params.language; // SVELTEKIT BUG, DO NOT REMOVE
-
+export const load = (async ({ locals }) => {
 	// Create navigation bar routes. It's a bit messy but it's our only option.
 	const routes = [];
 
@@ -56,7 +54,6 @@ export const load = (async ({ params, locals }) => {
 		routes,
 		configs: configs.filter((e) => e.id != locals.configuration.id),
 		configuration: locals.configuration,
-		organization: locals.organization,
 		translations: locals.language === Language.DUTCH ? dutch : english
 	};
 }) satisfies LayoutServerLoad;
