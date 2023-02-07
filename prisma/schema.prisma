@@ -36,12 +36,20 @@ enum Language {
     @@map("language")
 }
 
+enum Markup {
+  PLAIN_TEXT
+  MARKDOWN
+
+  @@map("markup")
+}
+
 model i18n {
   id Int @id @default(autoincrement())
   key String?
   dutch String
   english String?
   organization Organization
+  markup Markup
 
   @@map("i18n")
   @@unique([key, organization])

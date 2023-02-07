@@ -26,32 +26,20 @@
 />
 
 <div class="container py-16 space-y-8">
-    {@html data.i18n.get('feedback-title')}
-
 	<div class="grid grid-cols-2 gap-16 items-center">
-		<div class="space-y-16">
-			<div class="order-0 space-y-1 h-fit">
-				<p class="title"><i class="bi bi-piggy-bank pr-2" /> Jouw mening is goud waard</p>
-				<div class="bg-neutral-200 w-full h-[2px]" />
-				<p>{new Chance().paragraph().substring(0, 300)}</p>
-			</div>
-
-			<div class="order-2 space-y-1">
-				<p class="title"><i class="bi bi-lock-fill pr-2" /> Het blijft tussen ons</p>
-				<div class="bg-neutral-200 w-full h-[2px]" />
-				<p>{new Chance().paragraph().substring(0, 300)}</p>
-			</div>
+		<div class="md">
+			{@html data.i18n.get('feedback-about')}
 		</div>
 
 		<div class="space-y-4">
 			<select class="w-full p-2 rounded-md font-bold" bind:value={course}>
-				<option value={null}>Selecteer jouw richting</option>
+				<option value={null}>{@html data.i18n.get('feedback-major-selector')}</option>
 				{#each data.courses as course}
 					<option value={course}>{course.name}</option>
 				{/each}
 			</select>
 			<select class="w-full p-2 rounded-md font-bold">
-				<option>Kies een vak</option>
+				<option>{@html data.i18n.get('feedback-subject-selector')}</option>
 				{#if course}
 					{#each course.subjects as subject}
 						<option>{subject.subject.name} ({subject.subject_code})</option>
@@ -60,10 +48,9 @@
 			</select>
 			<textarea
 				class="order-1 row-span-2"
-				type="text"
 				rows="10"
 				bind:value={text}
-				placeholder="Vul hier jouw bericht in."
+				placeholder={data.i18n.get('feedback-placeholder')}
 			/>
 
 			<p

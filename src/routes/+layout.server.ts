@@ -2,7 +2,7 @@ import { Language } from '$lib/Language';
 import dutch from '$lib/i18n/nl.json';
 import english from '$lib/i18n/en.json';
 import { prisma } from '$lib/Prisma';
-import { Organization } from '@prisma/client';
+import { Organization, Markup } from '@prisma/client';
 import type { LayoutServerLoad } from './$types';
 import { marked } from 'marked';
 import sanitizeHtml from 'sanitize-html';
@@ -58,6 +58,7 @@ export const load = (async ({ params, locals }) => {
             key: true,
             dutch: locals.language == Language.DUTCH,
             english: locals.language == Language.ENGLISH,
+			markup: true
         },
         where: {
             OR: [
@@ -71,8 +72,13 @@ export const load = (async ({ params, locals }) => {
     i18n.forEach(e => {
         const raw = locals.language == Language.DUTCH ? e.dutch : e.english;
         if (raw) {
-            const value = sanitizeHtml(marked.parse(raw))
-            translations.set(e.key, value)
+			if (e.markup == Markup.MARKDOWN) {
+           	 	const value = (marked.parse(raw));
+				translations.set(e.key, value)
+			} else {
+				const value = sanitizeHtml(raw);
+				translations.set(e.key, value)
+			}
         }
     });
 
