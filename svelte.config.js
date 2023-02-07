@@ -1,5 +1,6 @@
 import adapter from '@sveltejs/adapter-node';
 import preprocess from 'svelte-preprocess';
+import {mdsvex} from 'mdsvex';
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
@@ -10,8 +11,16 @@ const config = {
 			postcss: true,
             sass: true,
             pug: true,
-		})
+		}),
+		mdsvex({
+            extensions: ['.md', '.svx'],
+			layout: {
+				markdown: './src/lib/layouts/MarkDown.svelte'
+			}
+        }),
 	],
+
+	extensions: ['.svelte', '.md', '.svx'],
 
 	kit: {
 		adapter: adapter()
