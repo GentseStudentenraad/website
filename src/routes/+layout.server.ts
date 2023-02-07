@@ -18,6 +18,9 @@ export const load = (async ({ params, locals }) => {
 	const routes = [];
 
 	const configs = await prisma.configuration.findMany();
+	const pages = await prisma.page.findMany({
+		where: { organization: locals.configuration.organization }
+	});
 
 	if (locals.configuration.who_section) {
 		routes.push(locals.language == Language.DUTCH ? ['Wie', '/nl/wie'] : ['Who', '/en/wie']);
@@ -67,6 +70,16 @@ export const load = (async ({ params, locals }) => {
             ]
         }
     });
+
+	if (locals.language == Language.DUTCH) {
+		for (const page of pages) {
+			routes.push([page.nav_name_dutch, page.slug])
+		}	
+	} else {
+		for (const page of pages) {
+			routes.push([page.nav_name_english, page.slug])
+		}	
+	}
 
     const translations = new Map();
     i18n.forEach(e => {
