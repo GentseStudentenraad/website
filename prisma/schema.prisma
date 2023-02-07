@@ -43,6 +43,20 @@ enum Markup {
   @@map("markup")
 }
 
+model Page {
+  id Int @id @default(autoincrement())
+  slug String
+  nav_name_dutch String?
+  nav_name_english String?
+  content_dutch String
+  content_english String?
+  organization Organization
+  markup Markup
+  config Json @default("{}")
+
+  @@map("page")
+}
+
 model i18n {
   id Int @id @default(autoincrement())
   key String?

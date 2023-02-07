@@ -1,8 +1,8 @@
 <script lang="ts">
-      export let banner: string | null = null;
+      export let banner = "";
 </script>
 
-{#if banner}
+{#if banner !== ""}
 <img src={banner} class="w-full max-h-[50vh] object-cover">
 {/if}
 
