@@ -2,16 +2,12 @@
 	import { page } from '$app/stores';
 </script>
 
-<div class="container">
-	<div class="flex items-center gap-4">
-		<img src="/error.png" class="h-48" />
-		<div class="space-y-1">
-			<p class="text-4xl font-bold">Error {$page.status}</p>
-			<p class="text-xl">{$page.error?.message ?? 'Error unknown.'}</p>
-			<div class="divider" />
-			<p>
-				Geen zorgen, we houden deze foutmelding bij en proberen hem zo snel mogelijk op te lossen.
-			</p>
+<div class="m-auto max-w-[800px] px-12">
+	<div class="flex items-center gap-12">
+		<i class="bi bi-bug text-9xl" />
+		<div>
+			<p class="text-2xl font-bold">Error {$page.status}</p>
+			<p class="text-lg">{$page.error?.message ?? 'Error unknown.'}</p>
 		</div>
 	</div>
 </div>
