@@ -77,6 +77,39 @@ services:
         ipv4_address: 10.0.0.5
     entrypoint: minio server /data --console-address ":9090" 
 
+  postgrest:
+    container_name: website-postgrest
+    image: postgrest/postgrest
+    hostname: rest
+    environment:
+      PGRST_DB_URI: postgres://authenticator:mysecretpassword@postgres:5432/gsr
+      PGRST_DB_SCHEMAS: public
+      PGRST_DB_ANON_ROLE: web_anon
+      PGRST_OPENAPI_SERVER_PROXY_URI: http://127.0.0.1:3000
+    ports:
+      - '3000:3000'
+    depends_on:
+      - postgres
+    networks:
+      web2022:
+        ipv4_address: 10.0.0.6
+
+  pgadmin:
+    container_name: website-pgadmin
+    image: dpage/pgadmin4
+    hostname: pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: jenspots@icloud.com
+      PGADMIN_DEFAULT_PASSWORD: verysecurepassword
+      PGADMIN_LISTEN_PORT: 3001
+    volumes:
+      - '/home/jens/volumes/staging/pgadmin:/var/lib/pgadmin'
+    ports:
+      - '3001:3001'
+    networks:
+      web2022:
+        ipv4_address: 10.0.0.7
+
   # appsmith:
   #   image: index.docker.io/appsmith/appsmith-ce:v1.8.5
   #   container_name: appsmith
