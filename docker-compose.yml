@@ -1,9 +1,9 @@
-version: '3.9'
+version: '3.5'
 services:
   website:
     container_name: website2022
     hostname: website2022
-    image: ghcr.io/gentsestudentenraad/website:main
+    build: .
     environment:
       DATABASE_URL: 'postgresql://gsr:gsr@postgres:5432/gsr?schema=public'
     labels:
@@ -15,8 +15,9 @@ services:
       - 'traefik.http.middlewares.test-auth.basicauth.users=gsr:$$apr1$$vNW/TXZ8$$ZEBU.uYb/6e8efHUXsx1w0'
       - 'traefik.http.routers.staging.middlewares=test-auth'
     networks:
-      - 'web2022'
-      - 'server_default'
+      # server_default:
+      web2022:
+        ipv4_address: 10.0.0.2
     restart: unless-stopped
     depends_on:
       - postgres
@@ -34,44 +35,88 @@ services:
       - '/home/jens/volumes/staging/postgresql:/var/lib/postgresql/data'
     restart: always
     networks:
-      - 'web2022'
+      web2022:
+        ipv4_address: 10.0.0.3
 
-  appsmith:
-    image: index.docker.io/appsmith/appsmith-ce:v1.8.5
-    container_name: appsmith
+  imgproxy:
+    container_name: website-imgproxy
+    hostname: imgproxy
+    image: darthsim/imgproxy
+    environment:
+      IMGPROXY_LOCAL_FILESYSTEM_ROOT: /images/.
+      IMGPROXY_USE_S3: 'true'
+      IMGPROXY_S3_ENDPOINT: http://10.0.0.5:9000
+      AWS_ACCESS_KEY_ID: 7yg46fs9mmcCdgPM
+      AWS_SECRET_ACCESS_KEY: AuuGQVmef9Qpm1oaFZdbJVrw9ChOLZiS
+      IMGPROXY_ALLOWED_SOURCES: s3://,local://
+      IMGPROXY_DEVELOPMENT_ERRORS_MODE: 'true'
+      IMGPROXY_MAX_SRC_RESOLUTION: 100
+      IMGPROXY_JPEG_PROGRESSIVE: 'true'
     volumes:
-      - '/home/jens/volumes/admin/stacks:/appsmith-stacks'
-    restart: unless-stopped
-    labels:
-      - 'traefik.enable=true'
-      - 'traefik.http.routers.admin.rule=Host(`admin.gentsestudentenraad.be`)'
-      - 'traefik.http.routers.admin.entrypoints=websecure'
-      - 'traefik.http.routers.admin.tls.certresolver=letsencrypt'
-      - 'traefik.http.services.admin.loadbalancer.server.port=80'
+      - '/home/jens/volumes/staging/images:/images:ro'
     networks:
-      - 'web2022'
-      - 'server_default'
+      web2022:
+        ipv4_address: 10.0.0.4
+    ports:
+      - '8080:8080'
 
-  filebrowser:
-    image: filebrowser/filebrowser:v2.22.4
-    container_name: filebrowser
+  minio:
+    container_name: website-s3
+    hostname: s3
+    image: minio/minio
     volumes:
-      - '/home/jens/volumes/web:/srv'
-      - '/home/jens/volumes/filebrowser/db:/db'
-      - '/home/jens/volumes/filebrowser/.filebrowser.json:/.filebrowser.json'
-    restart: unless-stopped
-    labels:
-      - 'traefik.enable=true'
-      - 'traefik.http.routers.filebrowser.rule=Host(`files.gentsestudentenraad.be`)'
-      - 'traefik.http.routers.filebrowser.entrypoints=websecure'
-      - 'traefik.http.routers.filebrowser.tls.certresolver=letsencrypt'
-      - 'traefik.http.services.filebrowser.loadbalancer.server.port=80'
+      - '/home/jens/volumes/staging/minio:/data'
+    environment:
+      MINIO_ROOT_USER: admin
+      MINIO_ROOT_PASSWORD: verysecretpassword
+    ports:
+      - '9000:9000'
+      - '9090:9090'
     networks:
-      - 'web2022'
-      - 'server_default'
-    user: '1012:1012'
+      web2022:
+        ipv4_address: 10.0.0.5
+    entrypoint: minio server /data --console-address ":9090" 
+
+  # appsmith:
+  #   image: index.docker.io/appsmith/appsmith-ce:v1.8.5
+  #   container_name: appsmith
+  #   volumes:
+  #     - '/home/jens/volumes/admin/stacks:/appsmith-stacks'
+  #   restart: unless-stopped
+  #   labels:
+  #     - 'traefik.enable=true'
+  #     - 'traefik.http.routers.admin.rule=Host(`admin.gentsestudentenraad.be`)'
+  #     - 'traefik.http.routers.admin.entrypoints=websecure'
+  #     - 'traefik.http.routers.admin.tls.certresolver=letsencrypt'
+  #     - 'traefik.http.services.admin.loadbalancer.server.port=80'
+  #   networks:
+  #     - 'web2022'
+  #     - 'server_default'
+
+  # filebrowser:
+  #   image: filebrowser/filebrowser:v2.22.4
+  #   container_name: filebrowser
+  #   volumes:
+  #     - '/home/jens/volumes/web:/srv'
+  #     - '/home/jens/volumes/filebrowser/db:/db'
+  #     - '/home/jens/volumes/filebrowser/.filebrowser.json:/.filebrowser.json'
+  #   restart: unless-stopped
+  #   labels:
+  #     - 'traefik.enable=true'
+  #     - 'traefik.http.routers.filebrowser.rule=Host(`files.gentsestudentenraad.be`)'
+  #     - 'traefik.http.routers.filebrowser.entrypoints=websecure'
+  #     - 'traefik.http.routers.filebrowser.tls.certresolver=letsencrypt'
+  #     - 'traefik.http.services.filebrowser.loadbalancer.server.port=80'
+  #   networks:
+  #     - 'web2022'
+  #     - 'server_default'
+  #   user: '1012:1012'
 
 networks:
   web2022:
-  server_default:
-    external: true
+    name: web2022
+    ipam:
+      config:
+        - subnet: 10.0.0.0/24
+  # server_default:
+  #   external: true
