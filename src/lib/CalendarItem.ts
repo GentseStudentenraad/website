@@ -2,7 +2,7 @@ import { Chance } from 'chance';
 import { Language } from './Language';
 
 export class CalendarItem {
-	id!: number;
+	id!: string;
 	title!: string;
 	contents!: string;
 	start_time!: Date;
@@ -17,7 +17,7 @@ export class CalendarItem {
 		const chance = Chance();
 
 		return Array.from(Array(n).keys()).map(() => ({
-			id: chance.integer(),
+			id: "chance.integer()",
 			title: chance.sentence({ words: chance.integer({ min: 1, max: 4 }) }),
 			contents: chance.sentence({ words: 12 }),
 			start_time: chance.date(),

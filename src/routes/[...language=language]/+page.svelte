@@ -30,23 +30,31 @@
             {@html data.i18n.get('home-about')}
 		</div>
 
-		<div class="grid grid-cols-4 items-center container py-6 w-full gap-4">
+		<div class="grid grid-cols-4 container py-6 w-full gap-4">
 			{#each data.news.slice(0, 4) as news_item}
 				<NewsItemVertical {news_item} />
 			{/each}
 		</div>
 
-		<div class="grid grid-cols-2 gap-4 items-center container">
+
+		<div class="grid grid-cols-2 gap-4 container">
+            <p class="font-medium text-lg col-span-2">Gebeurtenissen</p>
+
 			<div
-				class="aspect-square bg-neutral-200 rounded-md flex items-center justify-center shadow-sm"
+				class="gap-4 bg-neutral-200 rounded-md grid grid-cols-7 items-center justify-center shadow-sm p-24"
 			>
-				TODO: calendar view
+                {#each ['MA', 'DI', 'WO', 'DO', 'VR', 'ZA', 'ZO'] as day}
+                    <p class="cal-day">{day}</p>
+                {/each}
+
+                {#each Array.from(Array(30).keys()) as i}
+                    <p class="text-center font-medium text-sm w-8 h-8 pt-[5px] rounded-full hover:bg-neutral-500 transition {Math.random() < 0.25 ? 'bg-neutral-400/50': ''}">{i}</p>
+                {/each}
 			</div>
 
-			<div class="space-y-4 w-full overflow-scroll">
-				<p class="font-medium text-lg">Gebeurtenissen</p>
+			<div class="space-y-4 w-full overflow-scroll h-[500px]">
 
-				{#each data.calendar.slice(0, 3) as calendar_item}
+				{#each data.calendar as calendar_item}
 					<CalendarItemRow {calendar_item} />
 				{/each}
 			</div>
@@ -93,3 +101,9 @@
 		/>
 	</div>
 </main>
+
+<style lang="postcss">
+    .cal-day {
+        @apply  text-center font-bold text-sm w-8 h-8 pt-[5px] rounded-full hover:bg-neutral-500 transition;
+    }
+</style>

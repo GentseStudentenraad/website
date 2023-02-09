@@ -4,28 +4,28 @@
 	export let calendar_item: CalendarItem;
 </script>
 
-<div class="flex items-center justify-between bg-white rounded p-4 h-32">
-	<div class="w-1/2 pr-6">
-		<p class="text-lg font-semibold text-primary truncate">{calendar_item.title}</p>
-		<p class="text-sm">{calendar_item.contents}</p>
-	</div>
+<div class="bg-white rounded p-4 space-y-2 shadow-sm">
+    <p class="text-lg font-semibold text-primary truncate">{calendar_item.title}</p>
+    <p class="text-sm truncate">{calendar_item.contents}</p>
 
-	<div class="flex flex-col gap-1 items-end font-medium text-sm opacity-75">
-		<div class="flex items-center gap-2">
+	<div class="flex flex-wrap gap-2 items-end font-medium text-sm opacity-75">
+		<div class="flex items-center gap-2 bg-white border-2 border-neutral-200 px-3 py-1 rounded-full text-xs">
+            <i class="bi bi-calendar-event"></i>
 			<p class="">{calendar_item.start_time.toLocaleDateString()}</p>
-			<img class="h-4 w-4" src="/icons/calendar.png" alt="Date icon" />
 		</div>
 
-		<div class="flex items-center gap-2">
+		<div class="flex items-center gap-2 bg-white border-2 border-neutral-200 px-3 py-1 rounded-full text-xs">
+            <i class="bi bi-clock"></i>
 			<p class="truncate">
 				{calendar_item.start_time.toLocaleTimeString()} - {calendar_item.end_time.toLocaleTimeString()}
 			</p>
-			<img class="h-4 w-4" src="/icons/clock.png" alt="Date icon" />
 		</div>
 
-		<div class="flex items-center gap-2">
-			<p class="truncate">{calendar_item.location}</p>
-			<img class="h-4 w-4" src="/icons/map.png" alt="Date icon" />
+        {#if calendar_item.location !== ''}
+		<div class="flex items-center gap-2 bg-white border-2 border-neutral-200 px-3 py-1 rounded-full text-xs">
+            <i class="bi bi-geo-alt"></i>
+			<p class="truncate">{calendar_item.location.slice(0, 50)}</p>
 		</div>
+        {/if}
 	</div>
 </div>
