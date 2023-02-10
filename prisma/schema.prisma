@@ -260,3 +260,13 @@ model CourseSubject {
   @@id([course_code, subject_code])
   @@map("course_subject")
 }
+
+model Calendar {
+  id            Int          @id @default(autoincrement())
+  url   String
+  enabled Boolean
+  organization Organization
+  name String
+
+  @@map("calendar")
+}

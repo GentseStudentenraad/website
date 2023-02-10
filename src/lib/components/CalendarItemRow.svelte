@@ -9,6 +9,10 @@
     <p class="text-sm truncate">{calendar_item.contents}</p>
 
 	<div class="flex flex-wrap gap-2 items-end font-medium text-sm opacity-75">
+        <div class="flex items-center gap-2 bg-white border-2 border-neutral-200 px-3 py-1 rounded-full text-xs">
+			<p class="">{calendar_item.calendarName}</p>
+		</div>
+
 		<div class="flex items-center gap-2 bg-white border-2 border-neutral-200 px-3 py-1 rounded-full text-xs">
             <i class="bi bi-calendar-event"></i>
 			<p class="">{calendar_item.start_time.toLocaleDateString()}</p>
