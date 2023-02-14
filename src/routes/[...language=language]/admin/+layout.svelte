@@ -3,7 +3,7 @@
 </script>
 
 <template lang="pug">
-    .flex.container.gap-12.py-24
+    .flex.gap-12.p-24
         .space-y-4
             a(href="/admin")
                 p.text-3xl.font-semibold Administratie
@@ -29,7 +29,7 @@
 
             .space-y-1
                 p.category Nieuws
-                SideBarIcon(icon="newspaper" value="Nieuwsberichten" badgeNeutral=9)
+                SideBarIcon(icon="newspaper" value="Nieuwsberichten" badgeNeutral=9 link="/admin/nieuws")
 
             div(class="h-[1px] w-full bg-neutral-300")
 
