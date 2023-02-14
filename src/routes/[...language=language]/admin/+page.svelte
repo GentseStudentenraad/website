@@ -2,7 +2,8 @@
 	let links = [
 		{ name: 'Siteconfiguratie', link: '/admin/config' },
 		{ name: 'Nieuws', link: '/admin/nieuws' },
-		{ name: 'Personen', link: '/admin/people' }
+		{ name: 'Personen', link: '/admin/people' },
+        { name: 'Teksten', link: '/admin/text'},
 	];
 </script>
 
