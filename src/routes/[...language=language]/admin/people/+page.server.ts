@@ -15,7 +15,7 @@ export const load = (async ({ params, locals }) => {
 			}
 		],
 		where: {
-			organization: locals.organization
+			organization: locals.configuration.organization
 		}
 	});
 
