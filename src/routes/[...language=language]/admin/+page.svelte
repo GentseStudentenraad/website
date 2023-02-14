@@ -18,7 +18,6 @@
 <div class="py-12">
 	<div class="container space-y-12">
 		<div class="grid grid-cols-2 gap-y-2 gap-x-4">
-			<p class="text-4xl font-bold col-span-2">Beheer</p>
 			<p>
 				Opgepast, wijzigingen die je hier maakt worden onmiddelijk zichtbaar gemaakt voor alle
 				bezoekers. Wees dus extra voorzichtig met het opladen van nog-niet-publieke informatie.

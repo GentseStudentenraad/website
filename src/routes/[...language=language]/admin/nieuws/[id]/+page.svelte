@@ -3,13 +3,13 @@
 	import NewsItemVertical from '$lib/components/NewsItemVertical.svelte';
 	import NewsItemRow from '$lib/components/NewsItemRow.svelte';
 	import Divider from '$lib/components/Divider.svelte';
-	import ActionButton from '$lib/components/Admin/ActionButton.svelte';
+	import ActionButton from '$lib/components/admin/ActionButton.svelte';
 	import NewsItemBig from '$lib/components/NewsItemBig.svelte';
-	import TextField from '$lib/components/Admin/TextField.svelte';
-	import LongTextField from '$lib/components/Admin/LongTextField.svelte';
-	import Checkbox from '$lib/components/Admin/Checkbox.svelte';
-	import DatePicker from '$lib/components/Admin/DatePicker.svelte';
-	import ImageUploader from '$lib/components/Admin/ImageUploader.svelte';
+	import TextField from '$lib/components/admin/TextField.svelte';
+	import LongTextField from '$lib/components/admin/LongTextField.svelte';
+	import Checkbox from '$lib/components/admin/Checkbox.svelte';
+	import DatePicker from '$lib/components/admin/DatePicker.svelte';
+	import ImageUploader from '$lib/components/admin/ImageUploader.svelte';
 
 	async function post() {
 		const res = await fetch(`/admin/nieuws/${data.news_item!.id}`, {
