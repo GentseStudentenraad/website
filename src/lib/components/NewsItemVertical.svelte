@@ -5,31 +5,31 @@
 </script>
 
 <div class="bg-white rounded-md shadow-sm">
-    <a href="/nieuws/{news_item.id}">
-        <img
-            src="https://gentsestudentenraad.be/static/persistent/images/{news_item.banner_image}"
-            class="object-cover overflow-hidden aspect-square w-full rounded-t-md"
-            alt={news_item.banner_image_alt}
-        />
-        <div class="p-6 space-y-1">
-            <p class="font-semibold">{news_item.title}</p>
-            <p class="text-sm opacity-75">{news_item.synopsis}</p>
-            <div class="flex gap-2 pt-2 flex-wrap">
-                <div class="tag">
-                    <i class="bi bi-calendar-event" />
-                    <p>
-                        {news_item.published_at.toLocaleDateString().toUpperCase()}
-                    </p>
-                </div>
-                <div class="tag">
-                    <i class="bi bi-person-fill" />
-                    <p>
-                        {news_item.author}
-                    </p>
-                </div>
-            </div>
-        </div>
-    </a>
+	<a href="/nieuws/{news_item.id}">
+		<img
+			src="https://gentsestudentenraad.be/static/persistent/images/{news_item.banner_image}"
+			class="object-cover overflow-hidden aspect-square w-full rounded-t-md"
+			alt={news_item.banner_image_alt}
+		/>
+		<div class="p-6 space-y-1">
+			<p class="font-semibold">{news_item.title}</p>
+			<p class="text-sm opacity-75">{news_item.synopsis}</p>
+			<div class="flex gap-2 pt-2 flex-wrap">
+				<div class="tag">
+					<i class="bi bi-calendar-event" />
+					<p>
+						{news_item.published_at.toLocaleDateString().toUpperCase()}
+					</p>
+				</div>
+				<div class="tag">
+					<i class="bi bi-person-fill" />
+					<p>
+						{news_item.author}
+					</p>
+				</div>
+			</div>
+		</div>
+	</a>
 </div>
 
 <style lang="sass">

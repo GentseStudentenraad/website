@@ -5,5 +5,5 @@ export class CalendarItem {
 	start_time!: Date;
 	end_time!: Date;
 	location!: string;
-    calendarName!: string;
+	calendarName!: string;
 }

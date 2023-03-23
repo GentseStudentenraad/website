@@ -1,7 +1,7 @@
 <script lang="ts">
 	export let action = () => {};
 	export let text = 'Sla wijzigingen op';
-	export let color: String;
+	export let color: string;
 </script>
 
 <div class="grid grid-cols-2 gap-4">

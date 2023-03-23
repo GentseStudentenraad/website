@@ -5,7 +5,7 @@
 	export let imageAlt = '';
 	export let css = '';
 	export let imagePosition: 'left' | 'right';
-	export let color: string = '';
+	export let color = '';
 </script>
 
 <div class="grid grid-cols-5 items-center {css}" style:background-color={color}>

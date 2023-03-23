@@ -1,5 +1,4 @@
 <script lang="ts">
-	export let placeholder = '';
 	export let value: Date;
 	export let description: string | null;
 </script>
