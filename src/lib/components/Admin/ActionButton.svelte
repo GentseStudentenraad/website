@@ -1,10 +1,10 @@
 <script lang="ts">
-	export let action = () => {};
+	export let action: () => void;
 	export let text = 'Sla wijzigingen op';
 </script>
 
 <div class="grid grid-cols-2 gap-4">
-	<button on:click={() => {}} class="action-button text-black bg-neutral-300"> Annuleer </button>
+	<button class="action-button text-black bg-neutral-300"> Annuleer </button>
 
 	<button on:click={action} class="action-button text-white bg-neutral-900">
 		{text}

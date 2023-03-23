@@ -63,10 +63,6 @@
 </div>
 
 <style>
-	.title {
-		@apply font-semibold text-lg;
-	}
-
 	textarea {
 		@apply w-full rounded-lg shadow-md overflow-hidden p-4;
 	}

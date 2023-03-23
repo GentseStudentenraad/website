@@ -19,14 +19,3 @@
             .grow
             p.badge {badgeImportant}
 </template>
-
-<style lang="sass">
-    .btn
-        @apply flex rounded-md -ml-4 px-4 py-2 gap-2 font-medium text-sm w-64 items-center opacity-75 cursor-pointer
-
-    .btn.active
-            @apply bg-neutral-300 opacity-100
-
-    .badge
-        @apply rounded-full bg-red-600 text-white w-6 h-6 flex items-center justify-center text-xs -mr-1
-</style>

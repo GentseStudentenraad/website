@@ -32,35 +32,35 @@
 </svelte:head>
 
 <div class="space-y-6">
-    <TextField
-        placeholder="Gentse Studentenraad"
-        bind:value={data.configuration.name}
-        description="Organisatienaam"
-    />
+	<TextField
+		placeholder="Gentse Studentenraad"
+		bind:value={data.configuration.name}
+		description="Organisatienaam"
+	/>
 
-    <LongTextField
-        placeholder=""
-        bind:value={data.configuration.short_description}
-        description="Korte beschrijving"
-    />
+	<LongTextField
+		placeholder=""
+		bind:value={data.configuration.short_description}
+		description="Korte beschrijving"
+	/>
 
-    <TextField
-        placeholder="Straatnaam 1, 9000 Gent"
-        bind:value={data.configuration.adres}
-        description="Adres"
-    />
+	<TextField
+		placeholder="Straatnaam 1, 9000 Gent"
+		bind:value={data.configuration.adres}
+		description="Adres"
+	/>
 
-    <TextField
-        placeholder="091234567"
-        bind:value={data.configuration.phone}
-        description="Telefoonnummer"
-    />
+	<TextField
+		placeholder="091234567"
+		bind:value={data.configuration.phone}
+		description="Telefoonnummer"
+	/>
 
-    <TextField
-        placeholder="hello@example.com"
-        bind:value={data.configuration.email_adres}
-        description="E-mailadres"
-    />
+	<TextField
+		placeholder="hello@example.com"
+		bind:value={data.configuration.email_adres}
+		description="E-mailadres"
+	/>
 
-    <ActionButton />
+	<ActionButton />
 </div>

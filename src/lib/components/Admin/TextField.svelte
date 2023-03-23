@@ -15,7 +15,7 @@
 
 <style lang="postcss">
 	input {
-		margin-top: 0px !important;
+		margin-top: 0 !important;
 	}
 	.textfield {
 		@apply bg-white px-4 py-2 rounded-md w-full border-neutral-200 border-[1px];

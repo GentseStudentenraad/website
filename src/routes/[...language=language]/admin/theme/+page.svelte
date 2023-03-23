@@ -25,5 +25,5 @@
 		<p>Secundaire kleur: {data.configuration.brand_color_secondary}</p>
 	</div>
 
-    <ActionButton />
+	<ActionButton />
 </div>

@@ -1,13 +1,13 @@
 import { marked } from 'marked';
 import sanitizeHtml from 'sanitize-html';
 import { prisma } from '$lib/Prisma';
+import type { PageServerLoad } from './$types';
 
 export const prerender = false;
 export const ssr = true;
 export const csr = false;
 
-// @ts-ignore
-export async function load({ params, url, locals }) {
+export const load = (async ({ params, locals }) => {
 	const _ = params.language; // SVELTEKIT BUG, DO NOT REMOVE
 
 	const news = await prisma.news.findMany({
@@ -17,23 +17,24 @@ export async function load({ params, url, locals }) {
 			}
 		],
 		where: {
-			organization: locals.organization!,
+			organization: locals.configuration.organization,
 			NOT: {
 				id: parseInt(params.id)
 			}
 		}
 	});
 
-	const news_item = await prisma.news.findUnique({
+	const news_item = await prisma.news.findUniqueOrThrow({
 		where: {
 			id: parseInt(params.id)
 		}
 	});
-	news_item!.content = sanitizeHtml(marked.parse(news_item!.content));
+
+	news_item.content = sanitizeHtml(marked.parse(news_item.content));
 
 	return {
 		news,
 		news_item,
 		configuration: locals.configuration
 	};
-}
+}) satisfies PageServerLoad;

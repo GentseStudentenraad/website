@@ -1,41 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700&display=swap');
 @import url('https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css');
+@import url('https://rsms.me/inter/inter.css');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@font-face {
-	font-family: 'Inter';
-	font-weight: 400;
-	font-style: normal;
-	src: url(/fonts/Inter-Regular.ttf) format('truetype');
-}
-
-@font-face {
-	font-family: 'Inter';
-	font-weight: 500;
-	font-style: normal;
-	src: url(/fonts/Inter-Medium.ttf) format('truetype');
-}
-
-@font-face {
-	font-family: 'Inter';
-	font-weight: 600;
-	font-style: normal;
-	src: url(/fonts/Inter-SemiBold.ttf) format('truetype');
-}
-
-@font-face {
-	font-family: 'Inter';
-	font-weight: 700;
-	font-style: normal;
-	src: url(/fonts/Inter-Bold.ttf) format('truetype');
-}
-
 :root {
 	@apply bg-neutral-100;
 
-	font-family: Inter;
+	font-family: Inter, sans-serif;
 	font-size: 16px;
 	line-height: 24px;
 	font-weight: 400;

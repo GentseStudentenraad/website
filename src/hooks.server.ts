@@ -4,7 +4,7 @@ import { Language } from '$lib/Language';
 
 // TODO: CAS authentication.
 // TODO: Should not default to GSR, but fine for development.
-export const handle = (async ({event, resolve}) => {
+export const handle = (async ({ event, resolve }) => {
 	// Setting the language even if not supplied makes i18n much easier!
 	if (event.params.language === '') {
 		throw redirect(302, `/nl${event.url.pathname}`);
