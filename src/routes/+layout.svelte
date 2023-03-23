@@ -99,6 +99,8 @@
 
 	<slot />
 
+    <div class="grow"></div>
+
 	<footer class="bg-neutral-900 py-20 p-3 text-white">
 		<div class="container-big grid grid-cols-4 gap-12">
 			<div class="flex flex-col gap-2">

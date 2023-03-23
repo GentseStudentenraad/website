@@ -3,42 +3,42 @@
 </script>
 
 <template lang="pug">
-    .flex.gap-12.p-24
-        .space-y-4
-            a(href="/admin")
-                p.text-3xl.font-semibold Administratie
+    .p-24.space-y-6
+        a(href="/admin")
+            p.text-3xl.font-semibold Administratie
 
-            div(class="h-[1px] w-full bg-neutral-300")
+        .flex.gap-12
+            .space-y-4
+                .space-y-1
+                    p.category Algemeen
+                    SideBarIcon(icon="info-circle" value="Informatie" link="/admin/about")
+                    SideBarIcon(icon="brush" value="Thema" link="/admin/theme")
+                    SideBarIcon(icon="globe" value="Sociale Media" link="/admin/media")
+                    SideBarIcon(icon="toggles" value="Optionele Functies" link="/admin/features")
+                    SideBarIcon(icon="translate" value="Vertalingen" link="/admin/i18n")
 
-            .space-y-1
-                p.category Algemeen
-                SideBarIcon(icon="building" value="Informatie" link="/admin/about")
-                SideBarIcon(icon="brush" value="Thema" link="/admin/theme")
-                SideBarIcon(icon="globe" value="Sociale Media" link="/admin/media")
-                SideBarIcon(icon="toggles" value="Optionele Functies" link="/admin/features")
-                SideBarIcon(icon="translate" value="Vertalingen" link="/admin/i18n")
+                div(class="h-[1px] w-full bg-neutral-300")
 
-            div(class="h-[1px] w-full bg-neutral-300")
+                .space-y-1
+                    p.category Interne structuur
+                    SideBarIcon(icon="person" value="Personen" badgeNeutral=42 link="/admin/people")
+                    SideBarIcon(icon="people" value="Groepen" badgeNeutral=42 link="/admin/groups")
 
-            .space-y-1
-                p.category Interne structuur
-                SideBarIcon(icon="person" value="Personen" badgeNeutral=42 link="/admin/people")
-                SideBarIcon(icon="people" value="Groepen" badgeNeutral=42 link="/admin/groups")
+                div(class="h-[1px] w-full bg-neutral-300")
 
-            div(class="h-[1px] w-full bg-neutral-300")
+                .space-y-1
+                    p.category Inhoud
+                    SideBarIcon(icon="newspaper" value="Nieuwsberichten" badgeNeutral=9 link="/admin/nieuws")
+                    SideBarIcon(icon="question-circle" value="FAQ" link="/admin/faq")
 
-            .space-y-1
-                p.category Nieuws
-                SideBarIcon(icon="newspaper" value="Nieuwsberichten" badgeNeutral=9 link="/admin/nieuws")
+                div(class="h-[1px] w-full bg-neutral-300")
 
-            div(class="h-[1px] w-full bg-neutral-300")
+                .space-y-1
+                    p.category Vakfeedback
+                    SideBarIcon(icon="chat" value="Feedback" badgeImportant=9 link="/admin/feedback")
 
-            .space-y-1
-                p.category Vakfeedback
-                SideBarIcon(icon="chat" value="Feedback" badgeImportant=9)
-
-        .w-full
-            slot
+            .w-full
+                slot
 </template>
 
 <style lang="sass">

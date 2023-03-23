@@ -75,7 +75,7 @@ services:
     networks:
       web2022:
         ipv4_address: 10.0.0.5
-    entrypoint: minio server /data --console-address ":9090" 
+    entrypoint: minio server /data --console-address ":9090"
 
   postgrest:
     container_name: website-postgrest
@@ -116,12 +116,12 @@ services:
   #   volumes:
   #     - '/home/jens/volumes/admin/stacks:/appsmith-stacks'
   #   restart: unless-stopped
-  #   labels:
-  #     - 'traefik.enable=true'
-  #     - 'traefik.http.routers.admin.rule=Host(`admin.gentsestudentenraad.be`)'
-  #     - 'traefik.http.routers.admin.entrypoints=websecure'
-  #     - 'traefik.http.routers.admin.tls.certresolver=letsencrypt'
-  #     - 'traefik.http.services.admin.loadbalancer.server.port=80'
+#     labels:
+#       - 'traefik.enable=true'
+#       - 'traefik.http.routers.admin.rule=Host(`admin.gentsestudentenraad.be`)'
+#       - 'traefik.http.routers.admin.entrypoints=websecure'
+#       - 'traefik.http.routers.admin.tls.certresolver=letsencrypt'
+#       - 'traefik.http.services.admin.loadbalancer.server.port=80'
   #   networks:
   #     - 'web2022'
   #     - 'server_default'

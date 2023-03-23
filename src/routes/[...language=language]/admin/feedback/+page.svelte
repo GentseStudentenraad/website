@@ -1,41 +1,35 @@
 <script lang="ts">
 	import type { PageData } from './$types';
-
 	export let data: PageData;
 </script>
 
-<svelte:head>
-	<link
-		rel="stylesheet"
-		href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css"
-	/>
-	<style>
-		:root {
-			@apply bg-neutral-100;
-		}
-	</style>
-</svelte:head>
-
-<table class="table-auto">
+<table class="table-auto text-left w-full">
     <thead>
         <tr>
             <th>
                 <div class="flex items-center">
-                    <p>Titel/Synopsis</p>
+                    <p>Student</p>
                     <div class="grow"></div>
                     <i class="bi bi-chevron-down" />
                 </div>
             </th>
             <th>
                 <div class="flex items-center">
-                    <p>Auteur</p>
+                    <p>Vak</p>
                     <div class="grow"></div>
                     <i class="bi bi-chevron-down" />
                 </div>
             </th>
             <th>
                 <div class="flex items-center">
-                    <p>Publicatiedatum</p>
+                    <p>Datum</p>
+                    <div class="grow"></div>
+                    <i class="bi bi-chevron-down" />
+                </div>
+            </th>
+            <th>
+                <div class="flex items-center">
+                    <p>Inhoud</p>
                     <div class="grow"></div>
                     <i class="bi bi-chevron-down" />
                 </div>
@@ -44,20 +38,17 @@
             <th></th>
         </tr>
     </thead>
+
     <tbody>
-        {#each data.news as news_item}
+        {#each [0, 0, 0, 0, 0, 0, 0, 0] as _}
             <tr>
+                <td>Anoniem</td>
+                <td>Algoritmen en Datastructuren III</td>
+                <td>{new Date().toLocaleDateString()}</td>
+                <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</td>
                 <td>
-                    <p class="font-medium">{news_item.title}</p>
-                    <p class="opacity-75 text-xs truncate">{news_item.synopsis}</p>
-                </td>
-                <td class:opacity-50={news_item.author === null} class="text-sm">
-                    {news_item.author ?? '/'}
-                </td>
-                <td class="text-sm font-bold">{news_item.published_at.toLocaleString()}</td>
-                <td>
-                    <a href="/admin/nieuws/{news_item.id}">
-                        <i class="bi bi-pencil-square" />
+                    <a href="/admin/feedback/001">
+                        <i class="bi bi-eye" />
                     </a>
                 </td>
                 <td>
