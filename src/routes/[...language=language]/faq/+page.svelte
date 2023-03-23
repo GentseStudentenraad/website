@@ -1,7 +1,8 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
 	import { browser } from '$app/environment';
-	import type { Configuration, Prisma } from '@prisma/client';
+	import type { Prisma } from '@prisma/client';
+	import type { PageData } from './$types';
 
 	type QuestionCategoryJoined = Prisma.QuestionCategoryGetPayload<{
 		include: { questions: true };
@@ -17,11 +18,7 @@
 		}
 	}
 
-	export let data: {
-		faq: QuestionCategoryJoined[];
-		configuration: Configuration;
-		translations: any;
-	};
+	export let data: PageData;
 </script>
 
 <div class="grid grid-cols-3 relative h-[60vh] items-center text-white bg-neutral-900">

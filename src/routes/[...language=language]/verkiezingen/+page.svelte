@@ -1,12 +1,9 @@
 <script lang="ts">
-	import type { ElectionGroup } from '$lib/Election';
 	import 'chance';
 	import { Chance } from 'chance';
+	import type { PageData } from './$types';
 
-	export let data: {
-		electionGroups: ElectionGroup[];
-		translations: any;
-	};
+	export let data: PageData;
 </script>
 
 <div class="container space-y-12 py-12">

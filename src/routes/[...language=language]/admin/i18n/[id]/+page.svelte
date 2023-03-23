@@ -14,7 +14,7 @@
             option MARKDOWN
             option PLAIN_TEXT
         TextField(description="Identificatie" bind:value!="{data.text.key}")
-        LongTextField(description="Nederlands" bind:value!="{data.text.dutch}")        LongTextField(description="Nederlands" bind:value!="{data.text.dutch}")
+        LongTextField(description="Nederlands" bind:value!="{data.text.dutch}")
         LongTextField(description="Engels" bind:value!="{data.text.english}")
         ActionButton
 </template>

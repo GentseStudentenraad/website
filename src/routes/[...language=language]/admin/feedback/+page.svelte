@@ -1,6 +1,4 @@
 <script lang="ts">
-	import type { PageData } from './$types';
-	export let data: PageData;
 </script>
 
 <table class="table-auto text-left w-full">

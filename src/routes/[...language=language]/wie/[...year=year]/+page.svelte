@@ -7,16 +7,6 @@
 
 	let selected = '2022';
 
-	type PersonGroupJoined = Prisma.PersonGroupGetPayload<{
-		include: {
-			positions: {
-				include: {
-					person: true;
-				};
-			};
-		};
-	}>;
-
 	export let data: PageData;
 </script>
 

@@ -1,9 +1,6 @@
 <script lang="ts">
-	import ColorPicker from 'svelte-awesome-color-picker';
 	import type { PageData } from './$types';
 	import TextField from '$lib/components/admin/TextField.svelte';
-	import ActionButton from '$lib/components/admin/ActionButton.svelte';
-	import Checkbox from '$lib/components/admin/Checkbox.svelte';
 	import LongTextField from '$lib/components/admin/LongTextField.svelte';
 
 	export let data: PageData;

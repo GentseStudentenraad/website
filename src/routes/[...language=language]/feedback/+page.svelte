@@ -1,6 +1,5 @@
 <script lang="ts">
 	import type { Course } from '@prisma/client';
-	import { Chance } from 'chance';
 	import type { PageData } from './$types';
 	let text = '';
 

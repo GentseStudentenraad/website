@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { Language } from '$lib/Language';
 	import type { PageData } from './$types';
 
 	export let data: PageData;

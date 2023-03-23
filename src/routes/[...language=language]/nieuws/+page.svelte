@@ -1,14 +1,10 @@
 <script lang="ts">
-	import type { News } from '@prisma/client';
-
 	import NewsItemVertical from '$lib/components/NewsItemVertical.svelte';
 	import NewsItemRow from '$lib/components/NewsItemRow.svelte';
 	import NewsItemBig from '$lib/components/NewsItemBig.svelte';
+	import type { PageData } from './$types';
 
-	export let data: {
-		news: News[];
-		translations: any;
-	};
+	export let data: PageData;
 </script>
 
 <svelte:head>

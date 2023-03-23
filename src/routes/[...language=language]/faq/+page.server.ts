@@ -14,7 +14,7 @@ export const csr = true;
 export async function load({ params, url, locals }) {
 	const _ = params.language; // SVELTEKIT BUG, DO NOT REMOVE
 
-	let faq = await prisma.questionCategory.findMany({
+	const faq = await prisma.questionCategory.findMany({
 		orderBy: {
 			sort_index: 'asc'
 		},
