@@ -12,7 +12,7 @@
 	</div>
 </template>
 
-<style>
+<style lang="postcss">
 	input {
 		margin-top: 0px !important;
 	}
