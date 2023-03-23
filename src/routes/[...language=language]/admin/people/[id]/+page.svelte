@@ -19,9 +19,7 @@
 	</style>
 </svelte:head>
 
-<div class="container space-y-4 py-12">
-	<Divider text="Over" />
-
+<div class="space-y-6">
 	<TextField description="Naam" bind:value={data.person.name} />
 
 	<ImageUploader

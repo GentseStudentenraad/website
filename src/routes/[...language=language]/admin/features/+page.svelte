@@ -5,11 +5,7 @@
 	export let data: PageData;
 </script>
 
-<div class="space-y-2">
-	<div>
-		<h4>Optionele features</h4>
-		<p>Je kan bepaalde functionaliteiten in- en uitschakelen. Je verliest hierbij geen data.</p>
-	</div>
+<div class="space-y-6">
 	<Checkbox bind:value={data.configuration.active} label="Website is publiek" description={null} />
 	<Checkbox bind:value={data.configuration.news_section} label="Nieuwssectie" description={null} />
 	<Checkbox bind:value={data.configuration.who_section} label="Wie-sectie" description={null} />

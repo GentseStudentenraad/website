@@ -38,7 +38,7 @@
 	</style>
 </svelte:head>
 
-<div class="container space-y-4 py-12">
+<div class="space-y-6">
 	<TextField bind:value={data.news_item.title} description="Titel" />
 
 	<TextField bind:value={data.news_item.synopsis} description="Synopsis" />
@@ -56,17 +56,5 @@
 
 	<Checkbox label="Publiek" bind:value={data.news_item.published} description="Opties" />
 
-	<Divider text="Voorbeelden" />
-
-	<NewsItemBig news_item={data.news_item} />
-
-	<div class="grid grid-cols-4 gap-4">
-		{#each [0, 0, 0, 0] as index}
-			<NewsItemVertical news_item={data.news_item} />
-		{/each}
-	</div>
-
-	<NewsItemRow news_item={data.news_item} />
-
-	<ActionButton action={post} color={data.configuration.brand_color_primary} />
+	<ActionButton action={post} />
 </div>

@@ -8,7 +8,7 @@ export const csr = true;
 export const load = (async ({ params }) => {
 	const _ = params.language; // SVELTEKIT BUG, DO NOT REMOVE
 
-	const news_item = await prisma.news.findUnique({
+	const news_item = await prisma.news.findUniqueOrThrow({
 		where: {
 			id: parseInt(params.id)
 		}

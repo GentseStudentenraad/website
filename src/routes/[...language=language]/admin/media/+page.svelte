@@ -1,13 +1,12 @@
 <script lang="ts">
 	import type { PageData } from './$types';
-	import TextField from '$lib/components/Admin/TextField.svelte';
+	import TextField from '$lib/components/admin/TextField.svelte';
+	import ActionButton from '$lib/components/admin/ActionButton.svelte';
 
 	export let data: PageData;
 </script>
 
-<div>
-	<h4>Sociale Media</h4>
-
+<div class="space-y-6">
 	<TextField
 		placeholder="https://facebook.com"
 		bind:value={data.configuration.facebook_url}
@@ -43,4 +42,6 @@
 		bind:value={data.configuration.linkedin_url}
 		description="LinkedIn"
 	/>
+
+    <ActionButton />
 </div>

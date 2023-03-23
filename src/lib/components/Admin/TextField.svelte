@@ -5,7 +5,7 @@
 </script>
 
 <template>
-	<div class="py-2">
+	<div class="">
 		{#if description !== null}
 			<p class="text-[12px] opacity-50 font-semibold uppercase">{description}</p>
 		{/if}
