@@ -12,7 +12,7 @@ export const ssr = true;
 export const csr = true;
 
 export const load = (async ({ params, locals }) => {
-    const _ = params.language;
+	const _ = params.language;
 
 	// Create navigation bar routes. It's a bit messy but it's our only option.
 	const routes = [];
@@ -27,7 +27,9 @@ export const load = (async ({ params, locals }) => {
 	}
 
 	if (locals.configuration.news_section) {
-		routes.push(locals.language == Language.DUTCH ? ['Nieuws', '/nl/nieuws'] : ['News', '/en/nieuws']);
+		routes.push(
+			locals.language == Language.DUTCH ? ['Nieuws', '/nl/nieuws'] : ['News', '/en/nieuws']
+		);
 	}
 
 	if (locals.configuration.faq_section) {
@@ -56,44 +58,44 @@ export const load = (async ({ params, locals }) => {
 		);
 	}
 
-    const i18n = await prisma.i18n.findMany({
-        select: {
-            key: true,
-            dutch: locals.language == Language.DUTCH,
-            english: locals.language == Language.ENGLISH,
+	const i18n = await prisma.i18n.findMany({
+		select: {
+			key: true,
+			dutch: locals.language == Language.DUTCH,
+			english: locals.language == Language.ENGLISH,
 			markup: true
-        },
-        where: {
-            OR: [
-                { organization: locals.configuration.organization},
-                { organization: Organization.COMMON},
-            ]
-        }
-    });
+		},
+		where: {
+			OR: [
+				{ organization: locals.configuration.organization },
+				{ organization: Organization.COMMON }
+			]
+		}
+	});
 
 	if (locals.language == Language.DUTCH) {
 		for (const page of pages) {
-			routes.push([page.nav_name_dutch, page.slug])
-		}	
+			routes.push([page.nav_name_dutch, page.slug]);
+		}
 	} else {
 		for (const page of pages) {
-			routes.push([page.nav_name_english, page.slug])
-		}	
+			routes.push([page.nav_name_english, page.slug]);
+		}
 	}
 
-    const translations = new Map();
-    i18n.forEach(e => {
-        const raw = locals.language == Language.DUTCH ? e.dutch : e.english;
-        if (raw) {
+	const translations = new Map();
+	i18n.forEach((e) => {
+		const raw = locals.language == Language.DUTCH ? e.dutch : e.english;
+		if (raw) {
 			if (e.markup == Markup.MARKDOWN) {
-           	 	const value = (marked.parse(raw));
-				translations.set(e.key, value)
+				const value = marked.parse(raw);
+				translations.set(e.key, value);
 			} else {
 				const value = sanitizeHtml(raw);
-				translations.set(e.key, value)
+				translations.set(e.key, value);
 			}
-        }
-    });
+		}
+	});
 
 	// Done! Pass to the view.
 	return {
@@ -102,6 +104,6 @@ export const load = (async ({ params, locals }) => {
 		configs: configs.filter((e) => e.id != locals.configuration.id),
 		configuration: locals.configuration,
 		translations: locals.language === Language.DUTCH ? dutch : english,
-        i18n: translations,
+		i18n: translations
 	};
 }) satisfies LayoutServerLoad;

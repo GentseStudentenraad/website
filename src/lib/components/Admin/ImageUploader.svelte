@@ -3,13 +3,13 @@
 	export let description: string | null = null;
 	let files: FileList;
 
-    $: if (files) {
+	$: if (files) {
 		for (const file of files) {
-            let reader = new FileReader();
-            reader.readAsDataURL(file);
-            reader.onload = (e) => {
-                source = e.target?.result?.toString();
-            };
+			let reader = new FileReader();
+			reader.readAsDataURL(file);
+			reader.onload = (e) => {
+				source = e.target?.result?.toString();
+			};
 		}
 	}
 </script>

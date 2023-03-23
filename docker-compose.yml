@@ -122,28 +122,28 @@ services:
 #       - 'traefik.http.routers.admin.entrypoints=websecure'
 #       - 'traefik.http.routers.admin.tls.certresolver=letsencrypt'
 #       - 'traefik.http.services.admin.loadbalancer.server.port=80'
-  #   networks:
-  #     - 'web2022'
-  #     - 'server_default'
+#   networks:
+#     - 'web2022'
+#     - 'server_default'
 
-  # filebrowser:
-  #   image: filebrowser/filebrowser:v2.22.4
-  #   container_name: filebrowser
-  #   volumes:
-  #     - '/home/jens/volumes/web:/srv'
-  #     - '/home/jens/volumes/filebrowser/db:/db'
-  #     - '/home/jens/volumes/filebrowser/.filebrowser.json:/.filebrowser.json'
-  #   restart: unless-stopped
-  #   labels:
-  #     - 'traefik.enable=true'
-  #     - 'traefik.http.routers.filebrowser.rule=Host(`files.gentsestudentenraad.be`)'
-  #     - 'traefik.http.routers.filebrowser.entrypoints=websecure'
-  #     - 'traefik.http.routers.filebrowser.tls.certresolver=letsencrypt'
-  #     - 'traefik.http.services.filebrowser.loadbalancer.server.port=80'
-  #   networks:
-  #     - 'web2022'
-  #     - 'server_default'
-  #   user: '1012:1012'
+# filebrowser:
+#   image: filebrowser/filebrowser:v2.22.4
+#   container_name: filebrowser
+#   volumes:
+#     - '/home/jens/volumes/web:/srv'
+#     - '/home/jens/volumes/filebrowser/db:/db'
+#     - '/home/jens/volumes/filebrowser/.filebrowser.json:/.filebrowser.json'
+#   restart: unless-stopped
+#   labels:
+#     - 'traefik.enable=true'
+#     - 'traefik.http.routers.filebrowser.rule=Host(`files.gentsestudentenraad.be`)'
+#     - 'traefik.http.routers.filebrowser.entrypoints=websecure'
+#     - 'traefik.http.routers.filebrowser.tls.certresolver=letsencrypt'
+#     - 'traefik.http.services.filebrowser.loadbalancer.server.port=80'
+#   networks:
+#     - 'web2022'
+#     - 'server_default'
+#   user: '1012:1012'
 
 networks:
   web2022:

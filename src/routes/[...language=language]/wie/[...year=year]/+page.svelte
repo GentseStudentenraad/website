@@ -1,6 +1,5 @@
 <script lang="ts">
 	import 'chance';
-	import { Chance } from 'chance';
 	import type { Prisma } from '@prisma/client';
 	import { goto } from '$app/navigation';
 	import PositionCard from '$lib/components/PositionCard.svelte';
@@ -29,7 +28,7 @@
 />
 
 <div class="container md grid grid-cols-2 gap-x-8 gap-y-2 py-12">
-    {@html data.i18n.get('who-about')}
+	{@html data.i18n.get('who-about')}
 </div>
 
 <div class="space-y-4">

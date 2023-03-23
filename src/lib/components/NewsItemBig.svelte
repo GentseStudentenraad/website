@@ -21,23 +21,23 @@
 			/>
 
 			<div class="p-12 space-y-1">
-                <p class="font-bold uppercase text-sm opacity-50">Nieuws</p>
+				<p class="font-bold uppercase text-sm opacity-50">Nieuws</p>
 				<p class="font-bold text-3xl">{news_item.title}</p>
 				<p class="font-medium font-lg opacity-75">{news_item.synopsis}</p>
-                <div class="flex gap-2 pt-2 flex-wrap">
-                    <div class="tag">
-                        <i class="bi bi-calendar-event" />
-                        <p>
-                            {news_item.published_at.toLocaleDateString().toUpperCase()}
-                        </p>
-                    </div>
-                    <div class="tag">
-                        <i class="bi bi-person-fill" />
-                        <p>
-                            {news_item.author}
-                        </p>
-                    </div>
-                </div>
+				<div class="flex gap-2 pt-2 flex-wrap">
+					<div class="tag">
+						<i class="bi bi-calendar-event" />
+						<p>
+							{news_item.published_at.toLocaleDateString().toUpperCase()}
+						</p>
+					</div>
+					<div class="tag">
+						<i class="bi bi-person-fill" />
+						<p>
+							{news_item.author}
+						</p>
+					</div>
+				</div>
 			</div>
 		</div>
 	</a>

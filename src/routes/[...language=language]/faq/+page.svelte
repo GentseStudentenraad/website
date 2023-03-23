@@ -41,7 +41,7 @@
 		class="col-span-2 h-[60vh] object-cover w-full"
 		src="https://unsplash.com/photos/NboyPdtHqFc/download?ixid=MnwxMjA3fDB8MXxhbGx8fHx8fHx8fHwxNjY5Mzk2NjE4&force=true&w=1920"
 		style="object-position: 50% 75%;"
-        alt="Books in a library."
+		alt="Books in a library."
 	/>
 </div>
 

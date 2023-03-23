@@ -1,8 +1,8 @@
 <script lang="ts">
-    import TextField from '$lib/components/admin/TextField.svelte';
-    import LongTextField from '$lib/components/admin/LongTextField.svelte';
-    import ActionButton from '$lib/components/admin/ActionButton.svelte';
-    import type { PageData } from './$types';
+	import TextField from '$lib/components/admin/TextField.svelte';
+	import LongTextField from '$lib/components/admin/LongTextField.svelte';
+	import ActionButton from '$lib/components/admin/ActionButton.svelte';
+	import type { PageData } from './$types';
 
 	export let data: PageData;
 </script>
@@ -20,4 +20,5 @@
 </template>
 
 <style lang="sass">
+
 </style>

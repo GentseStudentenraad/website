@@ -7,7 +7,7 @@ export const ssr = true;
 export const csr = true;
 
 export const load = (async ({ params, locals, fetch }) => {
-    const _ = params.language;
+	const _ = params.language;
 
 	const news = await prisma.news.findMany({
 		orderBy: [
@@ -23,6 +23,6 @@ export const load = (async ({ params, locals, fetch }) => {
 
 	return {
 		calendar: (await calender).get(locals.configuration.organization),
-		news,
+		news
 	};
 }) satisfies PageServerLoad;

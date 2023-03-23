@@ -33,7 +33,7 @@
 }
 
 :root {
-    @apply bg-neutral-100;
+	@apply bg-neutral-100;
 
 	font-family: Inter;
 	font-size: 16px;
@@ -74,15 +74,15 @@ h6 {
 }
 
 .md {
-    @apply space-y-2;
+	@apply space-y-2;
 
-    h1 {
-        @apply font-serif col-span-full;
-    }
+	h1 {
+		@apply font-serif col-span-full;
+	}
 
-    h2 {
-        @apply pt-8;
-    }
+	h2 {
+		@apply pt-8;
+	}
 
 	h3 {
 		@apply pt-6;
