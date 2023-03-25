@@ -64,6 +64,6 @@
 
 <style>
 	textarea {
-		@apply w-full rounded-lg shadow-md overflow-hidden p-4;
+		@apply w-full rounded-lg overflow-hidden p-4;
 	}
 </style>

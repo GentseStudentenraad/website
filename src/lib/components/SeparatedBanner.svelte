@@ -8,16 +8,17 @@
 	export let color = '';
 </script>
 
-<div class="grid grid-cols-5 items-center {css}" style:background-color={color}>
+<div class="container">
+<div class="grid grid-cols-5 items-center {css} overflow-clip rounded-lg" style:background-color={color}>
 	{#if imagePosition == 'left'}
 		<img class="col-span-3" src={imageUrl} alt={imageAlt} />
 	{/if}
 	<div class="col-span-2 p-12 space-y-2">
-		<p class="font-bold font-serif text-4xl opacity-90">{title}</p>
-		<div class="w-full bg-white/50 h-[2px]" />
-		<p class="opacity-75">{body}</p>
+		<p class="font-bold text-xl">{title}</p>
+        <p class="opacity-90">{body}</p>
 	</div>
 	{#if imagePosition == 'right'}
 		<img class="col-span-3" src={imageUrl} alt={imageAlt} />
 	{/if}
+</div>
 </div>

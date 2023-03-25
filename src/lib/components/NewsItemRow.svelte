@@ -6,7 +6,7 @@
 
 <div>
 	<a href="/nieuws/{news_item.id}">
-		<div class="flex col-span-full items-center gap-6 rounded-md bg-white overflow-clip shadow-sm">
+		<div class="flex col-span-full items-center gap-6 rounded-md bg-white overflow-clip">
 			<img
 				src="https://gentsestudentenraad.be/static/persistent/images/{news_item.banner_image}"
 				class="object-cover overflow-hidden aspect-video h-32 flex-none"

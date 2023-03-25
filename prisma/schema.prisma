@@ -270,3 +270,14 @@ model Calendar {
 
   @@map("calendar")
 }
+
+model Project {
+  id            Int          @id @default(autoincrement())
+  image         String
+  title         String       @unique
+  about         String
+  sort_index   Int          @default(0)
+  organization Organization
+
+  @@map("project")
+}

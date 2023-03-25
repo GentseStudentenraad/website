@@ -12,7 +12,7 @@
 	<nav style:background-color={data.configuration.brand_color_primary}>
 		<div class="flex shadow-md p-3 items-center gap-6">
 			<!-- svelte-ignore a11y-mouse-events-have-key-events -->
-            <i class="bi-list text-xl cursor-pointer" on:click={() => showLinks = !showLinks}></i>
+            <i class="bi-list text-xl cursor-pointer p-1" on:click={() => showLinks = !showLinks}></i>
 
             <a href="/">
                 <img src={data.configuration.logo_url} class="h-8" alt="Logo" />

@@ -29,6 +29,7 @@
                 p.category Inhoud
                 SideBarIcon(icon="newspaper" value="Nieuwsberichten" badgeNeutral=9 link="/admin/nieuws")
                 SideBarIcon(icon="question-circle" value="FAQ" link="/admin/faq")
+                SideBarIcon(icon="broadcast" value="Projecten" link="/admin/projects")
 
             div(class="h-[1px] w-full bg-neutral-300")
 

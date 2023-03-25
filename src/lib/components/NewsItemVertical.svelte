@@ -4,7 +4,7 @@
 	export let news_item: News;
 </script>
 
-<div class="bg-white rounded-md shadow-sm">
+<div class="bg-white rounded-md">
 	<a href="/nieuws/{news_item.id}">
 		<img
 			src="https://gentsestudentenraad.be/static/persistent/images/{news_item.banner_image}"

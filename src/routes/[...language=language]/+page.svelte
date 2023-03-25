@@ -25,22 +25,15 @@
 		style="object-position: 50% 75%"
 	/>
 
-	<div class="space-y-6 pt-12">
+	<div class="space-y-12 py-12">
 		<div class="container md space-y-1">
 			{@html data.i18n.get('home-about')}
 		</div>
 
-		<div class="grid grid-cols-4 container py-6 w-full gap-4">
-			{#each data.news.slice(0, 4) as news_item}
-				<NewsItemVertical {news_item} />
-			{/each}
-		</div>
 
-		<div class="grid grid-cols-2 gap-4 container">
-			<p class="font-medium text-lg col-span-2">Gebeurtenissen</p>
-
+		<div class="grid grid-cols-3 gap-4 container">
 			<div
-				class="gap-4 bg-neutral-200 rounded-md grid grid-cols-7 items-center justify-center shadow-sm p-24"
+				class="gap-4 bg-neutral-200 rounded-md grid grid-cols-7 items-center justify-center shadow-sm aspect-square p-6"
 			>
 				{#each ['MA', 'DI', 'WO', 'DO', 'VR', 'ZA', 'ZO'] as day}
 					<p class="cal-day">{day}</p>
@@ -58,38 +51,40 @@
 				{/each}
 			</div>
 
-			<div class="space-y-4 w-full overflow-scroll h-[500px]">
-				{#each data.calendar as calendar_item}
+			<div class="space-y-4 w-full overflow-scroll col-span-2 h-[320px] rounded-md overflow-clip">
+				{#each data.calendar ?? [] as calendar_item}
 					<CalendarItemRow {calendar_item} />
 				{/each}
 			</div>
 		</div>
 
-		<SeparatedBanner
-			title={Chance().sentence({ words: 6 })}
-			body={Chance().paragraph()}
-			imageUrl="https://www.ugent.be/img/dcom/logos/ugentflag.jpg"
-			imageAlt="UGent Flag"
-			css="bg-neutral-900 text-white"
-			imagePosition="left"
-		/>
+        <p class="container">{Chance().paragraph()}</p>
 
-		<div class="container py-12 space-y-2">
+        <SeparatedBanner
+            title={Chance().sentence({ words: 6 })}
+            body={Chance().sentence({words: 30})}
+            imageUrl="https://www.ugent.be/img/dcom/logos/ugentflag.jpg"
+            imageAlt="UGent Flag"
+            css="bg-neutral-900 text-white"
+            imagePosition="left"
+        />
+
+		<div class="container space-y-2">
 			<div class="gap-10 grid grid-cols-2">
 				<div>
-					<p class="font-bold font-serif text-2xl opacity-90">{Chance().sentence({ words: 3 })}</p>
+					<p class="font-bold text-xl opacity-90">{Chance().sentence({ words: 3 })}</p>
 					<p class="opacity-75">{Chance().paragraph()}</p>
 				</div>
 				<div>
-					<p class="font-bold font-serif text-2xl opacity-90">{Chance().sentence({ words: 3 })}</p>
+					<p class="font-bold text-xl opacity-90">{Chance().sentence({ words: 3 })}</p>
 					<p class="opacity-75">{Chance().paragraph()}</p>
 				</div>
 				<div>
-					<p class="font-bold font-serif text-2xl opacity-90">{Chance().sentence({ words: 3 })}</p>
+					<p class="font-bold text-xl opacity-90">{Chance().sentence({ words: 3 })}</p>
 					<p class="opacity-75">{Chance().paragraph()}</p>
 				</div>
 				<div>
-					<p class="font-bold font-serif text-2xl opacity-90">{Chance().sentence({ words: 3 })}</p>
+					<p class="font-bold text-xl opacity-90">{Chance().sentence({ words: 3 })}</p>
 					<p class="opacity-75">{Chance().paragraph()}</p>
 				</div>
 			</div>
@@ -97,13 +92,21 @@
 
 		<SeparatedBanner
 			title={Chance().sentence({ words: 6 })}
-			body={Chance().paragraph()}
+			body={Chance().sentence({ words: 30 })}
 			imageUrl="https://unsplash.com/photos/ewGMqs2tmJI/download?ixid=MnwxMjA3fDB8MXxzZWFyY2h8MjJ8fHVuaXZlcnNpdHl8ZW58MHx8fHwxNjYzNzYzMzI3&force=true&w=1920"
 			imageAlt="Classroom"
 			css="text-white"
 			color={data.configuration.brand_color_primary}
 			imagePosition="right"
 		/>
+
+        <p class="container">{Chance().paragraph()}</p>
+
+        <div class="grid grid-cols-4 container w-full gap-4">
+			{#each data.news.slice(0, 4) as news_item}
+				<NewsItemVertical {news_item} />
+			{/each}
+		</div>
 	</div>
 </main>
 

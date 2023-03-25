@@ -58,6 +58,12 @@ export const load = (async ({ params, locals }) => {
 		);
 	}
 
+    routes.push(
+        locals.language == Language.DUTCH
+            ? ['Projecten', '/nl/projecten']
+            : ['Projects', '/en/projecten']
+    );
+
 	const i18n = await prisma.i18n.findMany({
 		select: {
 			key: true,

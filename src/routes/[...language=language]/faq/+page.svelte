@@ -21,7 +21,7 @@
 	export let data: PageData;
 </script>
 
-<div class="grid grid-cols-3 relative h-[60vh] items-center text-white bg-neutral-900">
+<div class="grid grid-cols-3 relative h-[60vh] items-center text-white bg-neutral-900 m-12 rounded-lg overflow-clip">
     <img
         class="col-span-2 h-[60vh] object-cover w-full"
         src="https://unsplash.com/photos/NboyPdtHqFc/download?ixid=MnwxMjA3fDB8MXxhbGx8fHx8fHx8fHwxNjY5Mzk2NjE4&force=true&w=1920"
@@ -42,7 +42,7 @@
     </div>
 </div>
 
-<div class="container py-12 space-y-12">
+<div class="container pb-12 space-y-12">
 	{#each data.faq as category}
 		<div class="space-y-4">
 			<p id={category.slug} class="font-bold text-4xl font-serif" style="scroll-margin-top: 75px">
