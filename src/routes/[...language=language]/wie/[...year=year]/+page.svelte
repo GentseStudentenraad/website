@@ -24,17 +24,27 @@
 <div class="space-y-4">
 	{#each data.groups.filter((e) => e.positions.length > 0) as group, i}
 		<div class="odd:bg-neutral-100">
-			<div class="container grid grid-cols-2 gap-12 py-12">
+			<div class="container grid grid-cols-2 gap-6 py-6">
 				<div class="space-y-1 col-span-2">
 					<p class="font-serif font-bold text-3xl">{group.name}</p>
-					<div class="h-[2px] bg-neutral-200" />
 					{#if group.description}
 						<p class="opacity-90">{@html group.description}</p>
 					{/if}
 				</div>
-				{#each group.positions as position}
-					<PositionCard {position} />
-				{/each}
+                <div class="space-y-6">
+                    {#each group.positions as position, j}
+                        {#if j % 2 == 0}
+                            <PositionCard {position} />
+                        {/if}
+                    {/each}
+                </div>
+                <div class="space-y-6">
+                    {#each group.positions as position, j}
+                        {#if j % 2 == 1}
+                            <PositionCard {position} />
+                        {/if}
+                    {/each}
+                </div>
 			</div>
 		</div>
 	{/each}

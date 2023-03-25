@@ -12,12 +12,11 @@
 	<nav style:background-color={data.configuration.brand_color_primary}>
 		<div class="flex shadow-md p-3 items-center gap-6">
 			<!-- svelte-ignore a11y-mouse-events-have-key-events -->
-			<a
-				href={data.language == Language.DUTCH ? '/nl' : '/en'}
-				on:mouseover={() => (showLinks = true)}
-			>
-				<img src={data.configuration.logo_url} class="h-8" alt="Logo" />
-			</a>
+            <i class="bi-list text-xl cursor-pointer" on:click={() => showLinks = !showLinks}></i>
+
+            <a href="/">
+                <img src={data.configuration.logo_url} class="h-8" alt="Logo" />
+            </a>
 
 			{#each data.routes as route}
 				<a href={route[1]}>{route[0]}</a>
@@ -88,9 +87,9 @@
 	{#if showLinks}
 		<div class="panel-contents" on:mouseleave={() => (showLinks = false)}>
 			{#each data.configs as config}
-				<a href={config.hostnames[0]} class="panel-link flex items-center justify-start gap-4">
-					<img class="invert h-8 w-16 object-contain" src={config.logo_url} alt="Logo" />
-					<div class="-space-y-1">
+				<a href={config.hostnames[0]} class="panel-link grid grid-cols-3 items-center justify-center gap-6">
+					<img class="invert object-contain" src={config.logo_url} alt="Logo" />
+					<div class="-space-y-1 col-span-2">
 						<p class="m-0 text-lg font-bold">{config.name}</p>
 						<p class="m-0 opacity-75 text-sm">{config.short_description}</p>
 					</div>
@@ -202,7 +201,7 @@
 	}
 
 	.panel-contents {
-		@apply grid grid-cols-4 p-4 bg-neutral-200 gap-4 w-[100vw] absolute top-14;
+		@apply grid grid-cols-3 p-4 bg-neutral-100/25 backdrop-blur-xl gap-4 w-[100vw] absolute top-14;
 	}
 
 	.panel-link {

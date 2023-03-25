@@ -22,43 +22,53 @@
 </script>
 
 <div class="grid grid-cols-3 relative h-[60vh] items-center text-white bg-neutral-900">
-	<div class="p-12 space-y-4">
-		<div class="space-y-1">
-			<p class="text-5xl font-serif font-bold shadow">{data.translations.faq.title}</p>
-			<p>{data.translations.faq.subtitle}</p>
-		</div>
-		<select bind:value={selected}>
-			<option value={null}>{data.translations.faq.selector}</option>
-			{#each data.faq as category}
-				<option value={category}>{category.title}</option>
-			{/each}
-		</select>
-	</div>
-	<img
-		class="col-span-2 h-[60vh] object-cover w-full"
-		src="https://unsplash.com/photos/NboyPdtHqFc/download?ixid=MnwxMjA3fDB8MXxhbGx8fHx8fHx8fHwxNjY5Mzk2NjE4&force=true&w=1920"
-		style="object-position: 50% 75%;"
-		alt="Books in a library."
-	/>
+    <img
+        class="col-span-2 h-[60vh] object-cover w-full"
+        src="https://unsplash.com/photos/NboyPdtHqFc/download?ixid=MnwxMjA3fDB8MXxhbGx8fHx8fHx8fHwxNjY5Mzk2NjE4&force=true&w=1920"
+        style="object-position: 50% 75%;"
+        alt="Books in a library."
+    />
+    <div class="space-y-3 p-12">
+        <p class="text-4xl font-serif font-bold shadow">{data.translations.faq.title}</p>
+        <p>{data.translations.faq.subtitle}</p>
+        <div class="pt-1">
+            <select bind:value={selected}>
+                <option value={null}>{data.translations.faq.selector}</option>
+                {#each data.faq as category}
+                    <option value={category}>{category.title}</option>
+                {/each}
+            </select>
+        </div>
+    </div>
 </div>
 
-<div class="container py-12 space-y-24">
+<div class="container py-12 space-y-12">
 	{#each data.faq as category}
-		<div class="space-y-2">
+		<div class="space-y-4">
 			<p id={category.slug} class="font-bold text-4xl font-serif" style="scroll-margin-top: 75px">
 				{category.title}
 			</p>
-			<div
-				class="h-[3px] opacity-50"
-				style:background-color={data.configuration.brand_color_primary}
-			/>
-			<div class="grid grid-cols-2 gap-12">
-				{#each category.questions as questionAnswer}
-					<div>
-						<p class="font-semibold text-lg">{questionAnswer.question}</p>
-						<p class="opacity-90">{@html questionAnswer.answer}</p>
-					</div>
-				{/each}
+			<div class="grid grid-cols-2 gap-6">
+                <div class="space-y-6">
+                    {#each category.questions as questionAnswer, i}
+                        {#if i % 2 == 0}
+                        <div class="space-y-1 bg-white p-6 rounded-md">
+                            <p class="text-primary decoration-2 font-bold text-xl">{questionAnswer.question}</p>
+                            <p>{@html questionAnswer.answer}</p>
+                        </div>
+                        {/if}
+				    {/each}
+                </div>
+                <div class="space-y-6">
+                    {#each category.questions as questionAnswer, i}
+                        {#if i % 2 == 1}
+                        <div class="space-y-1 bg-white p-6 rounded-md">
+                            <p class="text-primary decoration-2 font-bold text-xl">{questionAnswer.question}</p>
+                            <p>{@html questionAnswer.answer}</p>
+                        </div>
+                        {/if}
+				    {/each}
+                </div>
 			</div>
 		</div>
 	{/each}
@@ -70,7 +80,7 @@
 	select {
 		@apply text-center font-medium px-5;
 		appearance: none;
-		background-color: rgb(39, 39, 39);
+		background-color: rgb(61, 61, 61);
 		border: transparent;
 		text-indent: 5px;
 		padding: 4px;
