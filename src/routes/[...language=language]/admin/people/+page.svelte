@@ -10,19 +10,19 @@
 			<th>
 				<div class="flex items-center">
 					<p>Naam</p>
-					<div class="grow" />
-					<i class="bi bi-chevron-down" />
+					<div class="grow"></div>
+					<i class="bi bi-chevron-down"></i>
 				</div>
 			</th>
 			<th>
 				<div class="flex items-center">
 					<p>Email</p>
-					<div class="grow" />
-					<i class="bi bi-chevron-down" />
+					<div class="grow"></div>
+					<i class="bi bi-chevron-down"></i>
 				</div>
 			</th>
-			<th />
-			<th />
+			<th></th>
+			<th></th>
 		</tr>
 	</thead>
 
@@ -46,11 +46,11 @@
 				<td class:opacity-50={person.mail === null}>{person.mail}</td>
 				<td>
 					<a href="/admin/people/{person.id}">
-						<i class="bi bi-pencil-square" />
+						<i class="bi bi-pencil-square"></i>
 					</a>
 				</td>
 				<td>
-					<i class="bi bi-trash3-fill" />
+					<i class="bi bi-trash3-fill"></i>
 				</td>
 			</tr>
 		{/each}

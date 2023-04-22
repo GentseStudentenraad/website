@@ -6,13 +6,13 @@ export const ssr = false;
 export const csr = true;
 
 export const load = (async ({ params }) => {
-	const news_item = await prisma.news.findUniqueOrThrow({
+	const project = await prisma.project.findUniqueOrThrow({
 		where: {
 			id: parseInt(params.id)
 		}
 	});
-
+    
 	return {
-		news_item
+		project
 	};
 }) satisfies PageServerLoad;

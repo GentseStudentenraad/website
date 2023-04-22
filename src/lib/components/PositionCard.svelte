@@ -19,7 +19,7 @@
 			<p class="font-semibold text-xl">{position.person.name}</p>
 		</div>
 
-		<div class="grow" />
+		<div class="grow"></div>
 	</div>
 
 

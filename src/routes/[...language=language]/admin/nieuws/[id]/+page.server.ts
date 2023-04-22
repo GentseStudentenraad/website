@@ -6,7 +6,7 @@ export const ssr = false;
 export const csr = true;
 
 export const load = (async ({ params }) => {
-	const news_item = await prisma.news.findUniqueOrThrow({
+	const news_item = await prisma.news.findFirstOrThrow({
 		where: {
 			id: parseInt(params.id)
 		}

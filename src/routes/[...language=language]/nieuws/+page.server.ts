@@ -1,5 +1,4 @@
 import { prisma } from '$lib/Prisma';
-import { Language } from '$lib/Language';
 import type { PageServerLoad } from './$types';
 
 export const prerender = false;

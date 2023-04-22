@@ -11,7 +11,7 @@
         <div class="space-y-4">
             {#each data.projects as project}
                 <div class="bg-white grid grid-cols-3 items-center rounded-md overflow-clip">
-                    <img class="aspect-square object-contain w-full p-6" src="{project.image}">
+                    <img class="aspect-square object-contain w-full p-6" src="{project.image}" alt="Project Logo">
                     <div class="p-6 col-span-2 space-y-1">
                         <p class="text-2xl font-semibold">{project.title}</p>
                         <p>{project.about}</p>

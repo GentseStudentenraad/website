@@ -16,13 +16,13 @@
 			<p class="text-sm opacity-75">{news_item.synopsis}</p>
 			<div class="flex gap-2 pt-2 flex-wrap">
 				<div class="tag">
-					<i class="bi bi-calendar-event" />
+					<i class="bi bi-calendar-event"></i>
 					<p>
 						{news_item.published_at.toLocaleDateString().toUpperCase()}
 					</p>
 				</div>
 				<div class="tag">
-					<i class="bi bi-person-fill" />
+					<i class="bi bi-person-fill"></i>
 					<p>
 						{news_item.author}
 					</p>

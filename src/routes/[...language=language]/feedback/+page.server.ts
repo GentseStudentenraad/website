@@ -5,7 +5,7 @@ export const prerender = false;
 export const ssr = true;
 export const csr = true;
 
-export const load = (async ({ params }) => {
+export const load = (async () => {
 	const courses = await prisma.course.findMany({
 		include: {
 			subjects: {

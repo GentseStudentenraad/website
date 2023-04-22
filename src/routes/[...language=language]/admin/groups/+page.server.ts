@@ -5,7 +5,7 @@ export const prerender = false;
 export const ssr = false;
 export const csr = true;
 
-export const load = (async ({ params, locals }) => {
+export const load = (async ({ locals }) => {
 	const groups = await prisma.personGroup.findMany({
 		orderBy: [
 			{

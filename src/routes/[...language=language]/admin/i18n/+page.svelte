@@ -10,21 +10,21 @@
 			<th>
 				<div class="flex items-center">
 					<p>Tag</p>
-					<div class="grow" />
-					<i class="bi bi-chevron-down" />
+					<div class="grow"></div>
+					<i class="bi bi-chevron-down"></i>
 				</div>
 			</th>
 			<th>
 				<div class="flex items-center">
 					<p>Type</p>
-					<div class="grow" />
-					<i class="bi bi-chevron-down" />
+					<div class="grow"></div>
+					<i class="bi bi-chevron-down"></i>
 				</div>
 			</th>
 			<th>Nederlands</th>
 			<th>Engels</th>
-			<th />
-			<th />
+			<th></th>
+			<th></th>
 		</tr>
 	</thead>
 	<tbody>
@@ -35,12 +35,12 @@
 				<td>{text.dutch?.substring(0, 50)}</td>
 				<td>{text.english?.substring(0, 50)}</td>
 				<td>
-					<a href="/admin/text/{text.id}">
-						<i class="bi bi-pencil-square" />
+					<a href="/admin/i18n/{text.id}">
+						<i class="bi bi-pencil-square"></i>
 					</a>
 				</td>
 				<td>
-					<i class="bi bi-trash3-fill" />
+					<i class="bi bi-trash3-fill"></i>
 				</td>
 			</tr>
 		{/each}

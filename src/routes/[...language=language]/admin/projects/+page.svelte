@@ -27,19 +27,19 @@
 				<th>
 					<div class="flex items-center">
 						<p>Titel/Beschrijving</p>
-						<div class="grow" />
-						<i class="bi bi-chevron-down" />
+						<div class="grow"></div>
+						<i class="bi bi-chevron-down"></i>
 					</div>
 				</th>
-				<th />
-				<th />
+				<th></th>
+				<th></th>
 			</tr>
 		</thead>
 		<tbody>
 			{#each data.projects as project}
 				<tr>
                     <td>
-                        <img  class="h-16 aspect-square object-contain" src="{project.image}">
+                        <img  class="h-16 aspect-square object-contain" src="{project.image}" alt="Project Logo">
 					</td>
 
 					<td>
@@ -48,11 +48,11 @@
 					</td>
 					<td>
 						<a href="/admin/projects/{project.id}">
-							<i class="bi bi-pencil-square" />
+							<i class="bi bi-pencil-square"></i>
 						</a>
 					</td>
 					<td>
-						<i class="bi bi-trash3-fill" />
+						<i class="bi bi-trash3-fill"></i>
 					</td>
 				</tr>
 			{/each}

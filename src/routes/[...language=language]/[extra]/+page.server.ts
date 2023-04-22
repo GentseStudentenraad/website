@@ -9,16 +9,12 @@ export const ssr = true;
 export const csr = true;
 
 export const load = (async ({ params, locals }) => {
-	const post = await prisma.page.findFirst({
+	const post = await prisma.page.findFirstOrThrow({
 		where: {
 			slug: params.extra, // TODO: SQL INJECTION?
 			organization: locals.configuration.organization
 		}
 	});
-
-	if (!post) {
-		throw error(404, { message: 'Not found' });
-	}
 
 	const source = locals.language == Language.DUTCH ? post.content_dutch : post.content_english;
 
@@ -34,6 +30,6 @@ export const load = (async ({ params, locals }) => {
 
 	return {
 		contents: html,
-		banner: post.config.banner
+		banner: (post.config as any).banner ?? '',
 	};
 }) satisfies PageServerLoad;

@@ -31,7 +31,7 @@
                                     <Tag icon="file-earmark-richtext" value="Download" link="https://gentsestudentenraad.be/static/persistent/files/{opinion.document_link}"></Tag>
                                 </div>
 							</div>
-                            <img class="w-full h-full object-cover " src="https://unsplash.com/photos/oPDToLOwlqw/download?ixid=MnwxMjA3fDB8MXxhbGx8M3x8fHx8fDJ8fDE2Nzk3Mzg0MTI&force=true&w=640">
+                            <img class="w-full h-full object-cover " src="https://unsplash.com/photos/oPDToLOwlqw/download?ixid=MnwxMjA3fDB8MXxhbGx8M3x8fHx8fDJ8fDE2Nzk3Mzg0MTI&force=true&w=640" alt="Bookshelves">
                         </div>
 						{/each}
 					</div>

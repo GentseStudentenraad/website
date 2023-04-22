@@ -3,11 +3,11 @@ import { prisma } from '$lib/Prisma';
 import type { News } from '@prisma/client';
 import type { RequestHandler } from './$types';
 
-export const POST: RequestHandler = async ({ request }) => {
+export const PUT: RequestHandler = async ({ request }) => {
 	const res: News = await request.json();
 
 	try {
-		await prisma.news.update({
+		await prisma.project.update({
 			data: res,
 			where: {
 				id: res.id

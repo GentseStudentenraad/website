@@ -7,18 +7,19 @@
 	export let data: PageData;
 </script>
 
-<template lang="pug">
-    .container.py-12
-        p(class="text-[12px] opacity-50 font-semibold uppercase") Type
-        select
-            option MARKDOWN
-            option PLAIN_TEXT
-        TextField(description="Identificatie" bind:value!="{data.text.key}")
-        LongTextField(description="Nederlands" bind:value!="{data.text.dutch}")
-        LongTextField(description="Engels" bind:value!="{data.text.english}")
-        ActionButton
-</template>
+<div class="container space-y-4">
+    <div>
+        <p class="text-[12px] opacity-50 font-semibold uppercase">Type</p>
+        <select>
+            <option>MARKDOWN</option>
+            <option>PLAIN_TEXT</option>
+        </select>
+    </div>
+    <TextField description="Identificatie" bind:value={data.text.key}></TextField>
+    <LongTextField description="Nederlands" bind:value={data.text.dutch}></LongTextField>
+    <LongTextField description="Engels" bind:value={data.text.english}></LongTextField>
+    <ActionButton></ActionButton>
+</div>
 
 <style lang="sass">
-
 </style>

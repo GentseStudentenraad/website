@@ -23,26 +23,26 @@
 				<th>
 					<div class="flex items-center">
 						<p>Titel/Synopsis</p>
-						<div class="grow" />
-						<i class="bi bi-chevron-down" />
+						<div class="grow"></div>
+						<i class="bi bi-chevron-down"></i>
 					</div>
 				</th>
 				<th>
 					<div class="flex items-center">
 						<p>Auteur</p>
-						<div class="grow" />
-						<i class="bi bi-chevron-down" />
+						<div class="grow"></div>
+						<i class="bi bi-chevron-down"></i>
 					</div>
 				</th>
 				<th>
 					<div class="flex items-center">
 						<p>Publicatiedatum</p>
-						<div class="grow" />
-						<i class="bi bi-chevron-down" />
+						<div class="grow"></div>
+						<i class="bi bi-chevron-down"></i>
 					</div>
 				</th>
-				<th />
-				<th />
+				<th></th>
+				<th></th>
 			</tr>
 		</thead>
 		<tbody>
@@ -58,11 +58,11 @@
 					<td class="text-sm font-bold">{news_item.published_at.toLocaleString()}</td>
 					<td>
 						<a href="/admin/nieuws/{news_item.id}">
-							<i class="bi bi-pencil-square" />
+							<i class="bi bi-pencil-square"></i>
 						</a>
 					</td>
 					<td>
-						<i class="bi bi-trash3-fill" />
+						<i class="bi bi-trash3-fill"></i>
 					</td>
 				</tr>
 			{/each}

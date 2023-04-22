@@ -5,7 +5,7 @@ export const prerender = false;
 export const ssr = true;
 export const csr = true;
 
-export const load = (async ({ params, locals }) => {
+export const load = (async ({ locals }) => {
 	const projects = prisma.project.findMany({
         orderBy: {
             sort_index: 'asc',

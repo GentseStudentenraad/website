@@ -1,4 +1,3 @@
-import { Language } from '$lib/Language';
 import { prisma } from '$lib/Prisma';
 import type { PageServerLoad } from './$types';
 
@@ -8,8 +7,8 @@ export const csr = true;
 
 export const load = (async ({ params, locals }) => {
 	// Results are filtered based on the academic year. If a parameter n is
-	// given, we filter based on the academic year n-(n + 1). Otherwise we
-	// simply decide which year to use based on the current date. For simplicity
+	// given, we filter based on the academic year n-(n + 1). Otherwise, we
+	// simply decide which year to use based on the current date. For simplicity,
 	// we always use the first of september as the start of the new year. Note
 	// that Date::getMonth uses a zero-based index, so September equals 8.
 	const year = parseInt(params.year);

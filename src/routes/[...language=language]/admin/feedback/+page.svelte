@@ -7,33 +7,33 @@
 			<th>
 				<div class="flex items-center">
 					<p>Student</p>
-					<div class="grow" />
-					<i class="bi bi-chevron-down" />
+					<div class="grow"></div>
+					<i class="bi bi-chevron-down"></i>
 				</div>
 			</th>
 			<th>
 				<div class="flex items-center">
 					<p>Vak</p>
-					<div class="grow" />
-					<i class="bi bi-chevron-down" />
+					<div class="grow"></div>
+					<i class="bi bi-chevron-down"></i>
 				</div>
 			</th>
 			<th>
 				<div class="flex items-center">
 					<p>Datum</p>
-					<div class="grow" />
-					<i class="bi bi-chevron-down" />
+					<div class="grow"></div>
+					<i class="bi bi-chevron-down"></i>
 				</div>
 			</th>
 			<th>
 				<div class="flex items-center">
 					<p>Inhoud</p>
-					<div class="grow" />
-					<i class="bi bi-chevron-down" />
+					<div class="grow"></div>
+					<i class="bi bi-chevron-down"></i>
 				</div>
 			</th>
-			<th />
-			<th />
+			<th></th>
+			<th></th>
 		</tr>
 	</thead>
 
@@ -53,11 +53,11 @@
 				>
 				<td>
 					<a href="/admin/feedback/001">
-						<i class="bi bi-eye" />
+						<i class="bi bi-eye"></i>
 					</a>
 				</td>
 				<td>
-					<i class="bi bi-trash3-fill" />
+					<i class="bi bi-trash3-fill"></i>
 				</td>
 			</tr>
 		{/each}

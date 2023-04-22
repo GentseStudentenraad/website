@@ -18,15 +18,15 @@
 </script>
 
 <a class="widget {classes()}" href={link}>
-	{#if icon !== null && position == 'left'}
-		<i class="bi bi-{icon}" />
+	{#if icon !== null && position === 'left'}
+		<i class="bi bi-{icon}"></i>
 	{/if}
 	<p>{value}</p>
-	{#if icon !== null && position == 'right'}
-		<i class="bi bi-{icon}" />
+	{#if icon !== null && position === 'right'}
+		<i class="bi bi-{icon}"></i>
 	{/if}
 	{#if link !== null}
-		<i class="bi bi-chevron-right text-[10px] -ml-1 opacity-50" />
+		<i class="bi bi-chevron-right text-[10px] -ml-1 opacity-50"></i>
 	{/if}
 </a>
 

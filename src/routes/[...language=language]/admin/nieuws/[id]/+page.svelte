@@ -1,10 +1,6 @@
 <script lang="ts">
 	import type { PageData } from './$types';
-	import NewsItemVertical from '$lib/components/NewsItemVertical.svelte';
-	import NewsItemRow from '$lib/components/NewsItemRow.svelte';
-	import Divider from '$lib/components/Divider.svelte';
 	import ActionButton from '$lib/components/admin/ActionButton.svelte';
-	import NewsItemBig from '$lib/components/NewsItemBig.svelte';
 	import TextField from '$lib/components/admin/TextField.svelte';
 	import LongTextField from '$lib/components/admin/LongTextField.svelte';
 	import Checkbox from '$lib/components/admin/Checkbox.svelte';
@@ -12,7 +8,7 @@
 	import ImageUploader from '$lib/components/admin/ImageUploader.svelte';
 
 	async function post() {
-		const res = await fetch(`/admin/nieuws/${data.news_item!.id}`, {
+		const res = await fetch(`/admin/nieuws/${data.news_item.id}`, {
 			method: 'POST',
 			body: JSON.stringify(data.news_item),
 			headers: {
@@ -21,7 +17,7 @@
 		});
 
 		if (res.status === 200) {
-			window.location.href = `/admin/nieuws/${data.news_item!.id}`;
+			window.location.href = `/admin/nieuws/${data.news_item.id}`;
 		} else {
 			console.log(res);
 		}

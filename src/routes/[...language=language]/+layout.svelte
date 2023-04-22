@@ -21,43 +21,43 @@
 				<a href={route[1]}>{route[0]}</a>
 			{/each}
 
-			<div class="grow" />
+			<div class="grow"></div>
 
 			<a href="/admin">Admin</a>
 
 			{#if data.configuration.facebook_url}
 				<a href={data.configuration.facebook_url}>
-					<i class="bi bi-facebook" />
+					<i class="bi bi-facebook"></i>
 				</a>
 			{/if}
 
 			{#if data.configuration.twitter_url}
 				<a href={data.configuration.twitter_url}>
-					<i class="bi bi-twitter" />
+					<i class="bi bi-twitter"></i>
 				</a>
 			{/if}
 
 			{#if data.configuration.instagram_url}
 				<a href={data.configuration.instagram_url}>
-					<i class="bi bi-instagram" />
+					<i class="bi bi-instagram"></i>
 				</a>
 			{/if}
 
 			{#if data.configuration.tiktok_url}
 				<a href={data.configuration.tiktok_url}>
-					<i class="bi bi-tiktok" />
+					<i class="bi bi-tiktok"></i>
 				</a>
 			{/if}
 
 			{#if data.configuration.discord_url}
 				<a href={data.configuration.discord_url}>
-					<i class="bi bi-discord" />
+					<i class="bi bi-discord"></i>
 				</a>
 			{/if}
 
 			{#if data.configuration.linkedin_url}
 				<a href={data.configuration.linkedin_url}>
-					<i class="bi bi-linkedin" />
+					<i class="bi bi-linkedin"></i>
 				</a>
 			{/if}
 
@@ -67,7 +67,7 @@
 						class="rounded-full bg-neutral-900 px-3 py-1 flex gap-2 font-semibold items-center border-2 border-neutral-700"
 						href={$page.url.toString().replace('/en', '/nl')}
 					>
-						<i class="bi bi-translate" />
+						<i class="bi bi-translate"></i>
 						<p class="text-xs">NL</p>
 					</a>
 				{:else}
@@ -75,7 +75,7 @@
 						class="rounded-full bg-neutral-900 px-3 py-1 flex gap-2 font-semibold items-center border-2 border-neutral-700"
 						href={$page.url.toString().replace('/nl', '/en')}
 					>
-						<i class="bi bi-translate" />
+						<i class="bi bi-translate"></i>
 						<p class="text-xs">EN</p>
 					</a>
 				{/if}
@@ -99,18 +99,18 @@
 
 	<slot />
 
-	<div class="grow" />
+	<div class="grow"></div>
 
 	<footer class="bg-neutral-900 py-20 p-3 text-white">
 		<div class="container-big grid grid-cols-4 gap-12">
 			<div class="flex flex-col gap-2">
 				<p class="font-semibold">{@html data.i18n.get('footer-social-media')}</p>
-				<div class="w-full h-[2px] bg-white/20" />
+				<div class="w-full h-[2px] bg-white/20"></div>
 
 				{#if data.configuration.facebook_url}
 					<a href={data.configuration.facebook_url}>
 						<div class="flex gap-2 items-center">
-							<i class="bi bi-facebook" />
+							<i class="bi bi-facebook"></i>
 							<p class="">Facebook</p>
 						</div>
 					</a>
@@ -119,7 +119,7 @@
 				{#if data.configuration.twitter_url}
 					<a href={data.configuration.twitter_url}>
 						<div class="flex gap-2 items-center">
-							<i class="bi bi-twitter" />
+							<i class="bi bi-twitter"></i>
 							<p class="">Twitter</p>
 						</div>
 					</a>
@@ -128,7 +128,7 @@
 				{#if data.configuration.instagram_url}
 					<a href={data.configuration.instagram_url}>
 						<div class="flex gap-2 items-center">
-							<i class="bi bi-instagram" />
+							<i class="bi bi-instagram"></i>
 							<p class="">Instagram</p>
 						</div>
 					</a>
@@ -137,7 +137,7 @@
 				{#if data.configuration.tiktok_url}
 					<a href={data.configuration.tiktok_url}>
 						<div class="flex gap-2 items-center">
-							<i class="bi bi-tiktok" />
+							<i class="bi bi-tiktok"></i>
 							<p class="">TikTok</p>
 						</div>
 					</a>
@@ -146,7 +146,7 @@
 				{#if data.configuration.discord_url}
 					<a href={data.configuration.discord_url}>
 						<div class="flex gap-2 items-center">
-							<i class="bi bi-discord" />
+							<i class="bi bi-discord"></i>
 							<p class="">Discord</p>
 						</div>
 					</a>
@@ -155,7 +155,7 @@
 				{#if data.configuration.linkedin_url}
 					<a href={data.configuration.linkedin_url}>
 						<div class="flex gap-2 items-center">
-							<i class="bi bi-linkedin" />
+							<i class="bi bi-linkedin"></i>
 							<p class="">LinkedIn</p>
 						</div>
 					</a>
@@ -164,7 +164,7 @@
 
 			<div class="space-y-2">
 				<p class="font-semibold">{@html data.i18n.get('footer-contact')}</p>
-				<div class="w-full h-[2px] bg-white/20" />
+				<div class="w-full h-[2px] bg-white/20"></div>
 
 				{#if data.configuration.adres}
 					<p class="">{data.configuration.adres}</p>
@@ -179,7 +179,7 @@
 
 			<div class="space-y-2">
 				<p class="font-semibold">{@html data.i18n.get('footer-varia')}</p>
-				<div class="w-full h-[2px] bg-white/20" />
+				<div class="w-full h-[2px] bg-white/20"></div>
 				<p class="">{@html data.i18n.get('footer-rss')}</p>
 				<p class="">Ontdek jouw FSR</p>
 				<p class="">{@html data.i18n.get('footer-complaints')}</p>
