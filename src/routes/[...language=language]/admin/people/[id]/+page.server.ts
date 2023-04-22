@@ -5,8 +5,6 @@ export const ssr = false;
 export const csr = true;
 
 export const load = (async ({ params }) => {
-	const _ = params.language; // SVELTEKIT BUG, DO NOT REMOVE
-
 	const person = await prisma.person.findUniqueOrThrow({
 		include: {
 			positions: {

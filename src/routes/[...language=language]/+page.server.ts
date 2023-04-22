@@ -6,9 +6,7 @@ export const prerender = false;
 export const ssr = true;
 export const csr = true;
 
-export const load = (async ({ params, locals, fetch }) => {
-	const _ = params.language;
-
+export const load = (async ({ locals }) => {
 	const news = await prisma.news.findMany({
 		orderBy: [
 			{

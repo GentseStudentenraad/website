@@ -1,8 +1,7 @@
 <script lang="ts">
-	import '../app.scss';
+	import '../../app.scss';
 	import { page } from '$app/stores';
 	import type { LayoutData } from './$types';
-	import { Language } from '$lib/Language';
 
 	let showLinks = false;
 	export let data: LayoutData;
@@ -14,7 +13,7 @@
 			<!-- svelte-ignore a11y-mouse-events-have-key-events -->
             <i class="bi-list text-xl cursor-pointer p-1" on:click={() => showLinks = !showLinks}></i>
 
-            <a href="/">
+            <a href="/static">
                 <img src={data.configuration.logo_url} class="h-8" alt="Logo" />
             </a>
 
@@ -105,7 +104,7 @@
 	<footer class="bg-neutral-900 py-20 p-3 text-white">
 		<div class="container-big grid grid-cols-4 gap-12">
 			<div class="flex flex-col gap-2">
-				<p class="font-semibold">Social Media</p>
+				<p class="font-semibold">{@html data.i18n.get('footer-social-media')}</p>
 				<div class="w-full h-[2px] bg-white/20" />
 
 				{#if data.configuration.facebook_url}
@@ -164,7 +163,7 @@
 			</div>
 
 			<div class="space-y-2">
-				<p class="font-semibold">Contact</p>
+				<p class="font-semibold">{@html data.i18n.get('footer-contact')}</p>
 				<div class="w-full h-[2px] bg-white/20" />
 
 				{#if data.configuration.adres}
@@ -179,11 +178,11 @@
 			</div>
 
 			<div class="space-y-2">
-				<p class="font-semibold">Varia</p>
+				<p class="font-semibold">{@html data.i18n.get('footer-varia')}</p>
 				<div class="w-full h-[2px] bg-white/20" />
-				<p class="">RSS feed</p>
+				<p class="">{@html data.i18n.get('footer-rss')}</p>
 				<p class="">Ontdek jouw FSR</p>
-				<p class="">Klachten</p>
+				<p class="">{@html data.i18n.get('footer-complaints')}</p>
 			</div>
 
 			<img

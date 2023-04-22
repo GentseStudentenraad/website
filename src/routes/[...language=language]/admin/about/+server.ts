@@ -1,9 +1,9 @@
-import { error, json } from '@sveltejs/kit';
+import {error, json} from '@sveltejs/kit';
 import { prisma } from '$lib/Prisma';
 import type { Configuration } from '@prisma/client';
 import type { RequestHandler } from './$types';
 
-export const POST: RequestHandler = async ({ request }) => {
+export const PUT = (async ({ request }) => {
 	const res: Configuration = await request.json();
 
 	try {
@@ -17,4 +17,4 @@ export const POST: RequestHandler = async ({ request }) => {
 	} catch {
 		throw error(500);
 	}
-};
+}) satisfies RequestHandler;

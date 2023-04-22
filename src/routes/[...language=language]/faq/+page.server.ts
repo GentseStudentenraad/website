@@ -1,6 +1,4 @@
 import { Language } from '$lib/Language';
-import dutch from '$lib/i18n/nl.json';
-import english from '$lib/i18n/en.json';
 import { marked } from 'marked';
 import sanitizeHtml from 'sanitize-html';
 import { prisma } from '$lib/Prisma';
@@ -10,9 +8,7 @@ export const prerender = false;
 export const ssr = true;
 export const csr = true;
 
-export const load = (async ({ params, locals }) => {
-	const _ = params.language; // SVELTEKIT BUG, DO NOT REMOVE
-
+export const load = (async ({ locals }) => {
 	const faq = await prisma.questionCategory.findMany({
 		include: {
 			questions: {
@@ -34,6 +30,5 @@ export const load = (async ({ params, locals }) => {
 
 	return {
 		faq,
-		translations: locals.language === Language.DUTCH ? dutch : english
 	};
 }) satisfies PageServerLoad;

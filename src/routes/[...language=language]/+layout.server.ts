@@ -1,6 +1,4 @@
 import { Language } from '$lib/Language';
-import dutch from '$lib/i18n/nl.json';
-import english from '$lib/i18n/en.json';
 import { prisma } from '$lib/Prisma';
 import { Organization, Markup } from '@prisma/client';
 import type { LayoutServerLoad } from './$types';
@@ -11,8 +9,9 @@ export const prerender = false;
 export const ssr = true;
 export const csr = true;
 
-export const load = (async ({ params, locals }) => {
-	const _ = params.language;
+export const load = (async ({  params, locals }) => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const _ = params.language;
 
 	// Create navigation bar routes. It's a bit messy but it's our only option.
 	const routes = [];
@@ -109,7 +108,6 @@ export const load = (async ({ params, locals }) => {
 		routes,
 		configs: configs.filter((e) => e.id != locals.configuration.id),
 		configuration: locals.configuration,
-		translations: locals.language === Language.DUTCH ? dutch : english,
 		i18n: translations
 	};
 }) satisfies LayoutServerLoad;

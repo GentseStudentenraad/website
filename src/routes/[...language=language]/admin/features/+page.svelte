@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { PageData } from './$types';
-	import Checkbox from '$lib/components/Admin/Checkbox.svelte';
+	import Checkbox from '$lib/components/admin/Checkbox.svelte';
 
 	export let data: PageData;
 </script>

@@ -2,31 +2,31 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
-  provider = "prisma-client-js"
+    provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
 }
 
 enum Organization {
-  COMMON
-  GSR
-  PPSR
-  FRIS
-  STUW
-  STUREC
-  STUART
-  BSR
-  STUVECO
-  STURA
-  STUBIO
-  DSR
-  STUGG
-  STUFF
+    COMMON
+    GSR
+    PPSR
+    FRIS
+    STUW
+    STUREC
+    STUART
+    BSR
+    STUVECO
+    STURA
+    STUBIO
+    DSR
+    STUGG
+    STUFF
 
-  @@map("organization")
+    @@map("organization")
 }
 
 enum Language {
@@ -37,247 +37,248 @@ enum Language {
 }
 
 enum Markup {
-  PLAIN_TEXT
-  MARKDOWN
+    PLAIN_TEXT
+    MARKDOWN
 
-  @@map("markup")
+    @@map("markup")
 }
 
 model Page {
-  id Int @id @default(autoincrement())
-  slug String
-  nav_name_dutch String?
-  nav_name_english String?
-  content_dutch String
-  content_english String?
-  organization Organization
-  markup Markup
-  config Json @default("{}")
+    id               Int          @id @default(autoincrement())
+    slug             String
+    nav_name_dutch   String?
+    nav_name_english String?
+    content_dutch    String
+    content_english  String?
+    organization     Organization
+    markup           Markup
+    config           Json         @default("{}")
 
-  @@map("page")
+    @@map("page")
 }
 
 model i18n {
-  id Int @id @default(autoincrement())
-  key String?
-  dutch String
-  english String?
-  organization Organization
-  markup Markup
+    id           Int          @id @default(autoincrement())
+    key          String?
+    dutch        String
+    english      String?
+    organization Organization
+    markup       Markup
 
-  @@map("i18n")
-  @@unique([key, organization])
+    @@unique([key, organization])
+    @@map("i18n")
 }
 
 model Configuration {
-  id           Int          @id @default(autoincrement())
-  organization Organization @unique
-  active       Boolean      @default(false)
-  hostnames    String[]     @default([])
+    id           Int          @id @default(autoincrement())
+    organization Organization @unique
+    active       Boolean      @default(false)
+    hostnames    String[]     @default([])
 
-  // Socials
-  facebook_url  String?
-  twitter_url   String?
-  instagram_url String?
-  tiktok_url    String?
-  linkedin_url  String?
-  discord_url   String?
+    // Socials
+    facebook_url  String?
+    twitter_url   String?
+    instagram_url String?
+    tiktok_url    String?
+    linkedin_url  String?
+    discord_url   String?
 
-  // Contact Information
-  adres       String?
-  phone       String?
-  email_adres String
+    // Contact Information
+    adres       String?
+    phone       String?
+    email_adres String
 
-  // Branding
-  brand_color_primary   String
-  brand_color_secondary String
-  logo_url              String
-  name                  String
-  short_description     String
+    // Branding
+    brand_color_primary   String
+    brand_color_secondary String
+    logo_url              String
+    name                  String
+    short_description     String
 
-  // Features
-  i18n             Boolean @default(false)
-  who_section      Boolean @default(false)
-  news_section     Boolean @default(false)
-  faq_section      Boolean @default(false)
-  opinions_section Boolean @default(false)
+    // Features
+    i18n             Boolean @default(false)
+    who_section      Boolean @default(false)
+    news_section     Boolean @default(false)
+    faq_section      Boolean @default(false)
+    opinions_section Boolean @default(false)
 
-  @@map("configuration")
+    @@map("configuration")
 }
 
 model OpinionGroup {
-  id           Int          @id @default(autoincrement())
-  sort_index   Int
-  name         String
-  about        String?
-  opinions     Opinion[]
-  organization Organization
+    id           Int          @id @default(autoincrement())
+    sort_index   Int
+    name         String
+    about        String?
+    opinions     Opinion[]
+    organization Organization
 
-  @@map("opinion_group")
+    @@map("opinion_group")
 }
 
 model Opinion {
-  id            Int          @id @default(autoincrement())
-  published_at  DateTime
-  title         String
-  about         String?
-  document_link String
-  published     Boolean
-  organization  Organization
+    id            Int          @id @default(autoincrement())
+    published_at  DateTime
+    title         String
+    about         String?
+    document_link String
+    published     Boolean
+    organization  Organization
 
-  opinion_group_id Int
-  opinion_group    OpinionGroup @relation(fields: [opinion_group_id], references: [id])
+    opinion_group_id Int
+    opinion_group    OpinionGroup @relation(fields: [opinion_group_id], references: [id])
 
-  @@map("opinion")
+    @@map("opinion")
 }
 
 model News {
-  id               Int          @id @default(autoincrement())
-  title            String
-  content          String
-  synopsis         String
-  published        Boolean
-  published_at     DateTime
-  author           String?
-  banner_image     String?
-  banner_image_alt String?
-  organization     Organization
+    id               Int          @id @default(autoincrement())
+    title            String
+    content          String
+    synopsis         String
+    published        Boolean
+    published_at     DateTime
+    author           String?
+    banner_image     String?
+    banner_image_alt String?
+    organization     Organization
 
-  @@map("news")
+    @@map("news")
 }
 
 model Question {
-  id           Int          @id @default(autoincrement())
-  question     String
-  answer       String
-  sort_index   Int          @default(0)
-  organization Organization
+    id           Int          @id @default(autoincrement())
+    question     String
+    answer       String
+    sort_index   Int          @default(0)
+    organization Organization
 
-  question_category_id Int
-  question_category    QuestionCategory @relation(fields: [question_category_id], references: [id])
+    question_category_id Int
+    question_category    QuestionCategory @relation(fields: [question_category_id], references: [id])
 
-  @@map("question")
+    @@map("question")
 }
 
 model QuestionCategory {
-  id           Int          @id @default(autoincrement())
-  description  String?
-  sort_index   Int          @default(0)
-  title        String
-  questions    Question[]
-  slug         String
-  organization Organization
+    id           Int          @id @default(autoincrement())
+    description  String?
+    sort_index   Int          @default(0)
+    title        String
+    questions    Question[]
+    slug         String
+    organization Organization
 
-  @@map("question_category")
+    @@map("question_category")
 }
 
 model Person {
-  id           Int          @id @default(autoincrement())
-  name         String?
-  image        String?
-  mail         String?
-  organization Organization
+    id           Int          @id @default(autoincrement())
+    name         String?
+    image        String?
+    mail         String?
+    organization Organization
 
-  positions PersonPosition[]
+    positions PersonPosition[]
 
-  @@map("person")
+    @@map("person")
 }
 
 model PersonGroup {
-  id           Int          @id @default(autoincrement())
-  name         String
-  description  String?
-  sort_index   Int          @default(0)
-  organization Organization
+    id           Int          @id @default(autoincrement())
+    name         String
+    description  String?
+    sort_index   Int          @default(0)
+    organization Organization
 
-  positions PersonPosition[]
+    positions PersonPosition[]
 
-  @@map("person_group")
+    @@map("person_group")
 }
 
 model PersonPosition {
-  id           Int          @id @default(autoincrement())
-  year         Int
-  name         String
-  sort_index   Int          @default(0)
-  education    String?
-  organization Organization
+    id           Int          @id @default(autoincrement())
+    year         Int
+    name         String
+    sort_index   Int          @default(0)
+    education    String?
+    organization Organization
 
-  person_id Int
-  person    Person @relation(fields: [person_id], references: [id])
+    person_id Int
+    person    Person @relation(fields: [person_id], references: [id])
 
-  person_group_id Int
-  person_group    PersonGroup @relation(fields: [person_group_id], references: [id])
+    person_group_id Int
+    person_group    PersonGroup @relation(fields: [person_group_id], references: [id])
 
-  @@map("person_position")
+    @@map("person_position")
 }
 
 enum Faculty {
-  LW // Letteren en Wijsbegeerte
-  RE // Recht en Criminologie
-  WE // Wetenschappen
-  GE // Geneeskunde en Gezondheidswetenschappen
-  EA // Ingenieurswetenschappen en Architectuur
-  TW // Ingenieurswetenschappen en Architectuur, nogmaals?
-  EB // Economie en Bedrijfskunde
-  DI // Diergeneeskunde
-  PP // Psychologie en Pedagogische Wetenschappen
-  BW // Bio-ingenieurswetenschappen
-  FW // Farmaceutische Wetenschappen
-  PS // Politieke en Sociale Wetenschappen
-  LA // Bio-ingenieurswetenschappen
+    LW // Letteren en Wijsbegeerte
+    RE // Recht en Criminologie
+    WE // Wetenschappen
+    GE // Geneeskunde en Gezondheidswetenschappen
+    EA // Ingenieurswetenschappen en Architectuur
+    TW // Ingenieurswetenschappen en Architectuur, nogmaals?
+    EB // Economie en Bedrijfskunde
+    DI // Diergeneeskunde
+    PP // Psychologie en Pedagogische Wetenschappen
+    BW // Bio-ingenieurswetenschappen
+    FW // Farmaceutische Wetenschappen
+    PS // Politieke en Sociale Wetenschappen
+    LA // Bio-ingenieurswetenschappen
 
-  @@map("faculty")
+    @@map("faculty")
 }
 
 model Course {
-  name    String
-  faculty Faculty
-  code    String  @id
+    name    String
+    faculty Faculty
+    code    String  @id
 
-  subjects CourseSubject[]
+    subjects CourseSubject[]
 
-  @@map("course")
+    @@map("course")
 }
 
 model Subject {
-  name    String
-  code    String @id
-  teacher String
+    name    String
+    code    String @id
+    teacher String
 
-  courses CourseSubject[]
+    courses CourseSubject[]
 
-  @@map("subject")
+    @@map("subject")
 }
 
 model CourseSubject {
-  course_code String
-  course      Course @relation(fields: [course_code], references: [code])
+    id Int @id @default(autoincrement())
 
-  subject_code String
-  subject      Subject @relation(fields: [subject_code], references: [code])
+    course_code String
+    course      Course @relation(fields: [course_code], references: [code])
 
-  @@id([course_code, subject_code])
-  @@map("course_subject")
+    subject_code String
+    subject      Subject @relation(fields: [subject_code], references: [code])
+
+    @@map("course_subject")
 }
 
 model Calendar {
-  id            Int          @id @default(autoincrement())
-  url   String
-  enabled Boolean
-  organization Organization
-  name String
+    id           Int          @id @default(autoincrement())
+    url          String
+    enabled      Boolean
+    organization Organization
+    name         String
 
-  @@map("calendar")
+    @@map("calendar")
 }
 
 model Project {
-  id            Int          @id @default(autoincrement())
-  image         String
-  title         String       @unique
-  about         String
-  sort_index   Int          @default(0)
-  organization Organization
+    id           Int          @id @default(autoincrement())
+    image        String
+    title        String       @unique
+    about        String
+    sort_index   Int          @default(0)
+    organization Organization
 
-  @@map("project")
+    @@map("project")
 }

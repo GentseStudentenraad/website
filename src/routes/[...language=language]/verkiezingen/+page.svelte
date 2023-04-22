@@ -8,7 +8,7 @@
 
 <div class="container space-y-12 py-12">
 	<div class="grid grid-cols-2 gap-6">
-		<p class="font-serif font-bold text-5xl col-span-2">{data.translations.elections.title}</p>
+		<p class="font-serif font-bold text-5xl col-span-2">{data.i18n.get('elections-title')}</p>
 		<p>{Chance().paragraph()}</p>
 		<p>{Chance().paragraph()}</p>
 	</div>
@@ -28,7 +28,7 @@
 						<p class="font-semibold text-lg">{election.title}</p>
 						<p>{election.about}</p>
 						{#if election.document_link}
-							<div class="grow" />
+							<div class="grow"></div>
 							<a
 								href={election.document_link}
 								class="flex items-center gap-2 px-4 py-2 bg-primary rounded-full text-white w-fit mt-4"

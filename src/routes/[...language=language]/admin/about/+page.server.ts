@@ -1,4 +1,4 @@
-import type { PageServerLoad } from './$types';
+import type {Actions, PageServerLoad} from './$types';
 
 export const prerender = false;
 export const ssr = true;

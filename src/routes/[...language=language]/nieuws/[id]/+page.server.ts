@@ -8,8 +8,6 @@ export const ssr = true;
 export const csr = false;
 
 export const load = (async ({ params, locals }) => {
-	const _ = params.language; // SVELTEKIT BUG, DO NOT REMOVE
-
 	const news = await prisma.news.findMany({
 		orderBy: [
 			{

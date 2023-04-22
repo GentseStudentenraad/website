@@ -7,19 +7,13 @@
 	export let data: PageData;
 
 	async function post() {
-		const res = await fetch('/admin/config', {
-			method: 'POST',
+		await fetch('/admin/about', {
+			method: 'PUT',
 			body: JSON.stringify(data.configuration),
 			headers: {
 				'content-type': 'application/json'
 			}
 		});
-
-		if (res.status === 200) {
-			window.location.href = '/admin';
-		} else {
-			console.log(res);
-		}
 	}
 </script>
 
@@ -62,5 +56,5 @@
 		description="E-mailadres"
 	/>
 
-	<ActionButton />
+    <ActionButton action="{post}" />
 </div>

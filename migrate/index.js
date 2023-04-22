@@ -165,10 +165,10 @@ async function question(org, maria) {
 
 async function group(org, maria) {
 	const rows = await maria.query(`
-        SELECT 
-            g.abbr as id, 
-            g.name, 
-            IF(g.text = '', NULL, g.text) as description 
+        SELECT
+            g.abbr as id,
+            g.name,
+            IF(g.text = '', NULL, g.text) as description
         FROM \`group\` g;
     `);
 
@@ -188,7 +188,7 @@ async function person(org, maria) {
 	const rows = await maria.query(`
         SELECT s.id, s.first_name, s.last_name, i.path, s.email
         FROM stuver s
-        LEFT JOIN image i on i.id = s.image_id;    
+        LEFT JOIN image i on i.id = s.image_id;
     `);
 
 	for (const row of rows) {

@@ -1,6 +1,5 @@
 <script lang="ts">
 	import 'chance';
-	import type { Prisma } from '@prisma/client';
 	import { goto } from '$app/navigation';
 	import PositionCard from '$lib/components/PositionCard.svelte';
 	import type { PageData } from './$types';
@@ -22,7 +21,7 @@
 </div>
 
 <div class="space-y-4">
-	{#each data.groups.filter((e) => e.positions.length > 0) as group, i}
+	{#each data.groups.filter((e) => e.positions.length > 0) as group}
 		<div class="odd:bg-neutral-100">
 			<div class="container grid grid-cols-2 gap-6 py-6">
 				<div class="space-y-1 col-span-2">
@@ -33,14 +32,14 @@
 				</div>
                 <div class="space-y-6">
                     {#each group.positions as position, j}
-                        {#if j % 2 == 0}
+                        {#if j % 2 === 0}
                             <PositionCard {position} />
                         {/if}
                     {/each}
                 </div>
                 <div class="space-y-6">
                     {#each group.positions as position, j}
-                        {#if j % 2 == 1}
+                        {#if j % 2 === 1}
                             <PositionCard {position} />
                         {/if}
                     {/each}

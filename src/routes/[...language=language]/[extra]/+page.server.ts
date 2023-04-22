@@ -9,8 +9,6 @@ export const ssr = true;
 export const csr = true;
 
 export const load = (async ({ params, locals }) => {
-	const _ = params.language;
-
 	const post = await prisma.page.findFirst({
 		where: {
 			slug: params.extra, // TODO: SQL INJECTION?

@@ -1,10 +1,12 @@
 <script lang="ts">
-	import type { Course } from '@prisma/client';
 	import type { PageData } from './$types';
+
+    type ArrayType<T> = T extends Array<infer Base> ? Base : never;
+
+    let course: ArrayType<PageData['courses']> | null
 	let text = '';
 
 	export let data: PageData;
-	let course: Course | null;
 </script>
 
 <svelte:head>
@@ -49,14 +51,13 @@
 				class="order-1 row-span-2"
 				rows="10"
 				bind:value={text}
-				placeholder={data.i18n.get('feedback-placeholder')}
-			/>
+				placeholder={data.i18n.get('feedback-placeholder')}></textarea>
 
 			<p
 				class="w-full py-4 font-bold rounded-md text-center text-white"
 				style:background-color={data.configuration.brand_color_primary}
 			>
-				<i class="bi bi-send-fill pr-2" /> Verzenden
+				<i class="bi bi-send-fill pr-2"></i> Verzenden
 			</p>
 		</div>
 	</div>

@@ -29,11 +29,11 @@
         alt="Books in a library."
     />
     <div class="space-y-3 p-12">
-        <p class="text-4xl font-serif font-bold shadow">{data.translations.faq.title}</p>
-        <p>{data.translations.faq.subtitle}</p>
+        <p class="text-4xl font-serif font-bold shadow">{@html data.i18n.get('faq-title')}</p>
+        <p>{@html data.i18n.get('faq-about')}</p>
         <div class="pt-1">
             <select bind:value={selected}>
-                <option value={null}>{data.translations.faq.selector}</option>
+                <option value={null}>{@html data.i18n.get('faq-selector')}</option>
                 {#each data.faq as category}
                     <option value={category}>{category.title}</option>
                 {/each}
@@ -51,7 +51,7 @@
 			<div class="grid grid-cols-2 gap-6">
                 <div class="space-y-6">
                     {#each category.questions as questionAnswer, i}
-                        {#if i % 2 == 0}
+                        {#if i % 2 === 0}
                         <div class="space-y-1 bg-white p-6 rounded-md">
                             <p class="text-primary decoration-2 font-bold text-xl">{questionAnswer.question}</p>
                             <p>{@html questionAnswer.answer}</p>
@@ -61,7 +61,7 @@
                 </div>
                 <div class="space-y-6">
                     {#each category.questions as questionAnswer, i}
-                        {#if i % 2 == 1}
+                        {#if i % 2 === 1}
                         <div class="space-y-1 bg-white p-6 rounded-md">
                             <p class="text-primary decoration-2 font-bold text-xl">{questionAnswer.question}</p>
                             <p>{@html questionAnswer.answer}</p>
@@ -73,7 +73,7 @@
 		</div>
 	{/each}
 
-	<p class="text-center opacity-75 font-medium font-lg">{@html data.translations.faq.not_found}</p>
+	<p class="text-center opacity-75 font-medium font-lg">{@html data.i18n.get('faq-not-found')}</p>
 </div>
 
 <style lang="postcss">
