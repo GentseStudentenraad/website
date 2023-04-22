@@ -1,22 +1,22 @@
 <script lang="ts">
-	export let value: Date;
-	export let description: string | null;
+    export let value: Date;
+    export let description: string | null;
 </script>
 
 <template>
-	<div class="py-2">
-		{#if description !== null}
-			<p class="text-[12px] opacity-50 font-semibold uppercase">{description}</p>
-		{/if}
-		<input type="date" class="textfield" placeholder="Auteur" bind:value />
-	</div>
+    <div class="py-2">
+        {#if description !== null}
+            <p class="text-[12px] opacity-50 font-semibold uppercase">{description}</p>
+        {/if}
+        <input type="date" class="textfield" placeholder="Auteur" bind:value />
+    </div>
 </template>
 
 <style lang="postcss">
-	input {
-		margin-top: 0 !important;
-	}
-	.textfield {
-		@apply bg-white px-4 py-2 rounded-md w-full border-neutral-200 border-[1px];
-	}
+    input {
+        margin-top: 0 !important;
+    }
+    .textfield {
+        @apply bg-white px-4 py-2 rounded-md w-full border-neutral-200 border-[1px];
+    }
 </style>

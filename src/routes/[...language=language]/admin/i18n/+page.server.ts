@@ -1,18 +1,18 @@
-import { prisma } from '$lib/Prisma';
-import type { PageServerLoad } from './$types';
+import { prisma } from "$lib/Prisma";
+import type { PageServerLoad } from "./$types";
 
 export const prerender = false;
 export const ssr = false;
 export const csr = true;
 
 export const load = (async ({ locals }) => {
-	const texts = await prisma.i18n.findMany({
-		where: {
-			organization: locals.configuration.organization
-		}
-	});
+    const texts = await prisma.i18n.findMany({
+        where: {
+            organization: locals.configuration.organization,
+        },
+    });
 
-	return {
-		texts
-	};
+    return {
+        texts,
+    };
 }) satisfies PageServerLoad;

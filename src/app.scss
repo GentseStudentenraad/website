@@ -1,84 +1,84 @@
-@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700&display=swap');
-@import url('https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css');
-@import url('https://rsms.me/inter/inter.css');
+@import url("https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700&display=swap");
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css");
+@import url("https://rsms.me/inter/inter.css");
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-	@apply bg-neutral-100;
+    @apply bg-neutral-100;
 
-	font-family: Inter, sans-serif;
-	font-size: 16px;
-	line-height: 24px;
-	font-weight: 400;
+    font-family: Inter, sans-serif;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 400;
 
-	scroll-behavior: smooth;
+    scroll-behavior: smooth;
 
-	font-synthesis: none;
-	text-rendering: optimizeLegibility;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-	-webkit-text-size-adjust: 100%;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-text-size-adjust: 100%;
 }
 
 h1 {
-	@apply text-7xl font-semibold font-serif;
+    @apply text-7xl font-semibold font-serif;
 }
 
 h2 {
-	@apply text-3xl font-semibold;
+    @apply text-3xl font-semibold;
 }
 
 h3 {
-	@apply text-2xl font-medium;
+    @apply text-2xl font-medium;
 }
 
 h4 {
-	@apply text-xl font-medium;
+    @apply text-xl font-medium;
 }
 
 h5 {
-	@apply text-lg; /* placeholder */
+    @apply text-lg; /* placeholder */
 }
 
 h6 {
-	@apply text-sm font-bold opacity-75;
+    @apply text-sm font-bold opacity-75;
 }
 
 .md {
-	@apply space-y-2;
+    @apply space-y-2;
 
-	h1 {
-		@apply font-serif col-span-full;
-	}
+    h1 {
+        @apply font-serif col-span-full;
+    }
 
-	h2 {
-		@apply pt-8;
-	}
+    h2 {
+        @apply pt-8;
+    }
 
-	h3 {
-		@apply pt-6;
-	}
+    h3 {
+        @apply pt-6;
+    }
 
-	h4 {
-		@apply pt-6;
-	}
+    h4 {
+        @apply pt-6;
+    }
 }
 
 .container {
-	@apply max-w-[1000px] m-auto px-4;
+    @apply max-w-[1000px] m-auto px-4;
 }
 
 .container-big {
-	@apply max-w-[1400px] m-auto;
+    @apply max-w-[1400px] m-auto;
 }
 
 .fat-link {
-	@apply font-semibold hover:underline hover:cursor-pointer underline-offset-1 decoration-2;
+    @apply font-semibold hover:underline hover:cursor-pointer underline-offset-1 decoration-2;
 }
 
 .font-serif {
-	font-family: 'EB Garamond', serif;
+    font-family: "EB Garamond", serif;
 }

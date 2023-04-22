@@ -1,11 +1,11 @@
 <script lang="ts">
-	import { page } from '$app/stores';
+    import { page } from "$app/stores";
 
-	export let icon: string;
-	export let value: string;
-	export let badgeNeutral: number | null = null;
-	export let badgeImportant: number | null = null;
-	export let link: string;
+    export let icon: string;
+    export let value: string;
+    export let badgeNeutral: number | null = null;
+    export let badgeImportant: number | null = null;
+    export let link: string;
 </script>
 
 <template lang="pug">

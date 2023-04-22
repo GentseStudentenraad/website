@@ -16,10 +16,10 @@ In elke individuele `load` functies moet een dummy variabele aangemaakt worden d
 
 ```typescript
 export async function load({ params, url, locals }) {
-	const _ = params.language; // BUGFIX
+    const _ = params.language; // BUGFIX
 
-	return {
-		translations: locals.language === Language.DUTCH ? dutch : english
-	};
+    return {
+        translations: locals.language === Language.DUTCH ? dutch : english,
+    };
 }
 ```

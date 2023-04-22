@@ -1,60 +1,60 @@
 <script lang="ts">
-	import type { PageData } from './$types';
-	import TextField from '$lib/components/admin/TextField.svelte';
-	import LongTextField from '$lib/components/admin/LongTextField.svelte';
-	import ActionButton from '$lib/components/admin/ActionButton.svelte';
+    import type { PageData } from "./$types";
+    import TextField from "$lib/components/admin/TextField.svelte";
+    import LongTextField from "$lib/components/admin/LongTextField.svelte";
+    import ActionButton from "$lib/components/admin/ActionButton.svelte";
 
-	export let data: PageData;
+    export let data: PageData;
 
-	async function post() {
-		await fetch('/admin/about', {
-			method: 'PUT',
-			body: JSON.stringify(data.configuration),
-			headers: {
-				'content-type': 'application/json'
-			}
-		});
-	}
+    async function post() {
+        await fetch("/admin/about", {
+            method: "PUT",
+            body: JSON.stringify(data.configuration),
+            headers: {
+                "content-type": "application/json",
+            },
+        });
+    }
 </script>
 
 <svelte:head>
-	<style>
-		:root {
-			@apply bg-neutral-100;
-		}
-	</style>
+    <style>
+        :root {
+            @apply bg-neutral-100;
+        }
+    </style>
 </svelte:head>
 
 <div class="space-y-6">
-	<TextField
-		placeholder="Gentse Studentenraad"
-		bind:value={data.configuration.name}
-		description="Organisatienaam"
-	/>
+    <TextField
+        placeholder="Gentse Studentenraad"
+        bind:value={data.configuration.name}
+        description="Organisatienaam"
+    />
 
-	<LongTextField
-		placeholder=""
-		bind:value={data.configuration.short_description}
-		description="Korte beschrijving"
-	/>
+    <LongTextField
+        placeholder=""
+        bind:value={data.configuration.short_description}
+        description="Korte beschrijving"
+    />
 
-	<TextField
-		placeholder="Straatnaam 1, 9000 Gent"
-		bind:value={data.configuration.adres}
-		description="Adres"
-	/>
+    <TextField
+        placeholder="Straatnaam 1, 9000 Gent"
+        bind:value={data.configuration.adres}
+        description="Adres"
+    />
 
-	<TextField
-		placeholder="091234567"
-		bind:value={data.configuration.phone}
-		description="Telefoonnummer"
-	/>
+    <TextField
+        placeholder="091234567"
+        bind:value={data.configuration.phone}
+        description="Telefoonnummer"
+    />
 
-	<TextField
-		placeholder="hello@example.com"
-		bind:value={data.configuration.email_adres}
-		description="E-mailadres"
-	/>
+    <TextField
+        placeholder="hello@example.com"
+        bind:value={data.configuration.email_adres}
+        description="E-mailadres"
+    />
 
-    <ActionButton action="{post}" />
+    <ActionButton action={post} />
 </div>
