@@ -1,3 +1,5 @@
+[![Linter](https://github.com/GentseStudentenraad/website/actions/workflows/linter.yml/badge.svg)](https://github.com/GentseStudentenraad/website/actions/workflows/linter.yml)
+
 # Gentse Studentenraad
 
 > Deze readme is een _work-in-progress_.
