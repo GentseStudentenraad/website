@@ -28,5 +28,7 @@ export const handle = (async ({ event, resolve }) => {
     event.locals.configuration = configuration;
     event.locals.language = language;
 
-    return resolve(event);
+    return resolve(event, {
+        transformPageChunk: ({ html }) => html.replace("%lang%", event.params.language ?? "en"),
+    });
 }) satisfies Handle;
