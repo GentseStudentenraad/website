@@ -10,7 +10,6 @@ const config = {
 		preprocess({
 			postcss: true,
 			sass: true,
-			pug: true
 		}),
 		mdsvex({
 			extensions: ['.md', '.svx'],
