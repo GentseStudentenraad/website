@@ -20,7 +20,7 @@
 <main>
     <img
         src="https://unsplash.com/photos/G96J64iNrHo/download?ixid=MnwxMjA3fDB8MXxhbGx8fHx8fHx8fHwxNjYzNzczMzUy&force=true&w=1920"
-        class="object-cover w-full h-[60vh]"
+        class="object-cover w-full h-[60vh] max-h-[500px]"
         alt="Scenery of Ghent"
         style="object-position: 50% 75%"
     />

@@ -7,7 +7,7 @@
 {#if data.banner}
     <img
         src={data.banner}
-        class="w-full max-h-[600px] h-[50vh] object-cover"
+        class="w-full h-[50vh] object-cover max-h-[500px]"
         alt={data.banner_alt}
     />
 {/if}

@@ -22,7 +22,7 @@
 </svelte:head>
 
 <img
-    class="h-[50vh] w-full object-cover"
+    class="h-[50vh] w-full object-cover max-h-[500px]"
     src="https://unsplash.com/photos/s9CC2SKySJM/download?ixid=MnwxMjA3fDB8MXxhbGx8fHx8fHx8fHwxNjY5MzkzNDI5&force=true&w=1920"
     alt="Student filling in a form"
 />

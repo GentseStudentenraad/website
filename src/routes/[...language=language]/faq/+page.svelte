@@ -21,10 +21,10 @@
 </script>
 
 <div
-    class="grid grid-cols-3 relative h-[60vh] items-center text-white bg-neutral-900 m-12 rounded-lg overflow-clip"
+    class="grid grid-cols-3 relative h-[60vh] items-center text-white bg-neutral-900 m-12 rounded-lg overflow-clip max-h-[500px]"
 >
     <img
-        class="col-span-2 h-[60vh] object-cover w-full"
+        class="col-span-2 h-[60vh] object-cover w-full max-h-[500px]"
         src="https://unsplash.com/photos/NboyPdtHqFc/download?ixid=MnwxMjA3fDB8MXxhbGx8fHx8fHx8fHwxNjY5Mzk2NjE4&force=true&w=1920"
         style="object-position: 50% 75%;"
         alt="Books in a library."

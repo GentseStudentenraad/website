@@ -12,7 +12,7 @@
 <img
     src="https://gentsestudentenraad.be/static/persistent/images/7a2e803a-f3c1-47c2-bfe6-298aca6b09b1-DB-GSR-2.jpg"
     alt="Groepsfoto studentenraad"
-    class="h-[50vh] object-cover"
+    class="h-[50vh] object-cover max-h-[500px]"
     style="object-position: 50% 30%"
 />
 
