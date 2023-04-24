@@ -13,9 +13,6 @@ const config = {
         }),
         mdsvex({
             extensions: [".md", ".svx"],
-            layout: {
-                markdown: "./src/lib/layouts/MarkDown.svelte",
-            },
         }),
     ],
 

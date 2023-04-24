@@ -7,9 +7,9 @@
     export let data: PageData;
 
     async function put() {
-        await fetch(`/api/i18n/${data.text.id}`, {
+        await fetch(`/api/group/${data.group.id}`, {
             method: "PUT",
-            body: JSON.stringify(data.text),
+            body: JSON.stringify(data.group),
             headers: {
                 "content-type": "application/json",
             },
@@ -18,16 +18,9 @@
 </script>
 
 <div class="container space-y-4">
-    <div>
-        <p class="text-[12px] opacity-50 font-semibold uppercase">Type</p>
-        <select>
-            <option>MARKDOWN</option>
-            <option>PLAIN_TEXT</option>
-        </select>
-    </div>
-    <TextField description="Identificatie" bind:value={data.text.key} />
-    <LongTextField description="Nederlands" bind:value={data.text.dutch} />
-    <LongTextField description="Engels" bind:value={data.text.english} />
+    <TextField description="Naam" bind:value={data.group.name} />
+    <LongTextField description="Beschrijving" bind:value={data.group.description} />
+    <TextField description="Sorteerindex" bind:value={data.group.sort_index} />
     <ActionButton action={put} />
 </div>
 

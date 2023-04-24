@@ -6,8 +6,8 @@
 
     export let data: PageData;
 
-    async function post() {
-        await fetch("/admin/about", {
+    async function put() {
+        await fetch(`/api/configuration/${data.configuration.id}`, {
             method: "PUT",
             body: JSON.stringify(data.configuration),
             headers: {
@@ -56,5 +56,5 @@
         description="E-mailadres"
     />
 
-    <ActionButton action={post} />
+    <ActionButton action={put} />
 </div>

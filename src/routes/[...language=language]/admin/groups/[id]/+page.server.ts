@@ -5,13 +5,13 @@ export const ssr = false;
 export const csr = true;
 
 export const load = (async ({ params }) => {
-    const text = await prisma.i18n.findFirstOrThrow({
+    const group = await prisma.personGroup.findFirstOrThrow({
         where: {
             id: parseInt(params.id),
         },
     });
 
     return {
-        text,
+        group,
     };
 }) satisfies PageServerLoad;

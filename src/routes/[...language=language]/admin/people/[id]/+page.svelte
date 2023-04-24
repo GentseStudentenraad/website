@@ -4,10 +4,35 @@
     import Divider from "$lib/components/Divider.svelte";
     import LongTextField from "$lib/components/admin/LongTextField.svelte";
     import ImageUploader from "$lib/components/admin/ImageUploader.svelte";
+    import ActionButton from "$lib/components/admin/ActionButton.svelte";
 
     export let data: PageData;
     export let description =
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.";
+
+    async function putPerson() {
+        const copy = { ...data.person };
+        delete copy.positions;
+        await fetch(`/api/person/${data.person.id}`, {
+            method: "PUT",
+            body: JSON.stringify(copy),
+            headers: {
+                "content-type": "application/json",
+            },
+        });
+    }
+
+    async function putPosition(position: { id: number }) {
+        const copy = { ...position };
+        delete copy.person_group;
+        await fetch(`/api/position/${position.id}`, {
+            method: "PUT",
+            body: JSON.stringify(copy),
+            headers: {
+                "content-type": "application/json",
+            },
+        });
+    }
 </script>
 
 <svelte:head>
@@ -30,6 +55,8 @@
 
     <TextField description="E-mailadres" bind:value={data.person.mail} />
 
+    <ActionButton action={putPerson} />
+
     {#each data.person.positions as position}
         <Divider text="Positie" />
 
@@ -41,8 +68,27 @@
 
         <TextField description="Academiejaar" bind:value={position.year} />
 
-        <TextField description="Groep" bind:value={position.person_group.name} />
+        <div>
+            <p class="text-[12px] opacity-50 font-semibold uppercase">GROEP</p>
+            <select bind:value={position.person_group_id}>
+                {#each data.groups as group}
+                    <option value={group.id}>
+                        {group.name}
+                    </option>
+                {/each}
+            </select>
+        </div>
 
         <LongTextField description="Functiebeschrijving" bind:value={description} />
+
+        <ActionButton action={() => putPosition(position)} />
     {/each}
 </div>
+
+<style lang="postcss">
+    select {
+        appearance: none;
+
+        @apply w-full bg-white py-2 px-4 border-neutral-200 border-[1px];
+    }
+</style>

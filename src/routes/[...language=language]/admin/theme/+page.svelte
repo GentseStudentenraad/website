@@ -4,6 +4,16 @@
     import ActionButton from "$lib/components/admin/ActionButton.svelte";
 
     export let data: PageData;
+
+    async function put() {
+        await fetch(`/api/configuration/${data.configuration.id}`, {
+            method: "PUT",
+            body: JSON.stringify(data.configuration),
+            headers: {
+                "content-type": "application/json",
+            },
+        });
+    }
 </script>
 
 <svelte:head>
@@ -25,5 +35,5 @@
         <p>Secundaire kleur: {data.configuration.brand_color_secondary}</p>
     </div>
 
-    <ActionButton />
+    <ActionButton action={put} />
 </div>
