@@ -6,10 +6,11 @@
     import Checkbox from "$lib/components/admin/Checkbox.svelte";
     import DatePicker from "$lib/components/admin/DatePicker.svelte";
     import ImageUploader from "$lib/components/admin/ImageUploader.svelte";
+    import { goto } from "$app/navigation";
 
-    async function post() {
-        const res = await fetch(`/admin/nieuws/${data.news_item.id}`, {
-            method: "POST",
+    async function put() {
+        const res = await fetch(`/api/news/${data.news_item.id}`, {
+            method: "PUT",
             body: JSON.stringify(data.news_item),
             headers: {
                 "content-type": "application/json",
@@ -17,9 +18,9 @@
         });
 
         if (res.status === 200) {
-            window.location.href = `/admin/nieuws/${data.news_item.id}`;
+            goto("/admin/nieuws");
         } else {
-            console.log(res);
+            alert(JSON.stringify(res, null, 2));
         }
     }
 
@@ -53,5 +54,5 @@
 
     <Checkbox label="Publiek" bind:value={data.news_item.published} description="Opties" />
 
-    <ActionButton action={post} />
+    <ActionButton action={put} />
 </div>

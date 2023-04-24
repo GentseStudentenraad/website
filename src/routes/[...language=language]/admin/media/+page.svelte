@@ -2,17 +2,24 @@
     import type { PageData } from "./$types";
     import TextField from "$lib/components/admin/TextField.svelte";
     import ActionButton from "$lib/components/admin/ActionButton.svelte";
+    import { goto } from "$app/navigation";
 
     export let data: PageData;
 
     async function put() {
-        await fetch(`/api/configuration/${data.configuration.id}`, {
+        const res = await fetch(`/api/configuration/${data.configuration.id}`, {
             method: "PUT",
             body: JSON.stringify(data.configuration),
             headers: {
                 "content-type": "application/json",
             },
         });
+
+        if (res.status === 200) {
+            goto("/admin");
+        } else {
+            alert(JSON.stringify(res, null, 2));
+        }
     }
 </script>
 

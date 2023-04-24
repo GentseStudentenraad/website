@@ -44,7 +44,11 @@
     </div>
 </div>
 
-<style lang="sass">
+<style lang="sass" global>
     .category
         @apply text-xs font-semibold opacity-75
+
+    select
+        appearance: none
+        @apply w-full bg-white py-2 px-4 border-neutral-200 border-[1px]
 </style>

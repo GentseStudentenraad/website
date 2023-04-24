@@ -9,7 +9,7 @@ export const load = (async ({ params, locals }) => {
     const questions = await prisma.question.findMany({
         where: {
             organization: locals.configuration.organization,
-            question_category_id: parseInt(params.id),
+            question_category_id: parseInt(params.section),
         },
     });
 

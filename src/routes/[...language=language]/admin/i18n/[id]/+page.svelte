@@ -3,17 +3,24 @@
     import LongTextField from "$lib/components/admin/LongTextField.svelte";
     import ActionButton from "$lib/components/admin/ActionButton.svelte";
     import type { PageData } from "./$types";
+    import { goto } from "$app/navigation";
 
     export let data: PageData;
 
     async function put() {
-        await fetch(`/api/i18n/${data.text.id}`, {
+        const res = await fetch(`/api/i18n/${data.text.id}`, {
             method: "PUT",
             body: JSON.stringify(data.text),
             headers: {
                 "content-type": "application/json",
             },
         });
+
+        if (res.status === 200) {
+            goto("/admin/i18n");
+        } else {
+            alert(JSON.stringify(res, null, 2));
+        }
     }
 </script>
 

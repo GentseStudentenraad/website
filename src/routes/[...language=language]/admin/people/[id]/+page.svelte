@@ -5,6 +5,7 @@
     import LongTextField from "$lib/components/admin/LongTextField.svelte";
     import ImageUploader from "$lib/components/admin/ImageUploader.svelte";
     import ActionButton from "$lib/components/admin/ActionButton.svelte";
+    import { goto } from "$app/navigation";
 
     export let data: PageData;
     export let description =
@@ -13,25 +14,39 @@
     async function putPerson() {
         const copy = { ...data.person };
         delete copy.positions;
-        await fetch(`/api/person/${data.person.id}`, {
+
+        const res = await fetch(`/api/person/${data.person.id}`, {
             method: "PUT",
             body: JSON.stringify(copy),
             headers: {
                 "content-type": "application/json",
             },
         });
+
+        if (res.status === 200) {
+            goto("/admin/people");
+        } else {
+            alert(JSON.stringify(res, null, 2));
+        }
     }
 
     async function putPosition(position: { id: number }) {
         const copy = { ...position };
         delete copy.person_group;
-        await fetch(`/api/position/${position.id}`, {
+
+        const res = await fetch(`/api/position/${position.id}`, {
             method: "PUT",
             body: JSON.stringify(copy),
             headers: {
                 "content-type": "application/json",
             },
         });
+
+        if (res.status === 200) {
+            goto("/admin/people");
+        } else {
+            alert(JSON.stringify(res, null, 2));
+        }
     }
 </script>
 

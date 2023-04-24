@@ -3,16 +3,19 @@
     export let text = "Sla wijzigingen op";
 </script>
 
-<div class="grid grid-cols-2 gap-4">
-    <button class="action-button text-black bg-neutral-300"> Annuleer </button>
-
-    <button on:click={action} class="action-button text-white bg-neutral-900">
+<div class="flex flex-wrap gap-4">
+    <button on:click={action} class="action-button bg-neutral-800 text-white">
+        <i class="bi bi-save" />
         {text}
+    </button>
+
+    <button class="action-button bg-neutral-300 text-black opacity-50" disabled>
+        <i class="bi bi-trash" /> Ongedaan maken
     </button>
 </div>
 
 <style lang="postcss">
     .action-button {
-        @apply p-4 text-center rounded-xl font-medium hover:cursor-pointer w-full;
+        @apply flex items-center gap-2 px-4 py-2 text-center rounded-lg text-sm font-semibold;
     }
 </style>
