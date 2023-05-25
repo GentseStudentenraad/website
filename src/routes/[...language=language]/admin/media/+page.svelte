@@ -60,5 +60,11 @@
         description="LinkedIn"
     />
 
+    <TextField
+        placeholder="https://github.com"
+        bind:value={data.configuration.github_url}
+        description="GitHub"
+    />
+
     <ActionButton action={put} />
 </div>

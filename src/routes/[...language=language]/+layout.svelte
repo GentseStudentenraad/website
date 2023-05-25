@@ -62,6 +62,12 @@
                 </a>
             {/if}
 
+            {#if data.configuration.github_url}
+                <a href={data.configuration.github_url}>
+                    <i class="bi bi-github" />
+                </a>
+            {/if}
+
             {#if data.configuration.i18n}
                 {#if $page.url.toString().includes("/en")}
                     <a
@@ -161,6 +167,15 @@
                         <div class="flex gap-2 items-center">
                             <i class="bi bi-linkedin" />
                             <p class="">LinkedIn</p>
+                        </div>
+                    </a>
+                {/if}
+
+                {#if data.configuration.github_url}
+                    <a href={data.configuration.github_url}>
+                        <div class="flex gap-2 items-center">
+                            <i class="bi bi-github" />
+                            <p class="">GitHub</p>
                         </div>
                     </a>
                 {/if}
