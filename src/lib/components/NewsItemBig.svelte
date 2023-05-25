@@ -11,12 +11,12 @@
     />
 </svelte:head>
 
-<div>
+<div class="rounded-lg bg-white overflow-clip">
     <a href="/nieuws/{news_item.id}">
         <div class="grid grid-cols-2 items-center">
             <img
                 src={news_item.banner_image}
-                class="object-cover rounded-lg aspect-[3/2] w-full"
+                class="object-cover aspect-[3/2] w-full"
                 alt={news_item.banner_image_alt}
             />
 
