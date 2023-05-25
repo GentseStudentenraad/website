@@ -7,12 +7,8 @@
     export let data: PageData;
 </script>
 
-<div class="py-12">
-    <div class="container">
-        <div class="-mx-24">
-            <NewsItemBig news_item={data.news[0]} />
-        </div>
-    </div>
+<div class="container py-12">
+    <NewsItemBig news_item={data.news[0]} />
 </div>
 
 <div class="bg-white py-12">
