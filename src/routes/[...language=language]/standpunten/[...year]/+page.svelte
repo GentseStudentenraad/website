@@ -52,9 +52,13 @@
         {/each}
     </div>
 {:else}
-    <div class="container">
-        <p class="text-3xl font-bold">TODO</p>
-        <p>Voor dit jaar zijn nog geen standpunten vrijgegeven.</p>
-        <a href="/standpunten/2021" class="fat-link">klik hier</a>
+    <div class="grow" />
+    <div class="flex items-center gap-6 justify-center w-full">
+        <i class="bi bi-file-earmark-x text-8xl" />
+        <div>
+            <p class="text-xl font-bold">Te vroeg!</p>
+            <p class="mb-2">Voor dit jaar zijn nog geen standpunten vrijgegeven.</p>
+            <Tag link="/standpunten/2021" value="Bekijk academiejaar 2021-2022" />
+        </div>
     </div>
 {/if}
