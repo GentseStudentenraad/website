@@ -24,6 +24,12 @@
 
             <div class="grow" />
 
+            {#if data.user}
+                <p>{data.user}</p>
+            {:else}
+                <a href="https://login.ugent.be/login?service=https://localhost:8080">Login</a>
+            {/if}
+
             <a href="/admin">Admin</a>
 
             {#if data.configuration.facebook_url}

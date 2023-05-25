@@ -6,6 +6,7 @@ declare global {
         interface Locals {
             language: Language;
             configuration: Configuration;
+            user: string | null;
         }
         // interface PageData {}
         // interface PageError {}

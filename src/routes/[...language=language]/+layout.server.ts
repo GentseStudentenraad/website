@@ -119,5 +119,6 @@ export const load = (async ({ params, locals }) => {
         configs: configs.filter((e) => e.id != locals.configuration.id),
         configuration: locals.configuration,
         i18n: translations,
+        user: locals.user,
     };
 }) satisfies LayoutServerLoad;
