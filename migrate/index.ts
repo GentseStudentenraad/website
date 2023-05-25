@@ -246,7 +246,7 @@ async function person(org: Organization, maria: mariadb.Connection) {
                 id: row.id + org.offset,
                 name: `${row.first_name} ${row.last_name}`,
                 organization: org.enum,
-                image: `${org.files}/images/${row.path}`,
+                image: row.path ? `${org.files}/images/${row.path}` : null,
                 mail: row.email,
             };
         }),

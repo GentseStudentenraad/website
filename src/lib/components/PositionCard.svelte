@@ -7,11 +7,15 @@
 
 <div class="rounded-lg p-6 space-y-4 bg-white h-fit">
     <div class="flex items-center gap-4 overflow-hidden">
-        <img
-            src={position.person.image}
-            alt="Portrait of {position.person.name}"
-            class="h-16 w-16 object-cover rounded-full"
-        />
+        {#if position.person.image}
+            <img
+                src={position.person.image}
+                alt="Portrait of {position.person.name}"
+                class="h-16 w-16 object-cover rounded-full"
+            />
+        {:else}
+            <i class="bi bi-person-circle text-6xl text-center h-16" />
+        {/if}
         <div>
             <p class="opacity-90 text-sn text-ellipsis">
                 {position.name}
