@@ -10,7 +10,7 @@ export const load = (async ({ locals }) => {
     const news = await prisma.news.findMany({
         orderBy: [
             {
-                published: "desc",
+                published_at: "desc",
             },
         ],
         where: {
