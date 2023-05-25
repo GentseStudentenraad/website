@@ -88,6 +88,7 @@ model Configuration {
     adres       String?
     phone       String?
     email_adres String
+    group_photo String?
 
     // Branding
     brand_color_primary   String

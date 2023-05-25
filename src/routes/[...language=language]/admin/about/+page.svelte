@@ -4,6 +4,7 @@
     import LongTextField from "$lib/components/admin/LongTextField.svelte";
     import ActionButton from "$lib/components/admin/ActionButton.svelte";
     import { goto } from "$app/navigation";
+    import ImageUploader from "$lib/components/admin/ImageUploader.svelte";
 
     export let data: PageData;
 
@@ -62,6 +63,8 @@
         bind:value={data.configuration.email_adres}
         description="E-mailadres"
     />
+
+    <ImageUploader bind:source={data.configuration.group_photo} />
 
     <ActionButton action={put} />
 </div>
