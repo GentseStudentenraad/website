@@ -15,7 +15,7 @@ services:
             DATABASE_URL: "postgresql://gsr:gsr@10.0.0.3:5432/gsr?schema=public"
         labels:
             - "traefik.enable=true"
-            - "traefik.http.routers.staging.rule=Host(`gsr.staging.gentsestudentenraad.be`,`stura.staging.gentsestudentenraad.be`,`stuart.staging.gentsestudentenraad.be`,`fris.staging.gentsestudentenraad.be`,`stuveco.staging.gentsestudentenraad.be`,`sturec.staging.gentsestudentenraad.be`,`stubio.staging.gentsestudentenraad.be`,`ppsr.staging.gentsestudentenraad.be`,`stuff.staging.gentsestudentenraad.be`)"
+            - "traefik.http.routers.staging.rule=Host(`gsr.staging.gentsestudentenraad.be`,`stura.staging.gentsestudentenraad.be`,`stuart.staging.gentsestudentenraad.be`,`fris.staging.gentsestudentenraad.be`,`stuveco.staging.gentsestudentenraad.be`,`sturec.staging.gentsestudentenraad.be`,`stubio.staging.gentsestudentenraad.be`,`ppsr.staging.gentsestudentenraad.be`,`stuff.staging.gentsestudentenraad.be`,`bsr.staging.gentsestudentenraad.be`)"
             - "traefik.http.routers.staging.entrypoints=websecure"
             - "traefik.http.routers.staging.tls.certresolver=letsencrypt"
             - "traefik.http.services.staging.loadbalancer.server.port=3000"
