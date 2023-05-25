@@ -61,10 +61,7 @@
 <div class="space-y-6">
     <TextField description="Naam" bind:value={data.person.name} />
 
-    <ImageUploader
-        description="Portretfoto"
-        source="https://gentsestudentenraad.be/static/persistent/images/{data.person.image}"
-    />
+    <ImageUploader description="Portretfoto" source={data.person.image} />
 
     <TextField description="Afbeelding" bind:value={data.person.image} />
 

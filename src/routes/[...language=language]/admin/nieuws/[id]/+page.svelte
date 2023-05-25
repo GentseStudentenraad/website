@@ -40,11 +40,7 @@
 
     <TextField bind:value={data.news_item.synopsis} description="Synopsis" />
 
-    <ImageUploader
-        description="Coverfoto"
-        source="https://gentsestudentenraad.be/static/persistent/images/{data.news_item
-            .banner_image}"
-    />
+    <ImageUploader description="Coverfoto" source={data.news_item.banner_image} />
 
     <LongTextField bind:value={data.news_item.content} description="Inhoud" />
 

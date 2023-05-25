@@ -32,7 +32,7 @@
                 <td>
                     {#if person.image}
                         <img
-                            src="https://gentsestudentenraad.be/static/persistent/images/{person.image}"
+                            src={person.image}
                             alt="Portrait of {person.name}"
                             class="h-12 w-12 rounded-full"
                         />
