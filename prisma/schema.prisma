@@ -96,11 +96,12 @@ model Configuration {
     short_description     String
 
     // Features
-    i18n             Boolean @default(false)
-    who_section      Boolean @default(false)
-    news_section     Boolean @default(false)
-    faq_section      Boolean @default(false)
-    opinions_section Boolean @default(false)
+    i18n              Boolean @default(false)
+    who_section       Boolean @default(false)
+    news_section      Boolean @default(false)
+    faq_section       Boolean @default(false)
+    opinions_section  Boolean @default(false)
+    elections_section Boolean @default(false)
 
     @@map("configuration")
 }

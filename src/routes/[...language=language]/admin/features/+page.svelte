@@ -37,6 +37,11 @@
     <Checkbox bind:value={data.configuration.who_section} label="Wie-sectie" description={null} />
     <Checkbox bind:value={data.configuration.faq_section} label="FAQ-sectie" description={null} />
     <Checkbox
+        bind:value={data.configuration.elections_section}
+        label="Verkiezingensectie"
+        description={null}
+    />
+    <Checkbox
         bind:value={data.configuration.opinions_section}
         label="Standpuntensectie"
         description={null}

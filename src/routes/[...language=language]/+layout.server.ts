@@ -43,11 +43,13 @@ export const load = (async ({ params, locals }) => {
         );
     }
 
-    routes.push(
-        locals.language == Language.DUTCH
-            ? ["Verkiezingen", "/nl/verkiezingen"]
-            : ["Elections", "/en/verkiezingen"],
-    );
+    if (locals.configuration.elections_section) {
+        routes.push(
+            locals.language == Language.DUTCH
+                ? ["Verkiezingen", "/nl/verkiezingen"]
+                : ["Elections", "/en/verkiezingen"],
+        );
+    }
 
     if (locals.configuration.news_section) {
         routes.push(

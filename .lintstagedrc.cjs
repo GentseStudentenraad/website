@@ -1,3 +1,6 @@
 module.exports = {
-    "*": ["prettier --plugin-search-dir . --check", "eslint"],
+    "*": "prettier --plugin-search-dir . --check",
+    ".ts": ["eslint"],
+    ".js": ["eslint"],
+    ".svelte": ["eslint"],
 };
