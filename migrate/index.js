@@ -9,15 +9,15 @@ const post = postgres({
 });
 
 const organizations = [
-    { name: "gsr", offset: 0 },
-    { name: "ppsr", offset: 1000 },
-    { name: "fris", offset: 2000 },
-    { name: "sturec", offset: 3000 },
-    { name: "stura", offset: 4000 },
-    { name: "bsr", offset: 5000 },
-    { name: "stuart", offset: 6000 },
-    { name: "stuff", offset: 7000 },
-    { name: "stubio", offset: 8000 },
+    { name: "gsr", offset: 0, files: "https://gentsestudentenraad.be/static/persistent" },
+    { name: "ppsr", offset: 1000, files: "https://ppsr.ugent.be/static/persistent" },
+    { name: "fris", offset: 2000, files: "https://fris.ugent.be/static/persistent" },
+    { name: "sturec", offset: 3000, files: "https://sturec.ugent.be/static/persistent" },
+    { name: "stura", offset: 4000, files: "https://stura.ugent.be/static/persistent" },
+    { name: "bsr", offset: 5000, files: "https://bsr.ugent.be/static/persistent" },
+    { name: "stuart", offset: 6000, files: "https://stuart.ugent.be/static/persistent" },
+    { name: "stuff", offset: 7000, files: "https://stuff.ugent.be/static/persistent" },
+    { name: "stubio", offset: 8000, files: "https://stubio.ugent.be/static/persistent" },
 ];
 
 // https://stackoverflow.com/a/7616484
@@ -72,11 +72,13 @@ async function opinion(org, maria) {
     `);
 
     for (const row of rows) {
+        const file = `${org.files}/files/${row.document_link}`;
+
         await post`
           insert into opinion
             (id, title, about, document_link, opinion_group_id, published_at, published, organization)
           values
-            (${row.id + org.offset}, ${row.title}, ${row.about}, ${row.document_link}, ${
+            (${row.id + org.offset}, ${row.title}, ${row.about}, ${file}, ${
             row.opinion_group + org.offset
         }, ${row.published_at}, ${row.published}, ${org.name.toUpperCase()})
         `;
@@ -100,13 +102,15 @@ async function news(org, maria) {
     `);
 
     for (const row of rows) {
+        const file = `${org.files}/images/${row.banner_image}`;
+
         await post`
           insert into news
             (id, title, content, synopsis, published, published_at, author, banner_image, banner_image_alt, organization)
           values
             (${row.id + org.offset}, ${row.title}, ${row.content}, ${row.synopsis}, ${
             row.published
-        }, ${row.published_at}, ${row.author}, ${row.banner_image}, ${
+        }, ${row.published_at}, ${row.author}, ${file}, ${
             row.banner_image_alt
         }, ${org.name.toUpperCase()})
         `;
@@ -125,7 +129,6 @@ async function questionCategory(org, maria) {
     `);
 
     for (const row of rows) {
-        console.log(parseInt(row.id));
         await post`
           insert into question_category
             (id, title, slug, organization, description, sort_index)
@@ -193,11 +196,12 @@ async function person(org, maria) {
 
     for (const row of rows) {
         const name = `${row.first_name} ${row.last_name}`;
+        const image = `${org.files}/images/${row.path}`;
         await post`
           insert into person
             (id, name, image, mail, organization)
           values
-            (${row.id + org.offset}, ${name}, ${row.path}, ${row.email}, ${org.name.toUpperCase()})
+            (${row.id + org.offset}, ${name}, ${image}, ${row.email}, ${org.name.toUpperCase()})
         `;
     }
 }

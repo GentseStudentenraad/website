@@ -35,7 +35,7 @@
                                         <Tag
                                             icon="file-earmark-richtext"
                                             value="Download"
-                                            link="https://gentsestudentenraad.be/static/persistent/files/{opinion.document_link}"
+                                            link={opinion.document_link}
                                         />
                                     </div>
                                 </div>

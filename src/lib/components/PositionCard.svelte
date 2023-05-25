@@ -8,7 +8,7 @@
 <div class="rounded-lg p-6 space-y-4 bg-white h-fit">
     <div class="flex items-center gap-4 overflow-hidden">
         <img
-            src="https://gentsestudentenraad.be/static/persistent/images/{position.person.image}"
+            src={position.person.image}
             alt="Portrait of {position.person.name}"
             class="h-16 w-16 object-cover rounded-full"
         />

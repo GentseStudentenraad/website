@@ -7,7 +7,7 @@
 <div class="bg-white rounded-md">
     <a href="/nieuws/{news_item.id}">
         <img
-            src="https://gentsestudentenraad.be/static/persistent/images/{news_item.banner_image}"
+            src={news_item.banner_image}
             class="object-cover overflow-hidden aspect-square w-full rounded-t-md"
             alt={news_item.banner_image_alt}
         />

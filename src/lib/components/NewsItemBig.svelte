@@ -15,7 +15,7 @@
     <a href="/nieuws/{news_item.id}">
         <div class="grid grid-cols-2 items-center">
             <img
-                src="https://gentsestudentenraad.be/static/persistent/images/{news_item.banner_image}"
+                src={news_item.banner_image}
                 class="object-cover rounded-lg aspect-[3/2] w-full"
                 alt={news_item.banner_image_alt}
             />
