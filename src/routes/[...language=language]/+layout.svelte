@@ -91,16 +91,25 @@
     </nav>
 
     {#if showLinks}
-        <div class="panel-contents" on:mouseleave={() => (showLinks = false)}>
+        <div
+            class="panel-contents"
+            on:mouseleave={() => (showLinks = false)}
+            style:background-color={data.configuration.brand_color_primary}
+        >
             {#each data.configs as config}
                 <a
                     href={config.hostnames[0]}
-                    class="panel-link grid grid-cols-3 items-center justify-center gap-6"
+                    class="panel-link grid grid-cols-3 place-items-center gap-6"
                 >
-                    <img class="invert object-contain" src={config.logo_url} alt="Logo" />
+                    <img class="invert h-16 p-2" src={config.logo_url} alt="Logo" />
                     <div class="-space-y-1 col-span-2">
-                        <p class="m-0 text-lg font-bold">{config.name}</p>
-                        <p class="m-0 opacity-75 text-sm">{config.short_description}</p>
+                        <p class="m-0 text-xl font-semibold">{config.name}</p>
+                        <p class="m-0 opacity-75 text-sm">
+                            {config.short_description.slice(0, 100)}{config.short_description
+                                .length > 100
+                                ? ".."
+                                : ""}
+                        </p>
                     </div>
                 </a>
             {/each}
@@ -219,10 +228,10 @@
     }
 
     .panel-contents {
-        @apply grid grid-cols-3 p-4 bg-neutral-100/25 backdrop-blur-xl gap-4 w-[100vw] absolute top-14;
+        @apply grid grid-cols-3 p-8 gap-8 absolute top-14 shadow-lg border-t-[1px] border-neutral-100/25;
     }
 
     .panel-link {
-        @apply rounded-md p-4 bg-neutral-100 w-full h-24;
+        @apply rounded-md p-4 bg-neutral-100 w-full;
     }
 </style>
