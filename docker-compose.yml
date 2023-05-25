@@ -1,20 +1,28 @@
 version: "3.5"
+
+name: web2022
+
 services:
     website:
         container_name: website2022
         hostname: website2022
-        build: .
+        build:
+            context: .
+            dockerfile: Dockerfile
+            args:
+                DATABASE_URL: "postgresql://gsr:gsr@10.0.0.3:5432/gsr?schema=public"
         environment:
-            DATABASE_URL: "postgresql://gsr:gsr@postgres:5432/gsr?schema=public"
+            DATABASE_URL: "postgresql://gsr:gsr@10.0.0.3:5432/gsr?schema=public"
         labels:
             - "traefik.enable=true"
-            - "traefik.http.routers.staging.rule=Host(`staging.gentsestudentenraad.be`,`gsr.ugent.be`)"
+            - "traefik.http.routers.staging.rule=Host(`gsr.staging.gentsestudentenraad.be`, `stura.staging.gentsestudentenraad.be`,`gsr.ugent.be`)"
             - "traefik.http.routers.staging.entrypoints=websecure"
             - "traefik.http.routers.staging.tls.certresolver=letsencrypt"
             - "traefik.http.services.staging.loadbalancer.server.port=3000"
             - "traefik.http.middlewares.test-auth.basicauth.users=gsr:$$apr1$$vNW/TXZ8$$ZEBU.uYb/6e8efHUXsx1w0"
             - "traefik.http.routers.staging.middlewares=test-auth"
         networks:
+            server_default:
             web2022:
                 ipv4_address: 10.0.0.2
         restart: unless-stopped
@@ -37,81 +45,11 @@ services:
             web2022:
                 ipv4_address: 10.0.0.3
 
-    imgproxy:
-        container_name: website-imgproxy
-        hostname: imgproxy
-        image: darthsim/imgproxy
-        environment:
-            IMGPROXY_LOCAL_FILESYSTEM_ROOT: /images/.
-            IMGPROXY_USE_S3: "true"
-            IMGPROXY_S3_ENDPOINT: http://10.0.0.5:9000
-            AWS_ACCESS_KEY_ID: 7yg46fs9mmcCdgPM
-            AWS_SECRET_ACCESS_KEY: AuuGQVmef9Qpm1oaFZdbJVrw9ChOLZiS
-            IMGPROXY_ALLOWED_SOURCES: s3://,local://
-            IMGPROXY_DEVELOPMENT_ERRORS_MODE: "true"
-            IMGPROXY_MAX_SRC_RESOLUTION: 100
-            IMGPROXY_JPEG_PROGRESSIVE: "true"
-        volumes:
-            - "/home/jens/volumes/staging/images:/images:ro"
-        networks:
-            web2022:
-                ipv4_address: 10.0.0.4
-        ports:
-            - "8080:8080"
-
-    minio:
-        container_name: website-s3
-        hostname: s3
-        image: minio/minio
-        volumes:
-            - "/home/jens/volumes/staging/minio:/data"
-        environment:
-            MINIO_ROOT_USER: admin
-            MINIO_ROOT_PASSWORD: verysecretpassword
-        ports:
-            - "9000:9000"
-            - "9090:9090"
-        networks:
-            web2022:
-                ipv4_address: 10.0.0.5
-        entrypoint: minio server /data --console-address ":9090"
-
-    postgrest:
-        container_name: website-postgrest
-        image: postgrest/postgrest
-        hostname: rest
-        environment:
-            PGRST_DB_URI: postgres://authenticator:mysecretpassword@postgres:5432/gsr
-            PGRST_DB_SCHEMAS: public
-            PGRST_DB_ANON_ROLE: web_anon
-            PGRST_OPENAPI_SERVER_PROXY_URI: http://127.0.0.1:3000
-        ports:
-            - "3000:3000"
-        depends_on:
-            - postgres
-        networks:
-            web2022:
-                ipv4_address: 10.0.0.6
-
-    pgadmin:
-        container_name: website-pgadmin
-        image: dpage/pgadmin4
-        hostname: pgadmin
-        environment:
-            PGADMIN_DEFAULT_EMAIL: jenspots@icloud.com
-            PGADMIN_DEFAULT_PASSWORD: verysecurepassword
-            PGADMIN_LISTEN_PORT: 3001
-        volumes:
-            - "/home/jens/volumes/staging/pgadmin:/var/lib/pgadmin"
-        ports:
-            - "3001:3001"
-        networks:
-            web2022:
-                ipv4_address: 10.0.0.7
-
 networks:
     web2022:
         name: web2022
         ipam:
             config:
                 - subnet: 10.0.0.0/24
+    server_default:
+        external: true

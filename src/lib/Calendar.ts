@@ -1,6 +1,6 @@
 import { Organization } from "@prisma/client";
 import { CalendarItem } from "$lib/CalendarItem";
-import { parseICS } from "ical";
+import ical from "ical";
 import { prisma } from "$lib/Prisma";
 
 // Cache all the events in the calendar at startup. Should ideally be moved in
@@ -20,7 +20,7 @@ export const calender: Promise<Map<Organization, Array<CalendarItem>>> = (async 
 
         const file = await fetch(calendar.url);
         const data = await file.text();
-        const list = parseICS(data);
+        const list = ical.parseICS(data);
 
         for (const entry of Object.entries(list)) {
             const dict = entry[1];
