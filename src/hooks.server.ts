@@ -2,10 +2,8 @@ import { type Handle, redirect } from "@sveltejs/kit";
 import { prisma } from "$lib/Prisma";
 import { Language } from "$lib/Language";
 
-// TODO: CAS authentication.
-// TODO: Should not default to GSR, but fine for development.
 export const handle = (async ({ event, resolve }) => {
-    console.log(`${new Date().toISOString()} ${event.request.method} ${event.url.pathname}`);
+    const start = new Date();
 
     // Setting the language even if not supplied makes i18n much easier!
     if (event.params.language === "") {
@@ -30,7 +28,15 @@ export const handle = (async ({ event, resolve }) => {
     event.locals.configuration = configuration;
     event.locals.language = language;
 
-    return resolve(event, {
+    const response = await resolve(event, {
         transformPageChunk: ({ html }) => html.replace("%lang%", event.params.language ?? "en"),
     });
+
+    console.log(
+        `${start.toISOString()} ${event.request.method} ${event.url.pathname} ${
+            Date.now() - start.valueOf()
+        }ms ${response.status}`,
+    );
+
+    return response;
 }) satisfies Handle;
