@@ -16,9 +16,11 @@
     style="object-position: 50% 30%"
 />
 
-<div class="container md grid grid-cols-2 gap-x-8 gap-y-2 py-12">
-    {@html data.i18n.get("who-about")}
-</div>
+{#if data.i18n.get("who-about")}
+    <div class="container md grid grid-cols-2 gap-x-8 gap-y-2 py-12">
+        {@html data.i18n.get("who-about")}
+    </div>
+{/if}
 
 <div class="space-y-4">
     {#each data.groups.filter((e) => e.positions.length > 0) as group}

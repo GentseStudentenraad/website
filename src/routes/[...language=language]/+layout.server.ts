@@ -35,7 +35,7 @@ export const load = (async ({ params, locals }) => {
         routes.push(locals.language == Language.DUTCH ? ["FAQ", "/nl/faq"] : ["FAQ", "/en/faq"]);
     }
 
-    if (locals.configuration.faq_section) {
+    if (locals.configuration.opinions_section) {
         routes.push(
             locals.language == Language.DUTCH
                 ? ["Standpunten", "/nl/standpunten"]
