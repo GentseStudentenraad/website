@@ -27,7 +27,7 @@
         <div class="odd:bg-neutral-100">
             <div class="container grid grid-cols-2 gap-6 py-6">
                 <div class="space-y-1 col-span-2">
-                    <p class="font-serif font-bold text-3xl">{group.name}</p>
+                    <p class="font-bold text-3xl">{group.name}</p>
                     {#if group.description}
                         <p class="opacity-90">{@html group.description}</p>
                     {/if}

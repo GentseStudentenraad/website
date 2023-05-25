@@ -11,7 +11,7 @@
             {#if group.opinions.length > 0}
                 <div class="space-y-4">
                     <div>
-                        <p class="font-serif font-bold text-4xl">{group.name}</p>
+                        <p class="font-bold text-4xl">{group.name}</p>
                         {#if group.about}
                             <p>{group.about}</p>
                         {/if}
