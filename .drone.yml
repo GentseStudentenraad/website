@@ -1,0 +1,59 @@
+---
+kind: pipeline
+type: docker
+name: default
+
+clone:
+    depth: 1
+
+steps:
+    - name: linter
+      image: node:20-alpine
+      volumes:
+          - name: cache
+            path: /drone/src/.npm
+      commands:
+          - npm ci --cache .npm --prefer-offline --silent --ignore-scripts
+          - npm run lint
+          - npm run build
+
+trigger:
+    branch:
+        - main
+    event:
+        - push
+        - pull_request
+
+volumes:
+    - name: cache
+      host:
+          path: /tmp/drone/cache/be.mauva.underflow/.npm
+
+---
+kind: pipeline
+type: docker
+name: deployment
+
+steps:
+    - name: test
+      image: docker:dind
+      volumes:
+          - name: dockersock
+            path: /var/run/docker.sock
+      commands:
+          - docker compose build
+          - docker compose up -d
+
+volumes:
+    - name: dockersock
+      host:
+          path: /var/run/docker.sock
+
+trigger:
+    branch:
+        - main
+    event:
+        - push
+
+depends_on:
+    - default
