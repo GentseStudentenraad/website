@@ -1,4 +1,4 @@
-import { type Handle } from "@sveltejs/kit";
+import { error, type Handle } from "@sveltejs/kit";
 import { prisma } from "$lib/Prisma";
 import { Language } from "$lib/Language";
 import { XMLParser } from "fast-xml-parser";
@@ -92,6 +92,14 @@ export const handle = (async ({ event, resolve }) => {
             },
         });
         event.locals.admin = count > 0;
+    }
+
+    if (event.url.pathname.startsWith("/api")) {
+        if (!event.locals.user) {
+            throw error(401, "Unauthorized");
+        } else if (!event.locals.admin) {
+            throw error(403, "Forbidden");
+        }
     }
 
     const response = await resolve(event, {
