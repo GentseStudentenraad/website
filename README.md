@@ -1,5 +1,4 @@
-[![Linter](https://github.com/GentseStudentenraad/website/actions/workflows/linter.yml/badge.svg)](https://github.com/GentseStudentenraad/website/actions/workflows/linter.yml)
-[![Publish Docker Image](https://github.com/GentseStudentenraad/website/actions/workflows/publish-docker-image-latest.yml/badge.svg)](https://github.com/GentseStudentenraad/website/actions/workflows/publish-docker-image-latest.yml)
+[![Build Status](https://ci.gentsestudentenraad.be/api/badges/GentseStudentenraad/website/status.svg)](https://ci.gentsestudentenraad.be/GentseStudentenraad/website)]
 
 # Gentse Studentenraad
 
