@@ -120,5 +120,6 @@ export const load = (async ({ params, locals }) => {
         configuration: locals.configuration,
         i18n: translations,
         user: locals.user,
+        admin: locals.admin,
     };
 }) satisfies LayoutServerLoad;

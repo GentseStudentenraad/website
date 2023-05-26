@@ -285,3 +285,24 @@ model Project {
 
     @@map("project")
 }
+
+model Admin {
+    id           Int          @id @default(autoincrement())
+    user_id      Int
+    user         User         @relation(fields: [user_id], references: [id])
+    organization Organization
+
+    @@map("admin")
+}
+
+model User {
+    id         Int     @id
+    username   String
+    email      String
+    given_name String
+    surname    String
+    student    Boolean
+    admin      Admin[]
+
+    @@map("user")
+}

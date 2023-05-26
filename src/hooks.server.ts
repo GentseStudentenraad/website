@@ -3,6 +3,7 @@ import { prisma } from "$lib/Prisma";
 import { Language } from "$lib/Language";
 import { XMLParser } from "fast-xml-parser";
 import jwt from "jsonwebtoken";
+import type { User } from "@prisma/client";
 
 const secret = "insecure";
 
@@ -15,8 +16,12 @@ export const handle = (async ({ event, resolve }) => {
 
     if (token) {
         try {
-            const decoded = jwt.verify(token, secret) as { email: string };
-            event.locals.user = decoded.email;
+            const decoded = jwt.verify(token, secret) as { id: number };
+            event.locals.user = await prisma.user.findUniqueOrThrow({
+                where: {
+                    id: decoded.id,
+                },
+            });
         } catch (e) {
             // TODO: notify user that login has failed.
         }
@@ -24,21 +29,36 @@ export const handle = (async ({ event, resolve }) => {
 
     if (ticket) {
         try {
+            // Validate against CAS
             const res = await fetch(
                 `https://login.ugent.be/serviceValidate?service=https://localhost:8080&ticket=${ticket}`,
             );
+
+            // Parse XML as User
             const xml = await res.text();
-            const result = new XMLParser().parse(xml);
-            const email =
-                result["cas:serviceResponse"]["cas:authenticationSuccess"]["cas:attributes"][
-                    "cas:mail"
-                ];
+            const result = new XMLParser().parse(xml)["cas:serviceResponse"][
+                "cas:authenticationSuccess"
+            ]["cas:attributes"];
+            const user: User = {
+                id: result["cas:ugentID"],
+                email: result["cas:mail"],
+                student: result["cas:objectClass"].includes("ugentStudent"),
+                surname: result["cas:surname"],
+                username: result["cas:uid"],
+                given_name: result["cas:givenname"],
+            };
 
-            // Set current user to this specific email.
-            event.locals.user = email;
+            // Retrieve all the user's features from the database
+            event.locals.user = await prisma.user.upsert({
+                create: user,
+                update: user,
+                where: {
+                    id: user.id,
+                },
+            });
 
-            // Set cookie to keep user online.
-            const encoded = jwt.sign({ email: email }, secret, { expiresIn: "1h" });
+            // Set JWT to keep user online.
+            const encoded = jwt.sign({ id: user.id }, secret, { expiresIn: "1h" });
             event.cookies.set("jwt", encoded, { path: "/" });
         } catch (e) {
             // TODO: notify user that login has failed.
@@ -62,6 +82,17 @@ export const handle = (async ({ event, resolve }) => {
 
     event.locals.configuration = configuration;
     event.locals.language = language;
+
+    // Authorisation
+    if (event.locals.user) {
+        const count = await prisma.admin.count({
+            where: {
+                OR: [{ organization: configuration.organization }, { organization: "COMMON" }],
+                user_id: event.locals.user.id,
+            },
+        });
+        event.locals.admin = count > 0;
+    }
 
     const response = await resolve(event, {
         transformPageChunk: ({ html }) => html.replace("%lang%", event.params.language ?? "en"),
