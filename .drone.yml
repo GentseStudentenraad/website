@@ -13,7 +13,7 @@ steps:
           - name: cache
             path: /drone/src/.npm
       commands:
-          - npm ci --cache .npm --prefer-offline --silent --ignore-scripts
+          - npm ci --cache .npm --prefer-offline --silent
           - npm run lint
           - npm run build
 
@@ -27,7 +27,7 @@ trigger:
 volumes:
     - name: cache
       host:
-          path: /tmp/drone/cache/be.mauva.underflow/.npm
+          path: /tmp/drone/cache/be.gentsestudentenraad.website/.npm
 
 ---
 kind: pipeline
