@@ -36,7 +36,7 @@ services:
         environment:
             POSTGRES_DB: gsr
             POSTGRES_USER: gsr
-            POSTGRES_PASSWORD: gsr
+            POSTGRES_PASSWORD: $POSTGRES_PASSWORD
             PGDATA: /var/lib/postgresql/data/pgdata
         volumes:
             - "/home/jens/volumes/staging/postgresql:/var/lib/postgresql/data"

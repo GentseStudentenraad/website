@@ -1,4 +1,4 @@
-[![Build Status](https://ci.gentsestudentenraad.be/api/badges/GentseStudentenraad/website/status.svg)](https://ci.gentsestudentenraad.be/GentseStudentenraad/website)]
+[![Build Status](https://ci.gentsestudentenraad.be/api/badges/GentseStudentenraad/website/status.svg)](https://ci.gentsestudentenraad.be/GentseStudentenraad/website)
 
 # Gentse Studentenraad
 

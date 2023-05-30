@@ -42,6 +42,9 @@ steps:
       commands:
           - docker compose build
           - docker compose up -d
+      environment:
+          POSTGRES_PASSWORD:
+              from_secret: POSTGRES_PASSWORD
 
 volumes:
     - name: dockersock
