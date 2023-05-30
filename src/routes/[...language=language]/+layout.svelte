@@ -27,7 +27,7 @@
             {#if data.user}
                 <p>{data.user.email}</p>
             {:else}
-                <a href="https://login.ugent.be/login?service=https://localhost:8080">Login</a>
+                <a href="https://login.ugent.be/login?service={$page.url.origin}">Login</a>
             {/if}
 
             {#if data.admin}

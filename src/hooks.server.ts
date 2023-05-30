@@ -31,7 +31,7 @@ export const handle = (async ({ event, resolve }) => {
         try {
             // Validate against CAS
             const res = await fetch(
-                `https://login.ugent.be/serviceValidate?service=https://localhost:8080&ticket=${ticket}`,
+                `https://login.ugent.be/serviceValidate?service=${event.url.origin}&ticket=${ticket}`,
             );
 
             // Parse XML as User
