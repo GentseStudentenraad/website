@@ -1,6 +1,6 @@
-[![Build Status](https://ci.gentsestudentenraad.be/api/badges/GentseStudentenraad/website/status.svg)](https://ci.gentsestudentenraad.be/GentseStudentenraad/website)
-
 # Gentse Studentenraad
+
+[![Build Status](https://ci.gentsestudentenraad.be/api/badges/GentseStudentenraad/website/status.svg?ref=refs/heads/main)](https://ci.gentsestudentenraad.be/GentseStudentenraad/website)
 
 > Deze readme is een _work-in-progress_.
 
@@ -12,18 +12,20 @@ Om aan de website te sleutelen moet je beschikken over een PostgreSQL databank e
 
 ### Databank/ORM initialiseren
 
-Het project maakt gebruik van Prisma ORM. A.d.h.v. `/prisma/schema.prisma` modelleren we hoe het schema eruit hoeft te zien. Wanneer je deze in jouw databank wilt laden maak je gebruik van het commando `npx prisma migrate dev`. Vervolgens kan je de TypeScript types genereren met `npx prisma generate`.
+Het project maakt gebruik van Prisma ORM. Aan de hand van `prisma/schema.prisma` modelleren we de verschillende tabellen in onze databank. Wanneer je deze wilt inladen maak je gebruik van het commando `npx prisma migrate dev`. Vervolgens kan je de ORM code genereren met `npx prisma generate`.
 
-Om data in te laden gebruiken we voorlopig `/migrate/index.js`. Dit is een NodeJS script dat gegevens ophaalt uit de oude MariaDB instantie, en deze in jouw PostgreSQL databank laadt.
+Om data in te laden gebruiken we voorlopig `migrate/index.ts`. Dit is een NodeJS script dat gegevens ophaalt uit de oude MariaDB instantie, en deze in jouw PostgreSQL databank laadt. Je kan deze oproepen met `npm run migrate`.
 
-### SvelteKit starten
+### SvelteKit opstarten
 
-Je hoeft uitsluitend `npm run dev` uit te voeren, waarna de development server gestart wordt.
+Je hoeft uitsluitend `npm run dev` uit te voeren, waarna de development server gestart wordt. Een _production_ versie simuleren kan je aan de hand van de combinatie van commando's `npm run build` en `npm run preview`.
 
 ## CI/CD
 
-TODO
+We maken gebruik van het Drone CI platform. Momenteel testen we bij elke push en iedere pull request of de code conform de style guidelines is en of de applicatie compileert.
 
 ## Deployment
 
-TODO
+Bij iedere push naar `main` worden voorlopig nog de _staging_ websites geüpdatet. Wanneer een specifieke build in Drone gepromoveerd wordt naar `production` zal deze ook op de hoofddomeinnamen online gebracht worden.
+
+> Momenteel zijn we nog niet overgeschakeld, waardoor een build nog niet gepromoveerd kan worden. Ook het `.drone.yml` bestand dient hiervoor nog uitgebreid te worden.
