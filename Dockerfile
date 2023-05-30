@@ -1,4 +1,4 @@
-FROM node:19-alpine3.16 AS build
+FROM node:20-alpine3.16 AS build
 WORKDIR /app
 ARG DATABASE_URL
 
@@ -17,7 +17,7 @@ RUN npm run build
 
 ################################################################################
 
-FROM node:19-alpine3.16
+FROM node:20-alpine3.16
 WORKDIR /app
 
 # Install run time dependencies.
