@@ -1,5 +1,6 @@
 <script lang="ts">
     import type { PageData } from "./$types";
+    import NewButton from "$lib/components/admin/NewButton.svelte";
 
     export let data: PageData;
 </script>
@@ -16,7 +17,7 @@
     </style>
 </svelte:head>
 
-<div class="">
+<div class="space-y-4">
     <table class="table-auto">
         <thead>
             <tr>
@@ -62,6 +63,7 @@
             {/each}
         </tbody>
     </table>
+    <NewButton href="/admin/projects/create" />
 </div>
 
 <style lang="sass">
