@@ -3,7 +3,7 @@ import { prisma } from "$lib/Prisma";
 import { Language } from "$lib/Language";
 import { XMLParser } from "fast-xml-parser";
 import jwt from "jsonwebtoken";
-import type { User } from "@prisma/client";
+import type { Prisma, User } from "@prisma/client";
 
 const secret = "insecure";
 
@@ -16,10 +16,10 @@ export const handle = (async ({ event, resolve }) => {
 
     if (token) {
         try {
-            const decoded = jwt.verify(token, secret) as { id: number };
+            const decoded = jwt.verify(token, secret) as { username: string };
             event.locals.user = await prisma.user.findUniqueOrThrow({
                 where: {
-                    id: decoded.id,
+                    username: decoded.username,
                 },
             });
         } catch (e) {
@@ -41,8 +41,7 @@ export const handle = (async ({ event, resolve }) => {
             const result = new XMLParser().parse(xml)["cas:serviceResponse"][
                 "cas:authenticationSuccess"
             ]["cas:attributes"];
-            const user: User = {
-                id: result["cas:ugentID"],
+            const user: Prisma.UserCreateInput = {
                 email: result["cas:mail"],
                 student: result["cas:objectClass"].includes("ugentStudent"),
                 surname: result["cas:surname"],
@@ -55,12 +54,12 @@ export const handle = (async ({ event, resolve }) => {
                 create: user,
                 update: user,
                 where: {
-                    id: user.id,
+                    username: user.username,
                 },
             });
 
             // Set JWT to keep user online.
-            const encoded = jwt.sign({ id: user.id }, secret, { expiresIn: "1h" });
+            const encoded = jwt.sign({ username: user.username }, secret, { expiresIn: "1h" });
             event.cookies.set("jwt", encoded, { path: "/" });
         } catch (e) {
             // TODO: notify user that login has failed.

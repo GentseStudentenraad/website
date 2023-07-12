@@ -296,8 +296,8 @@ model Admin {
 }
 
 model User {
-    id         Int     @id
-    username   String
+    id         Int     @id @default(autoincrement())
+    username   String  @unique
     email      String
     given_name String
     surname    String
