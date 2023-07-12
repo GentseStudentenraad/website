@@ -9,10 +9,10 @@
 
 <div class="flex flex-col justify-between w-full min-h-[100vh]">
     <nav style:background-color={data.configuration.brand_color_primary}>
-        <div class="flex shadow-md p-3 items-center gap-6">
-            <button on:click={() => (showLinks = !showLinks)}>
-                <i class="bi-list text-xl cursor-pointer p-1" />
-            </button>
+        <div class="flex shadow-md p-3 items-center gap-5">
+            <!--            <button on:click={() => (showLinks = !showLinks)}>-->
+            <!--                <i class="bi-list text-xl cursor-pointer p-1" />-->
+            <!--            </button>-->
 
             <a href="/nl">
                 <img src={data.configuration.logo_url} class="h-8" alt="Logo" />
@@ -23,16 +23,6 @@
             {/each}
 
             <div class="grow" />
-
-            {#if data.user}
-                <p>{data.user.email}</p>
-            {:else}
-                <a href="https://login.ugent.be/login?service={$page.url.origin}">Login</a>
-            {/if}
-
-            {#if data.admin}
-                <a href="/admin">Admin</a>
-            {/if}
 
             {#if data.configuration.facebook_url}
                 <a href={data.configuration.facebook_url}>
@@ -76,22 +66,43 @@
                 </a>
             {/if}
 
+            <div />
+
+            {#if data.user}
+                <div class="flex items-center gap-2">
+                    {#if data.admin}
+                        <a href="/admin">
+                            <i class="bi bi-gear" />
+                        </a>
+                    {/if}
+                    <p class="text-xs font-semibold">{data.user.username}</p>
+                </div>
+            {:else}
+                <a
+                    class="flex items-center gap-2"
+                    href="https://login.ugent.be/login?service={$page.url.origin}"
+                >
+                    <i class="bi bi-person" />
+                    <p class="text-xs font-semibold">Inloggen</p>
+                </a>
+            {/if}
+
             {#if data.configuration.i18n}
                 {#if $page.url.toString().includes("/en")}
                     <a
-                        class="rounded-full bg-neutral-900 px-3 py-1 flex gap-2 font-semibold items-center border-2 border-neutral-700"
+                        class="flex items-center gap-2"
                         href={$page.url.toString().replace("/en", "/nl")}
                     >
                         <i class="bi bi-translate" />
-                        <p class="text-xs">NL</p>
+                        <p class="text-xs font-semibold">NL</p>
                     </a>
                 {:else}
                     <a
-                        class="rounded-full bg-neutral-900 px-3 py-1 flex gap-2 font-semibold items-center border-2 border-neutral-700"
+                        class="flex items-center gap-2"
                         href={$page.url.toString().replace("/nl", "/en")}
                     >
                         <i class="bi bi-translate" />
-                        <p class="text-xs">EN</p>
+                        <p class="text-xs font-semibold">EN</p>
                     </a>
                 {/if}
             {/if}
@@ -241,5 +252,9 @@
 
     .panel-link {
         @apply rounded-md p-4 bg-neutral-100 w-full;
+    }
+
+    .chip {
+        @apply rounded-full text-white bg-neutral-800 px-3 py-1 flex gap-2 font-semibold items-center border-[1px] border-neutral-900;
     }
 </style>
