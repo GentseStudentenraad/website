@@ -37,7 +37,6 @@ export const handle = (async ({ event, resolve }) => {
 
             // Parse XML as User
             const xml = await res.text();
-            console.log(xml);
             const result = new XMLParser().parse(xml)["cas:serviceResponse"][
                 "cas:authenticationSuccess"
             ]["cas:attributes"];
