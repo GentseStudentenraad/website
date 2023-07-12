@@ -1,56 +1,61 @@
 <script lang="ts">
     import type { PageData } from "./$types";
+    import NewButton from "$lib/components/admin/NewButton.svelte";
 
     export let data: PageData;
 </script>
 
-<table class="table-auto text-left w-full">
-    <thead>
-        <tr>
-            <th>
-                <div class="flex items-center">
-                    <p>Vraag</p>
-                    <div class="grow" />
-                    <i class="bi bi-chevron-down" />
-                </div>
-            </th>
-            <th>
-                <div class="flex items-center">
-                    <p>Antwoord</p>
-                    <div class="grow" />
-                    <i class="bi bi-chevron-down" />
-                </div>
-            </th>
-            <th>
-                <div class="flex items-center">
-                    <p>Sorteerindex</p>
-                    <div class="grow" />
-                    <i class="bi bi-chevron-down" />
-                </div>
-            </th>
-            <th />
-            <th />
-        </tr>
-    </thead>
-    <tbody>
-        {#each data.questions as question}
+<div class="space-y-4">
+    <table class="table-auto text-left w-full">
+        <thead>
             <tr>
-                <td>{question.question}</td>
-                <td>{question.answer.slice(0, 200)}..</td>
-                <td>{question.sort_index}</td>
-
-                <td>
-                    <a href="/admin/faq/{question.question_category_id}/{question.id}">
-                        <i class="bi bi-pencil-square" />
-                    </a>
-                </td>
-                <td>
-                    <i class="bi bi-trash3-fill" />
-                </td>
+                <th>
+                    <div class="flex items-center">
+                        <p>Vraag</p>
+                        <div class="grow" />
+                        <i class="bi bi-chevron-down" />
+                    </div>
+                </th>
+                <th>
+                    <div class="flex items-center">
+                        <p>Antwoord</p>
+                        <div class="grow" />
+                        <i class="bi bi-chevron-down" />
+                    </div>
+                </th>
+                <th>
+                    <div class="flex items-center">
+                        <p>Sorteerindex</p>
+                        <div class="grow" />
+                        <i class="bi bi-chevron-down" />
+                    </div>
+                </th>
+                <th />
+                <th />
             </tr>
-        {/each}
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            {#each data.questions as question}
+                <tr>
+                    <td>{question.question}</td>
+                    <td>{question.answer.slice(0, 200)}..</td>
+                    <td>{question.sort_index}</td>
+
+                    <td>
+                        <a href="/admin/faq/{question.question_category_id}/{question.id}">
+                            <i class="bi bi-pencil-square" />
+                        </a>
+                    </td>
+                    <td>
+                        <i class="bi bi-trash3-fill" />
+                    </td>
+                </tr>
+            {/each}
+        </tbody>
+    </table>
+
+    <NewButton href="/admin/faq/{data.categoryId}/create" />
+</div>
 
 <style lang="sass">
     th

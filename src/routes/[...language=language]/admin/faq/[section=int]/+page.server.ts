@@ -14,6 +14,7 @@ export const load = (async ({ params, locals }) => {
     });
 
     return {
+        categoryId: params.section,
         questions,
     };
 }) satisfies PageServerLoad;
