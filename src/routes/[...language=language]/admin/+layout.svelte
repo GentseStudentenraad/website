@@ -1,5 +1,8 @@
 <script lang="ts">
     import SideBarIcon from "$lib/components/admin/SideBarIcon.svelte";
+    import type { LayoutData } from "./$types";
+
+    export let data: LayoutData;
 </script>
 
 <div class="flex gap-12">
@@ -18,8 +21,18 @@
         <div class="h-[1px] w-full bg-neutral-300" />
         <div class="space-y-1">
             <p class="category">Interne structuur</p>
-            <SideBarIcon icon="person" value="Personen" badgeNeutral="42" link="/admin/people" />
-            <SideBarIcon icon="people" value="Groepen" badgeNeutral="42" link="/admin/groups" />
+            <SideBarIcon
+                icon="person"
+                value="Personen"
+                badgeNeutral={data.personCount}
+                link="/admin/people"
+            />
+            <SideBarIcon
+                icon="people"
+                value="Groepen"
+                badgeNeutral={data.groupCount}
+                link="/admin/groups"
+            />
         </div>
         <div class="h-[1px] w-full bg-neutral-300" />
         <div class="space-y-1">

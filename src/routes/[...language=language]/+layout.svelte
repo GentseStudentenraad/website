@@ -69,7 +69,7 @@
             <div />
 
             {#if data.user}
-                <div class="flex items-center gap-2">
+                <div class="flex items-center gap-2 bg-neutral-800 px-3 py-1 rounded-full">
                     {#if data.admin}
                         <a href="/admin">
                             <i class="bi bi-gear" />
@@ -79,7 +79,7 @@
                 </div>
             {:else}
                 <a
-                    class="flex items-center gap-2"
+                    class="flex items-center gap-2 bg-neutral-800 px-3 py-1 rounded-full"
                     href="https://login.ugent.be/login?service={$page.url.origin}"
                 >
                     <i class="bi bi-person" />
@@ -90,7 +90,7 @@
             {#if data.configuration.i18n}
                 {#if $page.url.toString().includes("/en")}
                     <a
-                        class="flex items-center gap-2"
+                        class="flex items-center gap-2 bg-neutral-800 px-3 py-1 rounded-full"
                         href={$page.url.toString().replace("/en", "/nl")}
                     >
                         <i class="bi bi-translate" />
@@ -98,7 +98,7 @@
                     </a>
                 {:else}
                     <a
-                        class="flex items-center gap-2"
+                        class="flex items-center gap-2 bg-neutral-800 px-3 py-1 rounded-full"
                         href={$page.url.toString().replace("/nl", "/en")}
                     >
                         <i class="bi bi-translate" />

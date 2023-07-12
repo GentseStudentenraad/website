@@ -25,7 +25,10 @@ export const load = (async ({ locals }) => {
         },
     });
 
+    const userCount = prisma.user.count();
+
     return {
+        userCount,
         groupCount,
         personCount,
     };
