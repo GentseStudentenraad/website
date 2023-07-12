@@ -24,6 +24,7 @@ export const handle = (async ({ event, resolve }) => {
             });
         } catch (e) {
             // TODO: notify user that login has failed.
+            console.error(e);
         }
     }
 
@@ -36,6 +37,7 @@ export const handle = (async ({ event, resolve }) => {
 
             // Parse XML as User
             const xml = await res.text();
+            console.log(xml);
             const result = new XMLParser().parse(xml)["cas:serviceResponse"][
                 "cas:authenticationSuccess"
             ]["cas:attributes"];
@@ -62,6 +64,7 @@ export const handle = (async ({ event, resolve }) => {
             event.cookies.set("jwt", encoded, { path: "/" });
         } catch (e) {
             // TODO: notify user that login has failed.
+            console.error(e);
         }
     }
 
