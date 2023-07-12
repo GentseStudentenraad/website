@@ -16,7 +16,7 @@
     </style>
 </svelte:head>
 
-<div class="overflow-scroll">
+<div class="">
     <table class="table-auto">
         <thead>
             <tr>
@@ -72,7 +72,7 @@
 
 <style lang="sass">
     table
-        @apply overflow-scroll w-full
+        @apply w-full
 
     th
         @apply text-left
@@ -81,5 +81,5 @@
         @apply bg-white text-sm font-medium
 
     th, td
-        @apply border border-neutral-200 px-3 py-2 overflow-scroll
+        @apply border border-neutral-200 px-3 py-2
 </style>
