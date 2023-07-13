@@ -253,6 +253,59 @@ async function person(org: Organization, maria: mariadb.Connection) {
     });
 }
 
+async function users(org: Organization, maria: mariadb.Connection) {
+    const rows = (await maria.query(`
+        SELECT * FROM \`user\` u
+        LEFT OUTER JOIN roles_users ru on u.id = ru.user_id
+        WHERE ru.role_id != 3 AND u.username IS NOT NULL;
+    `)) as any[];
+
+    for (const row of rows) {
+        await prisma.user.upsert({
+            create: {
+                email: row.email,
+                given_name: row.firstname,
+                username: row.username,
+                student: false,
+                surname: row.lastname,
+            },
+            update: {
+                email: row.email,
+                given_name: row.firstname,
+                username: row.username,
+                surname: row.lastname,
+            },
+            where: {
+                username: row.username,
+            },
+        });
+    }
+
+    for (const row of rows) {
+        if (row.role_id === 1) {
+            await prisma.admin.create({
+                data: {
+                    organization: org.enum,
+                    user: {
+                        connect: {
+                            username: row.username,
+                        },
+                    },
+                },
+            });
+        } else if (row.role_id === 2) {
+            await prisma.user.update({
+                data: {
+                    student: true,
+                },
+                where: {
+                    username: row.username,
+                },
+            });
+        }
+    }
+}
+
 async function position(org: Organization, maria: mariadb.Connection) {
     const rows = (await maria.query(`
         SELECT DISTINCT
@@ -298,6 +351,8 @@ const tables = [
     "person_position",
     "question",
     "question_category",
+    "admin",
+    "public.user",
 ];
 
 // Reset tables in Postgres
@@ -340,6 +395,9 @@ Promise.all(
 
         console.log(`${org.name.toUpperCase()}: position`);
         await position(org, maria);
+
+        console.log(`${org.name.toUpperCase()}: user`);
+        await users(org, maria);
     }),
 ).then(() => {
     process.exit(0);
