@@ -17,6 +17,12 @@
             <SideBarIcon icon="globe" value="Sociale Media" link="/admin/media" />
             <SideBarIcon icon="toggles" value="Optionele Functies" link="/admin/features" />
             <SideBarIcon icon="translate" value="Vertalingen" link="/admin/i18n" />
+            <SideBarIcon
+                icon="person"
+                value="Gebruikers"
+                link="/admin/users"
+                badgeNeutral={data.userCount}
+            />
         </div>
         <div class="h-[1px] w-full bg-neutral-300" />
         <div class="space-y-1">
