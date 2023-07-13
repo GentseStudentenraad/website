@@ -18,3 +18,17 @@ export const PUT = (async ({ request, params }) => {
         throw error(500);
     }
 }) satisfies RequestHandler;
+
+export const DELETE = (async ({ params }) => {
+    try {
+        await prisma.personGroup.delete({
+            where: {
+                id: Number.parseInt(params.position),
+            },
+        });
+        return json({ message: "OK" });
+    } catch (err) {
+        console.error(err);
+        throw error(500);
+    }
+}) satisfies RequestHandler;
