@@ -1,8 +1,21 @@
 <script lang="ts">
     import type { PageData } from "./$types";
     import NewButton from "$lib/components/admin/NewButton.svelte";
+    import { goto } from "$app/navigation";
 
     export let data: PageData;
+
+    async function remove(id: number) {
+        const res = await fetch(`/api/project/${id}`, {
+            method: "DELETE",
+        });
+
+        if (res.status === 200) {
+            goto("/admin/projects");
+        } else {
+            alert(JSON.stringify(res, null, 2));
+        }
+    }
 </script>
 
 <svelte:head>
@@ -57,7 +70,9 @@
                         </a>
                     </td>
                     <td>
-                        <i class="bi bi-trash3-fill" />
+                        <button on:click={() => remove(project.id)}>
+                            <i class="bi bi-trash3-fill" />
+                        </button>
                     </td>
                 </tr>
             {/each}
