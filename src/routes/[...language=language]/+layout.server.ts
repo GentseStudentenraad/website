@@ -65,7 +65,7 @@ export const load = (async ({ params, locals }) => {
         },
     });
 
-    if (projectCount > 0) {
+    if (locals.configuration.project_section && projectCount > 0) {
         routes.push(
             locals.language == Language.DUTCH
                 ? ["Projecten", "/nl/projecten"]

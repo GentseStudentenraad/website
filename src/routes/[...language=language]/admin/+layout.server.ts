@@ -27,7 +27,14 @@ export const load = (async ({ locals }) => {
 
     const userCount = prisma.user.count();
 
+    const projectCount = prisma.project.count({
+        where: {
+            organization: locals.configuration.organization,
+        },
+    });
+
     return {
+        projectCount,
         userCount,
         groupCount,
         personCount,

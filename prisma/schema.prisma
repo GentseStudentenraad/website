@@ -104,6 +104,8 @@ model Configuration {
     faq_section       Boolean @default(false)
     opinions_section  Boolean @default(false)
     elections_section Boolean @default(false)
+    feedback_section  Boolean @default(false)
+    project_section   Boolean @default(false)
 
     @@map("configuration")
 }

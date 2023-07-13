@@ -44,7 +44,12 @@
                 link="/admin/nieuws"
             />
             <SideBarIcon icon="question-circle" value="FAQ" link="/admin/faq" />
-            <SideBarIcon icon="broadcast" value="Projecten" link="/admin/projects" />
+            <SideBarIcon
+                icon="broadcast"
+                value="Projecten"
+                link="/admin/projects"
+                badgeNeutral={data.projectCount}
+            />
         </div>
         <div class="h-[1px] w-full bg-neutral-300" />
         <div class="space-y-1">

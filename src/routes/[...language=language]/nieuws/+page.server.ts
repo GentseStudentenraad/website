@@ -1,5 +1,6 @@
 import { prisma } from "$lib/Prisma";
 import type { PageServerLoad } from "./$types";
+import { error } from "@sveltejs/kit";
 
 export const prerender = false;
 export const ssr = true;

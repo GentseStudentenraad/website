@@ -34,6 +34,16 @@
         label="Nieuwssectie"
         description={null}
     />
+    <Checkbox
+        bind:value={data.configuration.feedback_section}
+        label="Vakfeedback"
+        description={null}
+    />
+    <Checkbox
+        bind:value={data.configuration.project_section}
+        label="Projectensectie"
+        description={null}
+    />
     <Checkbox bind:value={data.configuration.who_section} label="Wie-sectie" description={null} />
     <Checkbox bind:value={data.configuration.faq_section} label="FAQ-sectie" description={null} />
     <Checkbox
