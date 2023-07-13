@@ -95,6 +95,10 @@ export const handle = (async ({ event, resolve }) => {
         event.locals.admin = count > 0;
     }
 
+    if (!configuration.active && !event.locals.admin) {
+        throw error(401, "Unauthorized");
+    }
+
     if (event.url.pathname.startsWith("/api")) {
         if (!event.locals.user) {
             throw error(401, "Unauthorized");
