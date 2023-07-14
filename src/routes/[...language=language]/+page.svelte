@@ -1,12 +1,32 @@
 <script lang="ts">
-    import CalendarItemRow from "$lib/components/CalendarItemRow.svelte";
     import NewsItemVertical from "$lib/components/NewsItemVertical.svelte";
     import "chance";
     import { Chance } from "chance";
     import SeparatedBanner from "$lib/components/SeparatedBanner.svelte";
     import type { PageData } from "./$types";
+    import { onMount } from "svelte";
+    import * as FullCalendar from "fullcalendar";
+    import iCalendarPlugin from "@fullcalendar/icalendar";
 
     export let data: PageData;
+
+    // Initialize the interactive calendar
+    onMount(async () => {
+        if (data.calendars.length > 0) {
+            const calendarEl = document.getElementById("calendar");
+            const calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: "dayGridMonth",
+                plugins: [iCalendarPlugin],
+                eventSources: data.calendars.map((cal) => {
+                    return {
+                        url: `https://localhost:8080/api/calendar/${cal.id}`,
+                        format: "ics",
+                    };
+                }),
+            });
+            calendar.render();
+        }
+    });
 </script>
 
 <svelte:head>
@@ -30,34 +50,11 @@
             {@html data.i18n.get("home-about")}
         </div>
 
-        <div class="grid grid-cols-3 gap-4 container">
-            <div
-                class="gap-4 bg-neutral-200 rounded-md grid grid-cols-7 items-center justify-center shadow-sm aspect-square p-6"
-            >
-                {#each ["MA", "DI", "WO", "DO", "VR", "ZA", "ZO"] as day}
-                    <p class="cal-day">{day}</p>
-                {/each}
-
-                {#each Array.from(Array(30).keys()) as i}
-                    <p
-                        class="text-center font-medium text-sm w-8 h-8 pt-[5px] rounded-full hover:bg-neutral-500 transition {Math.random() <
-                        0.25
-                            ? 'bg-neutral-400/50'
-                            : ''}"
-                    >
-                        {i}
-                    </p>
-                {/each}
+        {#if data.calendars.length > 0}
+            <div class="container">
+                <div id="calendar" class="h-[600px]" />
             </div>
-
-            <div
-                class="space-y-4 w-full overflow-scroll col-span-2 h-[320px] rounded-md overflow-clip"
-            >
-                {#each data.calendar ?? [] as calendar_item}
-                    <CalendarItemRow {calendar_item} />
-                {/each}
-            </div>
-        </div>
+        {/if}
 
         <p class="container">{Chance().paragraph()}</p>
 
@@ -110,9 +107,3 @@
         </div>
     </div>
 </main>
-
-<style lang="postcss">
-    .cal-day {
-        @apply text-center font-bold text-sm w-8 h-8 pt-[5px] rounded-full hover:bg-neutral-500 transition;
-    }
-</style>

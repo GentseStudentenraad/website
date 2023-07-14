@@ -53,6 +53,7 @@
     },
     "type": "module",
     "dependencies": {
+        "@fullcalendar/icalendar": "^6.1.8",
         "@prisma/client": "^4.3.1",
         "@sveltejs/adapter-node": "^1.0.0-next.95",
         "@tabler/core": "^1.0.0-beta13",
@@ -62,6 +63,7 @@
         "chance": "^1.1.8",
         "dompurify": "^2.4.0",
         "fast-xml-parser": "^4.2.2",
+        "fullcalendar": "^6.1.8",
         "ical": "^0.8.0",
         "ical.js": "^1.5.0",
         "jsonwebtoken": "^9.0.0",

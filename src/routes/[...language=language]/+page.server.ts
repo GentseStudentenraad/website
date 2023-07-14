@@ -1,6 +1,5 @@
 import { prisma } from "$lib/Prisma";
 import type { PageServerLoad } from "./$types";
-import { calender } from "$lib/Calendar";
 
 export const prerender = false;
 export const ssr = true;
@@ -19,8 +18,14 @@ export const load = (async ({ locals }) => {
         take: 4,
     });
 
+    const calendars = await prisma.calendar.findMany({
+        where: {
+            organization: locals.configuration.organization,
+        },
+    });
+
     return {
-        calendar: (await calender).get(locals.configuration.organization),
+        calendars,
         news,
     };
 }) satisfies PageServerLoad;
