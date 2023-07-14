@@ -140,7 +140,7 @@
     <div class="grow" />
 
     <footer class="bg-neutral-900 py-20 p-3 text-white">
-        <div class="container-big grid grid-cols-4 gap-12">
+        <div class="container grid grid-cols-3 gap-12">
             <div class="flex flex-col gap-2">
                 <p class="font-semibold">{@html data.i18n.get("footer-social-media")}</p>
                 <div class="w-full h-[2px] bg-white/20" />
@@ -231,12 +231,6 @@
                 <p class="">Ontdek jouw FSR</p>
                 <p class="">{@html data.i18n.get("footer-complaints")}</p>
             </div>
-
-            <img
-                class="m-auto"
-                src="https://gentsestudentenraad.be/static/persistent/images/logo.png"
-                alt="Logo"
-            />
         </div>
     </footer>
 </div>
