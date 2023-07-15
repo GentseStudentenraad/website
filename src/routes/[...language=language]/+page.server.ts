@@ -24,8 +24,6 @@ export const load = (async ({ locals, url }) => {
         },
     });
 
-    console.log(url);
-
     return {
         calendars,
         news,
