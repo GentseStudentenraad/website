@@ -7,30 +7,21 @@
     import DatePicker from "$lib/components/admin/DatePicker.svelte";
     import ImageUploader from "$lib/components/admin/ImageUploader.svelte";
     import { goto } from "$app/navigation";
+    import { News } from "@prisma/client";
 
-    async function put() {
-        const res = await fetch(`/api/news/${data.news_item.id}`, {
-            method: "PUT",
+    async function post() {
+        const res = await fetch(`/api/news/`, {
+            method: "POST",
             body: JSON.stringify(data.news_item),
             headers: {
                 "content-type": "application/json",
             },
         });
 
-        if (res.status === 200) {
-            await goto("/admin/nieuws");
-        } else {
-            alert(JSON.stringify(res, null, 2));
-        }
-    }
-
-    async function remove() {
-        const res = await fetch(`/api/news/${data.news_item.id}`, {
-            method: "DELETE",
-        });
+        const news: News = await res.json();
 
         if (res.status === 200) {
-            await goto("/admin/nieuws");
+            await goto(`/admin/nieuws/${news.id}`);
         } else {
             alert(JSON.stringify(res, null, 2));
         }
@@ -62,5 +53,5 @@
 
     <Checkbox label="Publiek" bind:value={data.news_item.published} description="Opties" />
 
-    <ActionButton action={put} {remove} />
+    <ActionButton action={post} />
 </div>
