@@ -6,7 +6,7 @@
 </script>
 
 <div class="flex gap-12">
-    <div class="space-y-4 p-8 bg-neutral-50 shadow-md">
+    <div class="gap-4 p-8 bg-neutral-50 shadow-md flex flex-col h-full grow">
         <a href="/admin">
             <p class="text-3xl font-semibold">Administratie</p>
         </a>

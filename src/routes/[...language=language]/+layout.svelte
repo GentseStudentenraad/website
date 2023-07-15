@@ -7,7 +7,7 @@
     export let data: LayoutData;
 </script>
 
-<div class="flex flex-col justify-between w-full min-h-[100vh]">
+<div class="flex flex-col w-full min-h-[100vh]">
     <nav style:background-color={data.configuration.brand_color_primary}>
         <div class="flex shadow-md p-3 items-center gap-5">
             <!--            <button on:click={() => (showLinks = !showLinks)}>-->
@@ -135,9 +135,9 @@
         </div>
     {/if}
 
-    <slot />
-
-    <div class="grow" />
+    <div class="grow">
+        <slot />
+    </div>
 
     <footer class="bg-neutral-900 py-20 p-3 text-white">
         <div class="container grid grid-cols-3 gap-12">
