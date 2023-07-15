@@ -61,6 +61,12 @@
                 link="/admin/projects"
                 badgeNeutral={data.projectCount}
             />
+            <SideBarIcon
+                icon="body-text"
+                value="Standpunten"
+                link="/admin/opinions"
+                badgeNeutral={data.opinionCount}
+            />
         </div>
         <div class="h-[1px] w-full bg-neutral-300" />
         <div class="space-y-1">

@@ -39,7 +39,14 @@ export const load = (async ({ locals }) => {
         },
     });
 
+    const opinionCount = prisma.opinion.count({
+        where: {
+            organization: locals.configuration.organization,
+        },
+    });
+
     return {
+        opinionCount,
         projectCount,
         userCount,
         groupCount,
