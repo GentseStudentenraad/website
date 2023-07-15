@@ -2,8 +2,9 @@ import { error, type Handle } from "@sveltejs/kit";
 import { prisma } from "$lib/Prisma";
 import { Language } from "$lib/Language";
 import { XMLParser } from "fast-xml-parser";
-import jwt from "jsonwebtoken";
+import jwt, { TokenExpiredError } from "jsonwebtoken";
 import type { Prisma, User } from "@prisma/client";
+import * as cookie from "cookie";
 
 const secret = "insecure";
 
@@ -13,6 +14,7 @@ export const handle = (async ({ event, resolve }) => {
     // Authentication
     const token = event.cookies.get("jwt");
     const ticket = event.url.searchParams.get("ticket");
+    let tokenExpired = false;
 
     if (token) {
         try {
@@ -23,8 +25,12 @@ export const handle = (async ({ event, resolve }) => {
                 },
             });
         } catch (e) {
-            // TODO: notify user that login has failed.
-            console.error(e);
+            if (e instanceof TokenExpiredError) {
+                tokenExpired = true;
+            } else {
+                // TODO: notify user that login has failed.
+                console.error(e);
+            }
         }
     }
 
@@ -110,6 +116,15 @@ export const handle = (async ({ event, resolve }) => {
     const response = await resolve(event, {
         transformPageChunk: ({ html }) => html.replace("%lang%", event.params.language ?? "en"),
     });
+
+    if (tokenExpired) {
+        response.headers.set(
+            "set-cookie",
+            cookie.serialize("jwt", "", {
+                expires: new Date("Thu, 01 Jan 1970 00:00:01 GMT"),
+            }),
+        );
+    }
 
     console.log(
         `${start.toISOString()} ${event.request.method} ${event.url} ${
