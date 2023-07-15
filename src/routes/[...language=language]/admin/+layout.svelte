@@ -72,6 +72,12 @@
                 link="/admin/opinions"
                 badgeNeutral={data.opinionCount}
             />
+            <SideBarIcon
+                icon="file-earmark-richtext"
+                value="Paginas"
+                link="/admin/page"
+                badgeNeutral={data.pageCount}
+            />
         </div>
         <div class="h-[1px] w-full bg-neutral-300" />
         <div class="space-y-1">

@@ -51,7 +51,14 @@ export const load = (async ({ locals }) => {
         },
     });
 
+    const pageCount = prisma.page.count({
+        where: {
+            organization: locals.configuration.organization,
+        },
+    });
+
     return {
+        pageCount,
         i18nCount,
         opinionCount,
         projectCount,
