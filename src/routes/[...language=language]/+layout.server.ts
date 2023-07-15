@@ -51,7 +51,7 @@ export const load = (async ({ params, locals }) => {
         );
     }
 
-    if (locals.configuration.news_section) {
+    if (locals.configuration.feedback_section) {
         routes.push(
             locals.language == Language.DUTCH
                 ? ["Vakfeedback", "/nl/feedback"]
