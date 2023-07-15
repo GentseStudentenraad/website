@@ -5,7 +5,7 @@ export const prerender = false;
 export const ssr = true;
 export const csr = true;
 
-export const load = (async ({ locals }) => {
+export const load = (async ({ locals, url }) => {
     const news = await prisma.news.findMany({
         orderBy: [
             {
@@ -24,8 +24,11 @@ export const load = (async ({ locals }) => {
         },
     });
 
+    console.log(url);
+
     return {
         calendars,
         news,
+        origin: url.origin,
     };
 }) satisfies PageServerLoad;

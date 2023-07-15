@@ -105,7 +105,8 @@ export const handle = (async ({ event, resolve }) => {
         throw error(401, "Unauthorized");
     }
 
-    if (event.url.pathname.startsWith("/api")) {
+    // TODO: Better authentication for API routes.
+    if (event.url.pathname.startsWith("/api") && !event.url.pathname.startsWith("/api/calendar")) {
         if (!event.locals.user) {
             throw error(401, "Unauthorized");
         } else if (!event.locals.admin) {

@@ -19,7 +19,7 @@
                 plugins: [iCalendarPlugin],
                 eventSources: data.calendars.map((cal) => {
                     return {
-                        url: `https://localhost:8080/api/calendar/${cal.id}`,
+                        url: `${data.origin}/api/calendar/${cal.id}`,
                         format: "ics",
                     };
                 }),
