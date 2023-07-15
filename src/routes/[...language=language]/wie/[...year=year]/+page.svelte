@@ -13,7 +13,7 @@
     <img
         src={data.configuration.group_photo}
         alt="Groepsfoto studentenraad"
-        class="h-[50vh] object-cover max-h-[500px]"
+        class="h-[50vh] object-cover w-full max-h-[500px]"
         style="object-position: 50% 30%"
     />
 {/if}
