@@ -54,6 +54,7 @@ model Page {
     markup           Markup
     config           Json         @default("{}")
 
+    @@unique([organization, slug])
     @@map("page")
 }
 
