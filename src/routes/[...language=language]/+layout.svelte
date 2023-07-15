@@ -247,8 +247,4 @@
     .panel-link {
         @apply rounded-md p-4 bg-neutral-100 w-full;
     }
-
-    .chip {
-        @apply rounded-full text-white bg-neutral-800 px-3 py-1 flex gap-2 font-semibold items-center border-[1px] border-neutral-900;
-    }
 </style>
