@@ -49,7 +49,12 @@
                 badgeNeutral="9"
                 link="/admin/nieuws"
             />
-            <SideBarIcon icon="question-circle" value="FAQ" link="/admin/faq" />
+            <SideBarIcon
+                icon="question-circle"
+                value="FAQ"
+                link="/admin/faq"
+                badgeNeutral={data.questionCount}
+            />
             <SideBarIcon
                 icon="broadcast"
                 value="Projecten"

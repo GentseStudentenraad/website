@@ -27,6 +27,12 @@ export const load = (async ({ locals }) => {
 
     const userCount = prisma.user.count();
 
+    const questionCount = prisma.question.count({
+        where: {
+            organization: locals.configuration.organization,
+        },
+    });
+
     const projectCount = prisma.project.count({
         where: {
             organization: locals.configuration.organization,
@@ -38,5 +44,6 @@ export const load = (async ({ locals }) => {
         userCount,
         groupCount,
         personCount,
+        questionCount,
     };
 }) satisfies LayoutServerLoad;
