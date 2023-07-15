@@ -50,11 +50,11 @@
             {@html data.i18n.get("home-about")}
         </div>
 
-        {#if data.calendars.length > 0}
-            <div class="container">
-                <div id="calendar" class="h-[600px]" />
-            </div>
-        {/if}
+        <div class="grid grid-cols-4 container w-full gap-4">
+            {#each data.news.slice(0, 4) as news_item}
+                <NewsItemVertical {news_item} />
+            {/each}
+        </div>
 
         <p class="container">{Chance().paragraph()}</p>
 
@@ -100,10 +100,12 @@
 
         <p class="container">{Chance().paragraph()}</p>
 
-        <div class="grid grid-cols-4 container w-full gap-4">
-            {#each data.news.slice(0, 4) as news_item}
-                <NewsItemVertical {news_item} />
-            {/each}
-        </div>
+        {#if data.calendars.length > 0}
+            <div class="container">
+                <div id="calendar" class="h-[600px]" />
+            </div>
+        {/if}
+
+        <p class="container">{Chance().paragraph()}</p>
     </div>
 </main>
