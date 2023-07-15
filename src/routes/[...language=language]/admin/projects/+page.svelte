@@ -11,7 +11,7 @@
         });
 
         if (res.status === 200) {
-            goto("/admin/projects");
+            location.reload();
         } else {
             alert(JSON.stringify(res, null, 2));
         }

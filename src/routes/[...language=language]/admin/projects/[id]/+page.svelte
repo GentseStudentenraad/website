@@ -22,6 +22,18 @@
         }
     }
 
+    async function remove() {
+        const res = await fetch(`/api/project/${data.project.id}`, {
+            method: "DELETE",
+        });
+
+        if (res.status === 200) {
+            await goto("/admin/projects");
+        } else {
+            alert(JSON.stringify(res, null, 2));
+        }
+    }
+
     export let data: PageData;
 </script>
 
@@ -40,5 +52,5 @@
 
     <ImageUploader description="Coverfoto" source={data.project.image} />
 
-    <ActionButton action={post} />
+    <ActionButton action={post} {remove} />
 </div>
