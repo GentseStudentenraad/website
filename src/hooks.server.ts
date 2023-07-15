@@ -128,9 +128,12 @@ export const handle = (async ({ event, resolve }) => {
     }
 
     console.log(
-        `${start.toISOString()} ${event.request.method} ${event.url} ${
-            Date.now() - start.valueOf()
-        }ms ${response.status}`,
+        `\
+IP:\t\t${event.getClientAddress()}
+TIMESTAMP:\t${start.toISOString()}
+TARGET:\t\t${event.request.method} ${event.url}
+RESPONSE:\t${response.status} (${Date.now() - start.valueOf()}ms)
+`,
     );
 
     return response;
