@@ -63,7 +63,7 @@
         "chance": "^1.1.8",
         "cookie": "^0.5.0",
         "dompurify": "^2.4.0",
-        "fast-xml-parser": "^4.2.2",
+        "fast-xml-parser": "^4.2.5",
         "fullcalendar": "^6.1.8",
         "ical": "^0.8.0",
         "ical.js": "^1.5.0",
