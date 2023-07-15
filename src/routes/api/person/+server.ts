@@ -3,14 +3,14 @@ import { prisma } from "$lib/Prisma";
 import type { RequestHandler } from "./$types";
 import { Prisma } from "@prisma/client";
 
-export const POST = (async ({ request, params }) => {
-    const res: Prisma.PersonCreateInput = await request.json();
+export const POST = (async ({ request }) => {
+    const res: Prisma.PersonUncheckedCreateInput = await request.json();
 
     try {
-        await prisma.person.create({
+        const person = await prisma.person.create({
             data: res,
         });
-        return json({ message: "OK" });
+        return json(person);
     } catch (err) {
         console.log(err);
         throw error(500);

@@ -7,7 +7,7 @@
 
     async function remove(element: i18n) {
         const res = await fetch(`/api/i18n/${element.id}`, {
-            method: "DELETE",
+            method: "delete",
         });
 
         if (res.status === 200) {

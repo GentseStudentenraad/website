@@ -1,5 +1,6 @@
 <script lang="ts">
     export let action: () => void;
+    export let remove: () => void | null = null;
     export let text = "Sla wijzigingen op";
 </script>
 
@@ -9,9 +10,11 @@
         {text}
     </button>
 
-    <button class="action-button bg-neutral-300 text-black opacity-50" disabled>
-        <i class="bi bi-trash" /> Ongedaan maken
-    </button>
+    {#if remove}
+        <button on:click={remove} class="action-button bg-neutral-300 text-black">
+            <i class="bi bi-trash" /> Verwijderen
+        </button>
+    {/if}
 </div>
 
 <style lang="postcss">

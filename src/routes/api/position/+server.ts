@@ -4,7 +4,7 @@ import type { RequestHandler } from "./$types";
 import { Prisma } from "@prisma/client";
 
 export const POST = (async ({ request }) => {
-    const res: Prisma.PersonPositionCreateInput = await request.json();
+    const res: Prisma.PersonPositionUncheckedCreateInput = await request.json();
 
     try {
         await prisma.personPosition.create({
