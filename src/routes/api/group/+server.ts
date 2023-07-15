@@ -3,14 +3,14 @@ import { prisma } from "$lib/Prisma";
 import type { RequestHandler } from "./$types";
 import { Prisma } from "@prisma/client";
 
-export const POST = (async ({ request, params }) => {
+export const POST = (async ({ request }) => {
     const res: Prisma.PersonGroupCreateInput = await request.json();
 
     try {
-        await prisma.personGroup.create({
+        const group = await prisma.personGroup.create({
             data: res,
         });
-        return json({ message: "OK" });
+        return json(group);
     } catch (err) {
         console.log(err);
         throw error(500);

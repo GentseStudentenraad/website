@@ -17,7 +17,19 @@
         });
 
         if (res.status === 200) {
-            goto("/admin/groups");
+            await goto("/admin/groups");
+        } else {
+            alert(JSON.stringify(res, null, 2));
+        }
+    }
+
+    async function remove() {
+        const res = await fetch(`/api/group/${data.group.id}`, {
+            method: "DELETE",
+        });
+
+        if (res.status === 200) {
+            await goto("/admin/groups");
         } else {
             alert(JSON.stringify(res, null, 2));
         }
@@ -28,7 +40,7 @@
     <TextField description="Naam" bind:value={data.group.name} />
     <LongTextField description="Beschrijving" bind:value={data.group.description} />
     <TextField description="Sorteerindex" bind:value={data.group.sort_index} />
-    <ActionButton action={put} />
+    <ActionButton action={put} {remove} />
 </div>
 
 <style lang="sass">
