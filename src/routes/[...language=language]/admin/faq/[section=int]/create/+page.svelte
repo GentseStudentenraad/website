@@ -8,7 +8,7 @@
 
     export let data: PageData;
 
-    let newQuestion: Partial<Question> = {
+    let newQuestion: Prisma.QuestionUncheckedCreateInput = {
         question: "",
         answer: "",
         question_category_id: data.category.id,
@@ -25,8 +25,10 @@
             },
         });
 
+        const question: Question = await res.json();
+
         if (res.status === 200) {
-            goto(`/admin/faq/${data.category.id}`);
+            await goto(`/admin/faq/${question.question_category_id}`);
         } else {
             alert(JSON.stringify(res, null, 2));
         }
@@ -36,7 +38,7 @@
 <div class="container space-y-4">
     <TextField description="Vraag" bind:value={newQuestion.question} />
     <LongTextField description="Antwoord" bind:value={newQuestion.answer} />
-    <TextField description="Sorteerindex" bind:value={newQuestion.sort_index} />
+    <TextField description="Sorteerindex" bind:value={newQuestion.sort_index} number={true} />
     <ActionButton action={post} />
 </div>
 

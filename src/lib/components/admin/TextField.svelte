@@ -1,7 +1,9 @@
 <script lang="ts">
     export let placeholder = "";
-    export let value: string | null = "";
+    export let value: string | number | null = "";
     export let description: string;
+
+    export let number = false;
 </script>
 
 <template>
@@ -9,7 +11,11 @@
         {#if description !== null}
             <p class="text-[12px] opacity-50 font-semibold uppercase">{description}</p>
         {/if}
-        <input type="text" class="textfield" {placeholder} bind:value />
+        {#if number}
+            <input type="number" class="textfield" {placeholder} bind:value />
+        {:else}
+            <input type="text" class="textfield" {placeholder} bind:value />
+        {/if}
     </div>
 </template>
 

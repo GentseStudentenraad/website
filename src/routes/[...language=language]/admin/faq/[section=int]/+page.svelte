@@ -1,8 +1,22 @@
 <script lang="ts">
     import type { PageData } from "./$types";
     import NewButton from "$lib/components/admin/NewButton.svelte";
+    import { goto } from "$app/navigation";
+    import { Question } from "@prisma/client";
 
     export let data: PageData;
+
+    async function remove(question: Question) {
+        const res = await fetch(`/api/faq/${question.id}`, {
+            method: "DELETE",
+        });
+
+        if (res.status === 200) {
+            location.reload();
+        } else {
+            alert(JSON.stringify(res, null, 2));
+        }
+    }
 </script>
 
 <div class="space-y-4">
@@ -47,7 +61,9 @@
                         </a>
                     </td>
                     <td>
-                        <i class="bi bi-trash3-fill" />
+                        <button on:click={() => remove(question)}>
+                            <i class="bi bi-trash3-fill" />
+                        </button>
                     </td>
                 </tr>
             {/each}

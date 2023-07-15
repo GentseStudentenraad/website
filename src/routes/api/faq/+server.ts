@@ -7,10 +7,10 @@ export const POST = (async ({ request }) => {
     const res: Prisma.QuestionCreateInput = await request.json();
 
     try {
-        await prisma.question.create({
+        const question = await prisma.question.create({
             data: res,
         });
-        return json({ message: "OK" });
+        return json(question);
     } catch (err) {
         console.error(err);
         throw error(500);

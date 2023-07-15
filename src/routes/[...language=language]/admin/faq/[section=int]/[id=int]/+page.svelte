@@ -17,7 +17,19 @@
         });
 
         if (res.status === 200) {
-            goto(`/admin/faq/${data.question.question_category_id}`);
+            await goto(`/admin/faq/${data.question.question_category_id}`);
+        } else {
+            alert(JSON.stringify(res, null, 2));
+        }
+    }
+
+    async function remove() {
+        const res = await fetch(`/api/faq/${data.question.id}`, {
+            method: "DELETE",
+        });
+
+        if (res.status === 200) {
+            await goto(`/admin/faq/${data.question.question_category_id}`);
         } else {
             alert(JSON.stringify(res, null, 2));
         }
@@ -27,8 +39,8 @@
 <div class="container space-y-4">
     <TextField description="Vraag" bind:value={data.question.question} />
     <LongTextField description="Antwoord" bind:value={data.question.answer} />
-    <TextField description="Sorteerindex" bind:value={data.question.sort_index} />
-    <ActionButton action={put} />
+    <TextField description="Sorteerindex" bind:value={data.question.sort_index} number={true} />
+    <ActionButton action={put} {remove} />
 </div>
 
 <style lang="sass">
