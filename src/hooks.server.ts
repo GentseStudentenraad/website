@@ -2,7 +2,7 @@ import { error, type Handle } from "@sveltejs/kit";
 import { prisma } from "$lib/Prisma";
 import { Language } from "$lib/Language";
 import { XMLParser } from "fast-xml-parser";
-import jwt, { TokenExpiredError } from "jsonwebtoken";
+import jwt from "jsonwebtoken";
 import type { Prisma, User } from "@prisma/client";
 import * as cookie from "cookie";
 
@@ -25,7 +25,7 @@ export const handle = (async ({ event, resolve }) => {
                 },
             });
         } catch (e) {
-            if (e instanceof TokenExpiredError) {
+            if (e instanceof jwt.TokenExpiredError) {
                 tokenExpired = true;
             } else {
                 // TODO: notify user that login has failed.
