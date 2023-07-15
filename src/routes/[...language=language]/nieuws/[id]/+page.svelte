@@ -8,7 +8,7 @@
 </script>
 
 <div class="container py-12">
-    <NewsItemBig news_item={data.news[0]} />
+    <NewsItemBig news_item={data.news_item} />
 </div>
 
 <div class="bg-white py-12">
