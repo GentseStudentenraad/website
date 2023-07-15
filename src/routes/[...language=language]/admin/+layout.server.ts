@@ -45,7 +45,14 @@ export const load = (async ({ locals }) => {
         },
     });
 
+    const i18nCount = prisma.i18n.count({
+        where: {
+            organization: locals.configuration.organization,
+        },
+    });
+
     return {
+        i18nCount,
         opinionCount,
         projectCount,
         userCount,

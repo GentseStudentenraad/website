@@ -362,7 +362,8 @@ await Promise.all(
     }),
 );
 
-Promise.all(
+// Fill tables
+await Promise.all(
     organizations.map(async (org) => {
         const maria = await mariadb.createConnection({
             host: "localhost",
@@ -399,6 +400,16 @@ Promise.all(
         console.log(`${org.name.toUpperCase()}: user`);
         await users(org, maria);
     }),
-).then(() => {
-    process.exit(0);
-});
+);
+
+// Update incrementer
+await Promise.all(
+    tables.map((table) => {
+        return prisma.$queryRawUnsafe(
+            `SELECT setval(pg_get_serial_sequence('${table}', 'id'), coalesce(max(id)+1, 1), false) FROM ${table};`,
+        );
+    }),
+);
+
+console.log("Done");
+process.exit(0);

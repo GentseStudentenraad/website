@@ -30,7 +30,7 @@
     </style>
 </svelte:head>
 
-<div class="">
+<div class="overflow-scroll">
     <table class="table-auto">
         <thead>
             <tr>

@@ -16,7 +16,12 @@
             <SideBarIcon icon="brush" value="Thema" link="/admin/theme" />
             <SideBarIcon icon="globe" value="Sociale Media" link="/admin/media" />
             <SideBarIcon icon="toggles" value="Optionele Functies" link="/admin/features" />
-            <SideBarIcon icon="translate" value="Vertalingen" link="/admin/i18n" />
+            <SideBarIcon
+                icon="translate"
+                value="Vertalingen"
+                link="/admin/i18n"
+                badgeNeutral={data.i18nCount}
+            />
             <SideBarIcon
                 icon="person"
                 value="Gebruikers"

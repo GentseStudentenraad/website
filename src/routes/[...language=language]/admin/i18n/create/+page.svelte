@@ -36,7 +36,7 @@
 <div class="container space-y-4">
     <div>
         <p class="text-[12px] opacity-50 font-semibold uppercase">Type</p>
-        <select>
+        <select class="px-3 py-2">
             <option>MARKDOWN</option>
             <option>PLAIN_TEXT</option>
         </select>
