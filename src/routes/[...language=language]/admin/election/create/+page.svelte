@@ -10,7 +10,7 @@
     async function post() {
         const res = await fetch(`/api/election_group/`, {
             method: "POST",
-            body: JSON.stringify(data.category),
+            body: JSON.stringify(data.group),
             headers: {
                 "content-type": "application/json",
             },
@@ -19,7 +19,7 @@
         const result = await res.json();
 
         if (res.status === 200) {
-            await goto(`/admin/election_group/${result.id}`);
+            await goto(`/admin/election/${result.id}`);
         } else {
             alert(JSON.stringify(res, null, 2));
         }

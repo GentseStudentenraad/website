@@ -2,7 +2,7 @@
     import type { PageData } from "./$types";
     import NewButton from "$lib/components/admin/NewButton.svelte";
     import { goto } from "$app/navigation";
-    import { Election, Question } from "@prisma/client";
+    import { Election } from "@prisma/client";
     import TextField from "$lib/components/admin/TextField.svelte";
     import LongTextField from "$lib/components/admin/LongTextField.svelte";
     import ActionButton from "$lib/components/admin/ActionButton.svelte";
@@ -11,7 +11,7 @@
 
     async function put() {
         const res = await fetch(`/api/election_group/${data.group.id}`, {
-            method: "POST",
+            method: "PUT",
             body: JSON.stringify(data.group),
             headers: {
                 "content-type": "application/json",
@@ -31,7 +31,7 @@
         });
 
         if (res.status === 200) {
-            await goto("/api/election_group");
+            await goto("/admin/election");
         } else {
             alert(JSON.stringify(res, null, 2));
         }
