@@ -318,9 +318,13 @@ model Election {
   document     String?
   public       Boolean      @default(false)
   organization Organization
+  sort_index   Int          @default(0)
 
   election_group_id Int
   election_group    ElectionGroup @relation(fields: [election_group_id], references: [id])
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
 
   @@map("election")
 }
@@ -328,10 +332,14 @@ model Election {
 model ElectionGroup {
   id           Int          @id @default(autoincrement())
   name         String
-  description  String
+  description  String?
   organization Organization
+  sort_index   Int          @default(0)
 
   elections Election[]
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
 
   @@map("election_group")
 }

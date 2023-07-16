@@ -1,45 +1,34 @@
 <script lang="ts">
     import "chance";
-    import { Chance } from "chance";
     import type { PageData } from "./$types";
+    import Tag from "$lib/components/Tag.svelte";
 
     export let data: PageData;
 </script>
 
-<div class="container space-y-12 py-12">
-    <div class="grid grid-cols-2 gap-6">
-        <p class="font-serif font-bold text-5xl col-span-2">{data.i18n.get("elections-title")}</p>
-        <p>{Chance().paragraph()}</p>
-        <p>{Chance().paragraph()}</p>
-    </div>
-</div>
+<div class="container space-y-6 py-12">
+    {@html data.i18n.get("elections-title")}
 
-<div>
     {#each data.electionGroups as group}
-        <div class="space-y-6 odd:bg-neutral-100 py-12">
-            <div class="container space-y-2">
-                <p class="text-4xl font-serif font-bold">{group.title}</p>
-                <p>{group.about}</p>
+        <div>
+            <div class="space-y-1">
+                <p class="text-4xl font-serif font-bold">{group.name}</p>
+                {#if group.description}
+                    <p>{group.description}</p>
+                {/if}
             </div>
 
-            <div class="container grid grid-cols-2 gap-12">
+            <div class="columns-2 gap-6">
                 {#each group.elections as election}
-                    <div class="flex flex-col">
+                    <div class="space-y-1 bg-white mt-6 p-6 rounded-md break-inside-avoid">
                         <p class="font-semibold text-lg">{election.title}</p>
-                        <p>{election.about}</p>
-                        {#if election.document_link}
-                            <div class="grow" />
-                            <a
-                                href={election.document_link}
-                                class="flex items-center gap-2 px-4 py-2 bg-primary rounded-full text-white w-fit mt-4"
-                            >
-                                <img
-                                    src="/icons/document.png"
-                                    alt="Document Icon"
-                                    class="h-4 w-4"
-                                />
-                                <p>Infofiche</p>
-                            </a>
+                        {#if election.description}
+                            <p>{election.description}</p>
+                        {/if}
+                        {#if election.document}
+                            <div class="pt-2">
+                                <Tag value="Infofiche" icon="file" link={election.document} />
+                            </div>
                         {/if}
                     </div>
                 {/each}

@@ -342,6 +342,67 @@ async function position(org: Organization, maria: mariadb.Connection) {
     });
 }
 
+async function elections(org: Organization, maria: mariadb.Connection) {
+    const rows = (await maria.query(`
+        SELECT *
+        FROM position p
+        WHERE p.group_abbr = 'db' OR p.group_abbr = 'bv' OR p.group_abbr = 'enlight';
+    `)) as any[];
+
+    const getId = (tag: string): number => {
+        tag = tag.toLowerCase();
+        if (tag === "db") {
+            return org.offset;
+        } else if (tag === "bv") {
+            return org.offset + 1;
+        } else if (tag === "enlight") {
+            return org.offset + 2;
+        } else {
+            throw Error(`Unknown tag: ${tag}`);
+        }
+    };
+
+    await prisma.electionGroup.createMany({
+        data: [
+            {
+                organization: org.enum,
+                description: null,
+                sort_index: 0,
+                name: "Algemeen",
+                id: org.offset,
+            },
+            {
+                organization: org.enum,
+                description: null,
+                sort_index: 1,
+                name: "Functieprofielen beleidsverantwoordelijken",
+                id: org.offset + 1,
+            },
+            {
+                organization: org.enum,
+                description: null,
+                sort_index: 2,
+                name: "Functieprofielen student-coördinator ENLIGHT",
+                id: org.offset + 2,
+            },
+        ],
+    });
+
+    await prisma.election.createMany({
+        data: rows.map((row) => {
+            return {
+                organization: org.enum,
+                description: row.description === "" ? null : row.description,
+                title: row.name,
+                sort_index: row.rank ?? 0,
+                document: row.path ?? null,
+                public: row.active === 1,
+                election_group_id: getId(row.group_abbr),
+            };
+        }),
+    });
+}
+
 const tables = [
     "news",
     "opinion",
@@ -353,6 +414,8 @@ const tables = [
     "question_category",
     "admin",
     "public.user",
+    "election",
+    "election_group",
 ];
 
 // Reset tables in Postgres
@@ -399,6 +462,9 @@ await Promise.all(
 
         console.log(`${org.name.toUpperCase()}: user`);
         await users(org, maria);
+
+        console.log(`${org.name.toUpperCase()}: elections`);
+        await elections(org, maria);
     }),
 );
 
