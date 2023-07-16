@@ -27,7 +27,18 @@ export const load = (async ({ params, locals }) => {
         },
     });
 
+    const allYears = await prisma.personPosition.findMany({
+        where: {
+            organization: locals.configuration.organization,
+        },
+        select: {
+            year: true,
+        },
+    });
+    const years = [...new Set(allYears.map((e) => e.year))].sort().reverse();
+
     return {
-        groups: groups,
+        years,
+        groups,
     };
 }) satisfies PageServerLoad;

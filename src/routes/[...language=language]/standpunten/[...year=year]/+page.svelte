@@ -1,17 +1,20 @@
 <script lang="ts">
     import Tag from "$lib/components/Tag.svelte";
     import type { PageData } from "./$types";
+    import { goto } from "$app/navigation";
 
     export let data: PageData;
+
+    let selected = 2023;
 </script>
 
 {#if data.opinionGroups.filter((e) => e.opinions.length > 0).length > 0}
-    <div class="container py-12 space-y-24">
+    <div class="container pt-12 space-y-24">
         {#each data.opinionGroups as group}
             {#if group.opinions.length > 0}
                 <div class="space-y-4">
                     <div>
-                        <p class="font-bold text-4xl">{group.name}</p>
+                        <p class="font-bold text-3xl">{group.name}</p>
                         {#if group.about}
                             <p>{group.about}</p>
                         {/if}
@@ -19,15 +22,15 @@
 
                     <div class="space-y-8">
                         {#each group.opinions as opinion}
-                            <div class="grid grid-cols-3 bg-white rounded-md overflow-clip">
-                                <div class="space-y-3 col-span-2 p-6 flex flex-col justify-center">
+                            <div class="flex bg-white rounded-md overflow-clip justify-between">
+                                <div class="p-6 flex flex-col justify-center space-y-1">
                                     <p class="text-primary decoration-2 font-bold text-xl">
                                         {opinion.title}
                                     </p>
                                     {#if opinion.about}
                                         <p>{opinion.about}</p>
                                     {/if}
-                                    <div class="flex gap-4">
+                                    <div class="flex gap-4 pt-2">
                                         <Tag
                                             icon="calendar"
                                             value={opinion.published_at.toLocaleDateString()}
@@ -39,17 +42,33 @@
                                         />
                                     </div>
                                 </div>
-                                <img
-                                    class="w-full h-full object-cover"
-                                    src="https://unsplash.com/photos/oPDToLOwlqw/download?ixid=MnwxMjA3fDB8MXxhbGx8M3x8fHx8fDJ8fDE2Nzk3Mzg0MTI&force=true&w=640"
-                                    alt="Bookshelves"
-                                />
+                                {#if opinion.image}
+                                    <img
+                                        class="w-96 h-full object-cover"
+                                        src={opinion.image}
+                                        alt="Bookshelves"
+                                    />
+                                {/if}
                             </div>
                         {/each}
                     </div>
                 </div>
             {/if}
         {/each}
+
+        <div class="flex items-center justify-center gap-4 pb-12">
+            <p>Bekijk historische data:</p>
+            <select
+                name="year"
+                id="year"
+                bind:value={selected}
+                on:change={() => goto(`/standpunten/${selected}`)}
+            >
+                {#each data.years as year}
+                    <option value={year}>{year}</option>
+                {/each}
+            </select>
+        </div>
     </div>
 {:else}
     <div class="grow" />

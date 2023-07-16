@@ -13,6 +13,17 @@ export const load = (async ({ params, locals }) => {
     // that Date::getMonth uses a zero-based index, so September equals 8.
     const year = parseInt(params.year);
 
+    const allDates = await prisma.opinion.findMany({
+        where: {
+            organization: locals.configuration.organization,
+        },
+        select: {
+            published_at: true,
+        },
+    });
+    const allYears = allDates.map((e) => e.published_at.getFullYear());
+    const years = [...new Set(allYears)].sort().reverse();
+
     const opinionGroups = await prisma.opinionGroup.findMany({
         include: {
             opinions: {
@@ -30,6 +41,7 @@ export const load = (async ({ params, locals }) => {
     });
 
     return {
+        years,
         opinionGroups,
     };
 }) satisfies PageServerLoad;

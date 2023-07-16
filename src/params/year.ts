@@ -1,5 +1,11 @@
 import type { ParamMatcher } from "@sveltejs/kit";
 
 export const match = ((param: string) => {
-    return ["2022", "2021", "2020"].includes(param);
+    const year = Number.parseInt(param);
+
+    if (!Number.isInteger(year)) {
+        return false;
+    }
+
+    return year >= 2000 && year <= new Date().getFullYear();
 }) satisfies ParamMatcher;

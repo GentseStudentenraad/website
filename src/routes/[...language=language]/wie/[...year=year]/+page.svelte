@@ -58,9 +58,9 @@
             name="year"
             id="year"
             bind:value={selected}
-            on:change={() => goto(`/wie/${selected}`)}
+            on:change={() => goto(`/nl/wie/${selected}`)}
         >
-            {#each ["2022", "2021", "2020"] as year}
+            {#each data.years as year}
                 <option value={year}>{year}</option>
             {/each}
         </select>

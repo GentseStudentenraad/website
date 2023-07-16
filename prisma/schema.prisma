@@ -130,6 +130,7 @@ model Opinion {
     document_link String
     published     Boolean
     organization  Organization
+    image         String?
 
     opinion_group_id Int
     opinion_group    OpinionGroup @relation(fields: [opinion_group_id], references: [id])
