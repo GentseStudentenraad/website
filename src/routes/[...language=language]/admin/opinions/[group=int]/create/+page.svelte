@@ -7,6 +7,7 @@
     import { Prisma, Question } from "@prisma/client";
     import DatePicker from "$lib/components/admin/DatePicker.svelte";
     import Checkbox from "$lib/components/admin/Checkbox.svelte";
+    import ImageUploader from "$lib/components/admin/ImageUploader.svelte";
 
     export let data: PageData;
 
@@ -31,6 +32,8 @@
     <TextField description="Vraag" bind:value={data.opinion.title} />
     <LongTextField description="Antwoord" bind:value={data.opinion.about} />
     <TextField description="Document" bind:value={data.opinion.document_link} />
+    <ImageUploader description="Afbeelding" source={data.opinion.image} />
+    <TextField description="Afbeelding" bind:value={data.opinion.image} />
     <DatePicker description="Publicatiedatum" bind:value={data.opinion.published_at} />
     <Checkbox label="Publiek" bind:value={data.opinion.published} description="Opties" />
     <ActionButton action={post} />
