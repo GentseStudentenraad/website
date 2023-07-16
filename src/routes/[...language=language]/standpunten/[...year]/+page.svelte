@@ -53,7 +53,7 @@
     </div>
 {:else}
     <div class="grow" />
-    <div class="flex items-center gap-6 justify-center w-full">
+    <div class="flex items-center gap-6 justify-center w-full h-full">
         <i class="bi bi-file-earmark-x text-8xl" />
         <div>
             <p class="text-xl font-bold">Te vroeg!</p>
@@ -61,4 +61,5 @@
             <Tag link="/standpunten/2021" value="Bekijk academiejaar 2021-2022" />
         </div>
     </div>
+    <div class="grow" />
 {/if}

@@ -135,7 +135,7 @@
         </div>
     {/if}
 
-    <div class="grow">
+    <div class="grow flex flex-col">
         <slot />
     </div>
 
