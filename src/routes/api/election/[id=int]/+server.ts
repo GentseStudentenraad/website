@@ -1,7 +1,7 @@
 import { error, json } from "@sveltejs/kit";
 import { prisma } from "$lib/Prisma";
 import type { RequestHandler } from "./$types";
-import { Election } from "@prisma/client";
+import type { Election } from "@prisma/client";
 
 export const PUT = (async ({ request, params }) => {
     const res: Election = await request.json();
