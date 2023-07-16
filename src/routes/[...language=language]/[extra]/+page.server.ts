@@ -25,10 +25,15 @@ export const load = (async ({ params, locals }) => {
         throw error(404, { message: "Not found" });
     }
 
-    const html = marked(source);
+    let html: string | null = null;
+    if (post.markup === "MARKDOWN") {
+        html = marked(source);
 
-    if (!html) {
-        throw error(500, { message: "Internal server error" });
+        if (!html) {
+            throw error(500, { message: "Internal server error" });
+        }
+    } else {
+        html = source;
     }
 
     return {

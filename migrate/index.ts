@@ -344,8 +344,9 @@ async function position(org: Organization, maria: mariadb.Connection) {
 
 async function elections(org: Organization, maria: mariadb.Connection) {
     const rows = (await maria.query(`
-        SELECT *
+        SELECT p.*, f.path
         FROM position p
+        LEFT JOIN file f on f.id = p.file_id
         WHERE p.group_abbr = 'db' OR p.group_abbr = 'bv' OR p.group_abbr = 'enlight';
     `)) as any[];
 
