@@ -74,9 +74,15 @@
             />
             <SideBarIcon
                 icon="file-earmark-richtext"
-                value="Paginas"
+                value="Pagina's"
                 link="/admin/page"
                 badgeNeutral={data.pageCount}
+            />
+            <SideBarIcon
+                icon="person-lines-fill"
+                value="Verkiezingen"
+                link="/admin/election"
+                badgeNeutral={data.electionCount}
             />
         </div>
         <div class="h-[1px] w-full bg-neutral-300" />
